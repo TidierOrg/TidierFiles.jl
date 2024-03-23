@@ -1,29 +1,47 @@
+using DataFrames
 path = "/Users/danielrizk/Downloads/fwftest.txt"
-read_fwf5(path, fwf_widths([12, 2, 17]))
-read_fwf5(path, fwf_empty(path, num_lines= 4))
+
+read_fwf(path, fwf_empty(path, num_lines= 4), skip_to= 3, n_max= 3)
 fwf_empty(path, num_lines= 4)
-function fwf_widths(widths::Vector{Int})
-    return widths
+
+
+function fwf_widths(widths::Vector{Int}, col_names::Vector{String}=String[])
+    return (widths, col_names)
 end
 
-function fwf_positions(positions::Vector{Tuple{Int, Int}})
+
+function fwf_positions(positions::Vector{Tuple{Int, Int}}, col_names::Vector{String}=String[])
     widths = [end_pos - start_pos + 1 for (start_pos, end_pos) in positions]
-    return widths
+    return (widths, col_names)
 end
 
-function read_fwf(filepath::String, widths::Vector{Int})
-    # Open the file
+function read_fwf(filepath::String, widths_colnames::Tuple{Vector{Int}, Union{Nothing, Vector{String}}}; skip_to=0, n_max=nothing)
+    widths, col_names_provided = widths_colnames
+
     open(filepath, "r") do file
-        # Read the first line to initialize the DataFrame with appropriate column types
-        first_line = readline(file)
-        seekstart(file)  # Reset file pointer to the start for the actual read process
+        # Skip the specified number of lines
+        for _ in 1:skip_to
+            readline(file)
+        end
+        
+        if col_names_provided !== nothing
+            column_names = Symbol.(col_names_provided)
+        else
+            column_names = [Symbol("Column_$i") for i in 1:length(widths)]
+        end
         
         # Initialize columns based on widths
         columns = [String[] for _ in 1:length(widths)]
-        column_names = [Symbol("Column_$i") for i in 1:length(widths)]
         
-        # Process each line of the file
+        # Initialize a counter for the number of lines read
+        lines_read = 0
+        
+        # Process each line of the file, respecting n_max if specified
         for line in eachline(file)
+            # Check if we've reached the maximum number of lines to read
+            if n_max !== nothing && lines_read >= n_max
+                break
+            end
             start_index = 1
             for (i, width) in enumerate(widths)
                 end_index = min(start_index + width - 1, length(line))
@@ -31,6 +49,7 @@ function read_fwf(filepath::String, widths::Vector{Int})
                 push!(columns[i], field)  # Add the field to the appropriate column
                 start_index = end_index + 1
             end
+            lines_read += 1
         end
         
         # Create a DataFrame from the columns
@@ -39,7 +58,13 @@ function read_fwf(filepath::String, widths::Vector{Int})
     end
 end
 
-function fwf_empty(filepath::String; num_lines::Int=4)
+col_names = ["Name", "Age", "ID", "Position", "Salary"]
+
+widths_colnames = fwf_empty(path, num_lines=4, col_names = ["Name", "Age", "ID", "Position", "Salary"])
+read_fwf(path, fwf_empty(path, num_lines=4, col_names = ["Name", "Age", "ID", "Position", "Salary"]), skip_to=3, n_max=3)
+
+
+function fwf_empty(filepath::String; num_lines::Int=4, col_names=nothing)
     # Read a sample of lines from the file
     lines = open(filepath, "r") do file
         [readline(file) for _ in 1:num_lines]
@@ -82,7 +107,14 @@ function fwf_empty(filepath::String; num_lines::Int=4)
         end
     end
 
-    return adjusted_widths
+    # Generate default column names if none were provided
+    if isempty(col_names)
+        col_names = ["Column_$i" for i in 1:length(adjusted_widths)]
+    elseif length(col_names) != length(adjusted_widths)
+        throw(ArgumentError("The number of column names does not match the number of detected columns."))
+    end
+
+    return adjusted_widths, col_names
 end
 
 
@@ -97,3 +129,4 @@ function read_lines(filepath::String, num_lines::Int)
     end
     return lines
 end
+

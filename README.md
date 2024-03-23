@@ -48,21 +48,18 @@ read_excel(path, sheet = "REPORT_A", skip = 1, n_max = 4, missingstring = [20.3]
 FOR FWF files
 ```
 path = "fwftest.txt"
-read_fwf(path, fwf_empty(path)) ## `fwf_empty` will parse and guess path widths based on padding and user determined number of lines
+read_fwf(path, fwf_empty(path, num_lines=4, col_names = ["Name", "Age", "ID", "Position", "Salary"]), skip_to=3, n_max=6)
+## `fwf_empty` will parse and guess path widths based on padding and user determined number of lines
 ```
 ```
-10×5 DataFrame
- Row │ Column_1     Column_2  Column_3  Column_4             Column_5 
-     │ String       String    String    String               String   
-─────┼────────────────────────────────────────────────────────────────
-   1 │ John Smith   35        12345     Software Engineer    $120,000
-   2 │ Jane Doe     29        2345      Marketing Manager    $95,000
-   3 │ Alice Jones  42        123456    CEO                  $250,000
-   4 │ Bob Brown    31        12345     Product Manager      $110,000
-   5 │ Charlie Day  28        34        Sales Associate      $70,000
-   6 │ Diane Poe    35        23456     Data Scientist       $130,000
-   7 │ Eve Stone    4         123456    Chief Financial Off  $200,000
-   8 │ Frank Moore  33        1234      Graphic Designer     $80,000
-   9 │ Grace Lee    27        123456    Software Developer   $115,000
-  10 │ Hank Zuse    45        12345     System Analyst       $120,000
+6×5 DataFrame
+ Row │ Name         Age     ID      Position             Salary   
+     │ String       String  String  String               String   
+─────┼────────────────────────────────────────────────────────────
+   1 │ Bob Brown    31      12345   Product Manager      $110,000
+   2 │ Charlie Day  28      34      Sales Associate      $70,000
+   3 │ Diane Poe    35      23456   Data Scientist       $130,000
+   4 │ Eve Stone    4       123456  Chief Financial Off  $200,000
+   5 │ Frank Moore  33      1234    Graphic Designer     $80,000
+   6 │ Grace Lee    27      123456  Software Developer   $115,000
 ```
