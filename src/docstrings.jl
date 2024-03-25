@@ -154,13 +154,13 @@ julia> fwf_empty(joinpath(testing_files_path, "fwftest.txt"), num_lines=4, col_n
 
 const docstring_write_csv  =
 """
-    write_csv(DataFrame, filepath; na = "", append = false, col_names = true, eol = "\n", num_threads = Threads.nthreads())
+    write_csv(DataFrame, filepath; na = "", append = false, col_names = true, missingstring, eol = "\n", num_threads = Threads.nthreads())
 Write a DataFrame to a CSV (comma-separated values) file.
 
 # Arguments
 - `x`: The DataFrame to write to the CSV file.
 - `file`: The path to the output CSV file.
-- `na`: = "": The string to represent missing values in the output file. Default is an empty string.
+- `missingstring`: = "": The string to represent missing values in the output file. Default is an empty string.
 - `append`: Whether to append to the file if it already exists. Default is false.
 - `col_names`: = true: Whether to write column names as the first line of the file. Default is true.
 - `eol`: = "\n": The end-of-line character to use in the output file. Default is the newline character.
@@ -176,13 +176,13 @@ julia> write_csv(df, joinpath(testing_files_path, "csvtest.csv"));
 
 const docstring_write_tsv  =
 """
-    write_tsv(DataFrame, filepath; na = "", append = false, col_names = true, eol = "\n", num_threads = Threads.nthreads())
+    write_tsv(DataFrame, filepath; na = "", append = false, col_names = true, missingstring, eol = "\n", num_threads = Threads.nthreads())
 Write a DataFrame to a TSV (tab-separated values) file.
 
 # Arguments
 - `x`: The DataFrame to write to the TSV file.
 - `file`: The path to the output TSV file.
-- `na`: = "": The string to represent missing values in the output file. Default is an empty string.
+- `missingstring`: = "": The string to represent missing values in the output file. Default is an empty string.
 - `append`: Whether to append to the file if it already exists. Default is false.
 - `col_names`: = true: Whether to write column names as the first line of the file. Default is true.
 - `eol`: = "\n": The end-of-line character to use in the output file. Default is the newline character.
@@ -235,7 +235,7 @@ Write a DataFrame to a file, allowing for customization of the delimiter and oth
 -`x`: The DataFrame to write to a file.
 -`file`: The path to the file where the DataFrame will be written.
 -delim: Character to use as the field delimiter. The default is tab ('\t'), making it a TSV (tab-separated values) file by default, but can be changed to accommodate other formats.
--`na`: The string to represent missing data in the output file.
+-`missingstring`: The string to represent missing data in the output file.
 -`append`: Whether to append to the file if it already exists. If false, the file will be overwritten.
 -`col_names`: Whether to write column names as the first line of the file. If appending to an existing file with append = true, column names will not be written regardless of this parameter's value.
 -`eol`: The end-of-line character to use in the file. Defaults to "\n".

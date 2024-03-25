@@ -92,7 +92,7 @@ $docstring_write_csv
 function write_csv(
     x::DataFrame,
     file::String;
-    na::String = "NA",
+    missingstring::String = "NA",
     append::Bool = false,
     col_names::Bool = true,
     eol::String = "\n",
@@ -104,7 +104,7 @@ function write_csv(
         x,
         append = append,
         writeheader = col_names && !append,
-        nastring = na,
+        missingstring = missingstring,
         newline = eol,
         threaded = num_threads > 1    )
 end
@@ -173,7 +173,7 @@ $docstring_write_tsv
 function write_tsv(
     x::DataFrame,
     file::String;
-    na::String = "",
+    missingstring::String = "",
     append::Bool = false,
     col_names::Bool = true,
     eol::String = "\n",
@@ -186,7 +186,7 @@ function write_tsv(
         delim = '\t',  # Use tab as the delimiter for TSV
         append = append,
         writeheader = col_names && !append,
-        nastring = "",
+        missingstring = missingstring,
         newline = eol,
         threaded = num_threads > 1)
 end
@@ -319,7 +319,7 @@ function write_table(
     x::DataFrame,
     file::String;
     delim::Char = '\t',  # Default to TSV, but allow flexibility
-    na::String = "",
+    missingstring::String = "",
     append::Bool = false,
     col_names::Bool = true,
     eol::String = "\n",
@@ -332,7 +332,7 @@ function write_table(
         delim = delim,  # Flexible delimiter based on argument
         append = append,
         writeheader = col_names && !append,
-        nastring = na,
+        missingstring = missingstring,
         newline = eol,
         threaded = num_threads > 1)
 end
