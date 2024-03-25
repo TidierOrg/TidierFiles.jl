@@ -29,6 +29,7 @@ function read_csv(file;
                   col_names=true,
                   skip=0,
                   n_max=Inf,
+                  col_select=nothing,
                   comment=nothing,
                   missingstring="",
                   escape_double=true,
@@ -50,6 +51,7 @@ function read_csv(file;
         header = col_names === true ? 1 : 0,
         skipto = skipto + 1,
         footerskip = 0,
+        select = col_select,
         limit = limit,
         comment = comment,
         missingstring = missingstring,
@@ -115,6 +117,7 @@ function read_tsv(file;
                   col_names=true,
                   skip=0,
                   n_max=Inf,
+                  col_select=nothing,
                   comment=nothing,
                   missingstring="",
                   escape_double=true,
@@ -137,6 +140,7 @@ function read_tsv(file;
         skipto = skipto + 1,
         footerskip = 0,
         limit = limit,
+        select = col_select,
         comment = comment,
         missingstring = missingstring,
         escapechar = escape_double ? '"' : '\\',
@@ -151,7 +155,7 @@ function read_tsv(file;
         
         # Ensure the request was successful
         if response.status != 200
-            error("Failed to fetch the CSV file: HTTP status code ", response.status)
+            error("Failed to fetch the TSV file: HTTP status code ", response.status)
         end
 
         # Read the CSV data from the fetched content using cleaned options
@@ -195,6 +199,7 @@ function read_delim(file;
                   col_names=true,
                   skip=0,
                   n_max=Inf,
+                  col_select=nothing,
                   comment=nothing,
                   missingstring="",
                   escape_double=true,
@@ -215,6 +220,7 @@ function read_delim(file;
         delim = delim,
         header = col_names === true ? 1 : 0,
         skipto = skipto + 1,
+        select = col_select,
         footerskip = 0,
         limit = limit,
         comment = comment,
@@ -234,7 +240,7 @@ function read_delim(file;
         
         # Ensure the request was successful
         if response.status != 200
-            error("Failed to fetch the CSV file: HTTP status code ", response.status)
+            error("Failed to fetch the delim file: HTTP status code ", response.status)
         end
 
         # Read the CSV data from the fetched content using cleaned options
@@ -254,37 +260,52 @@ function read_table(file;
         skip=0, 
         n_max=Inf, 
         comment=nothing, 
+        col_select=nothing,
         missingstring="",
         kwargs...)
-    # Preprocess the file to replace sequences of spaces with a single space
-    processed_lines = open(file, "r") do io
+    # Open the file and preprocess the lines
+    processed_lines, header = open(file, "r") do io
         lines = readlines(io)
-        # Apply preprocessing steps: trim and reduce whitespace
         lines = map(line -> replace(line, r"\s+" => " "), lines)
-        
-        # Skip lines if `skip` is specified
-        if skip > 0
-            lines = lines[(skip+1):end]
-        end
-        
-        # Handle `n_max` to limit the number of lines read
-        if !isinf(n_max)
-            lines = lines[1:min(n_max, length(lines))]
-        end
-        
-        # If a comment character is specified, filter out commented lines
+
+        # Filter out commented lines if a comment character is specified
         if !isnothing(comment)
             lines = filter(line -> !startswith(line, comment), lines)
         end
 
-        lines
+        header = nothing
+        # Extract column names if necessary, considering skips
+        if col_names == true
+            header_line_index =  1
+            if header_line_index <= length(lines)
+                header = split(lines[header_line_index], ' ')
+                if skip != 0
+                  lines = lines[(skip+2):end]
+                else
+                lines = lines[header_line_index+1:end]  # Skip the header line for data
+                end
+            end
+        else
+            lines = lines[(skip+2):end]
+        end
+
+        # Apply n_max limit
+        if !isinf(n_max)
+            lines = lines[1:min(n_max, length(lines))]
+        end
+
+        (lines, header)
     end
-    
-    # Convert processed lines into a temporary DataFrame using CSV.File with space as the delimiter
+
+    # Ensure header is a Vector{String} if not nothing
+    header_option = header !== nothing ? Vector{String}(header) : false
+
+    # Convert processed lines into a DataFrame
     df = CSV.File(IOBuffer(join(processed_lines, "\n")); 
                   delim=' ', 
-                  header=col_names, 
-                  missingstring=missingstring, 
+                  header=header_option,  # Pass correct header
+                  missingstring=missingstring,
+                  select=col_select,
                   kwargs...) |> DataFrame
 
     return df
