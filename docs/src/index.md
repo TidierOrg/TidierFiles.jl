@@ -32,5 +32,14 @@ Read functions include the following arguments and support HTTP reading:
 ```julia
 using TidierFiles
 
-read_csv("https://github.com/drizk1/TidierFiles.jl/blob/main/testing_files/csvtest.csv")
+read_csv("https://raw.githubusercontent.com/drizk1/TidierFiles.jl/main/testing_files/csvtest.csv", skip = 2, n_max = 3, col_select = ["ID", "Score"], missingstring = ["4"])
+```
+```
+3×2 DataFrame
+ Row │ ID       Score 
+     │ Int64?   Int64 
+─────┼────────────────
+   1 │       3     77
+   2 │ missing     85
+   3 │       5     95
 ```
