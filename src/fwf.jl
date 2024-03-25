@@ -60,7 +60,7 @@ function read_fwf(filepath::String, widths_colnames::Tuple{Vector{Int}, Union{No
 end
 
 """
-$docstring_empty
+$docstring_fwf_empty
 """
 function fwf_empty(filepath::String; num_lines::Int=4, col_names=nothing)
     # Read a sample of lines from the file

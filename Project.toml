@@ -1,0 +1,22 @@
+name = "TidierFiles"
+uuid = "8ae5e7a9-bdd3-4c93-9cc3-9df4d5d947db"
+authors = ["Daniel Rizk <rizkytennis@gmail.com> and contributors"]
+version = "1.0.0-DEV"
+
+[deps]
+CSV = "336ed68f-0bac-5ca0-87d4-7b16caf5d00b"
+DataFrames = "a93c6f00-e57d-5684-b7b6-d8193f3e46c0"
+Dates = "ade2ca70-3891-5945-98fb-dc099432e06a"
+HTTP = "cd3eb016-35fb-5094-929b-558a96fad6f3"
+ReadStatTables = "52522f7a-9570-4e34-8ac6-c005c74d4b84"
+Reexport = "189a3867-3050-52da-a836-e630ba90ab69"
+XLSX = "fdbf4ff8-1666-58a4-91e7-1b58723a45e0"
+
+[compat]
+julia = "1.9"
+
+[extras]
+Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
+
+[targets]
+test = ["Test"]
