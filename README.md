@@ -1,15 +1,17 @@
 # TidierFiles.jl
 
-this is an early draft. It wraps CSV.jl for most functions, XLSX.jl. read_fwf is bespoke.
+TidierFiles.jl leverages the CSV.jl, XLSX.jl, and ReadStatTables.jl packages to reimplement the R haven and readr packages.
 
-Current files supported
+Currently supported file types 
 - `read_csv` and `write_csv`
 - `read_tsv` and `write_tsv`
 - `read_xlsx` and `write_xlsx`
-- `read_delim`
+- `read_delim` and `write_delim`
 - `read_table` and `write_table`
-- `read_fwf` 
-
+- `read_fwf` and `fwf_empty`
+- `read_sav` and `write_sav` (.sav and .por)
+- `read_sas` and `write_sas` (.sas7bdat and .xpt)
+- `read_dta` and `write_dta` (.dta) 
 
 # Examples
 For CSVs (also TSV, white space tables, other delimters)

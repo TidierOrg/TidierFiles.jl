@@ -1,10 +1,3 @@
-using DataFrames
-path = "/Users/danielrizk/Downloads/fwftest.txt"
-
-read_fwf(path, fwf_empty(path, num_lines= 4), skip_to= 3, n_max= 3)
-fwf_empty(path, num_lines= 4)
-
-
 function fwf_widths(widths::Vector{Int}, col_names::Vector{String}=String[])
     return (widths, col_names)
 end
@@ -15,6 +8,9 @@ function fwf_positions(positions::Vector{Tuple{Int, Int}}, col_names::Vector{Str
     return (widths, col_names)
 end
 
+"""
+$docstring_read_fwf
+"""
 function read_fwf(filepath::String, widths_colnames::Tuple{Vector{Int}, Union{Nothing, Vector{String}}}; skip_to=0, n_max=nothing)
     widths, col_names_provided = widths_colnames
 
@@ -24,10 +20,15 @@ function read_fwf(filepath::String, widths_colnames::Tuple{Vector{Int}, Union{No
             readline(file)
         end
         
-        if col_names_provided !== nothing
-            column_names = Symbol.(col_names_provided)
-        else
+        # Generate or use provided column names
+        if col_names_provided === nothing || isempty(col_names_provided)
             column_names = [Symbol("Column_$i") for i in 1:length(widths)]
+            if col_names_provided !== nothing && isempty(col_names_provided)
+                # Ensure column names are unique if col_names_provided is explicitly empty
+                column_names = makeunique(column_names)
+            end
+        else
+            column_names = Symbol.(col_names_provided)
         end
         
         # Initialize columns based on widths
@@ -58,12 +59,9 @@ function read_fwf(filepath::String, widths_colnames::Tuple{Vector{Int}, Union{No
     end
 end
 
-col_names = ["Name", "Age", "ID", "Position", "Salary"]
-
-widths_colnames = fwf_empty(path, num_lines=4, col_names = ["Name", "Age", "ID", "Position", "Salary"])
-read_fwf(path, fwf_empty(path, num_lines=4, col_names = ["Name", "Age", "ID", "Position", "Salary"]), skip_to=3, n_max=3)
-
-
+"""
+$docstring_empty
+"""
 function fwf_empty(filepath::String; num_lines::Int=4, col_names=nothing)
     # Read a sample of lines from the file
     lines = open(filepath, "r") do file
@@ -77,13 +75,13 @@ function fwf_empty(filepath::String; num_lines::Int=4, col_names=nothing)
 
     # Analyze the character presence and space presence at each position
     for line in lines
-        for i in 1:max_length
-            if i > length(line)
-                space_presence[i] += 1
-            else
-                char_presence[i] += (line[i] != ' ')
-                space_presence[i] += (line[i] == ' ')
-            end
+        for i in 1:min(length(line), max_length)
+            char_presence[i] += (line[i] != ' ')
+            space_presence[i] += (line[i] == ' ')
+        end
+        # Increment space presence for trailing spaces in shorter lines
+        for i in (length(line)+1):max_length
+            space_presence[i] += 1
         end
     end
 
@@ -94,21 +92,16 @@ function fwf_empty(filepath::String; num_lines::Int=4, col_names=nothing)
     # Adjust widths based on consistent space presence
     adjusted_widths = Int[]
     for i in 1:length(widths)
-        if i == 1
+        if i == 1 || space_presence[potential_boundaries[i-1]] > num_lines * 0.75
             push!(adjusted_widths, widths[i])
         else
-            # Check if there's a significant presence of spaces before the start of a new column
-            if space_presence[potential_boundaries[i-1]] > num_lines * 0.75
-                push!(adjusted_widths, widths[i])
-            else
-                # Adjust the previous width if the space presence is not significant
-                adjusted_widths[end] += widths[i]
-            end
+            # Adjust the previous width if the space presence is not significant
+            adjusted_widths[end] += widths[i]
         end
     end
 
     # Generate default column names if none were provided
-    if isempty(col_names)
+    if col_names === nothing || isempty(col_names)
         col_names = ["Column_$i" for i in 1:length(adjusted_widths)]
     elseif length(col_names) != length(adjusted_widths)
         throw(ArgumentError("The number of column names does not match the number of detected columns."))
@@ -116,6 +109,7 @@ function fwf_empty(filepath::String; num_lines::Int=4, col_names=nothing)
 
     return adjusted_widths, col_names
 end
+
 
 
 function read_lines(filepath::String, num_lines::Int)
@@ -129,4 +123,3 @@ function read_lines(filepath::String, num_lines::Int)
     end
     return lines
 end
-

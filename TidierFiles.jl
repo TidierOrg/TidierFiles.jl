@@ -1,15 +1,25 @@
+module TidierFiles
+
 using CSV
 using DataFrames
-using XLSX, Dates #bc XLSX type parsing does not seem to be working so i made some auto parsers for read_excel 
-csv_path ="/Users/danielrizk/Downloads/TidierDB.jl/mtcars.csv"
+using XLSX
+using Dates #bc XLSX type parsing does not seem to be working so i made some auto parsers for read_excel 
+using HTTP
+using ReadStatTables
+
+export read_csv, write_csv, read_tsv, write_tsv, read_table, write_table, read_delim, read_excel, write_excel, 
+ read_fwf, write_fwf, fwf_empty, fwf_positions, fwf_positions, read_sav, read_sas, read_dta, write_sav, write_sas, 
+ write_dta
+ 
+include("fwf.jl")
+include("xlfiles.jl")
+include("statsfiles.jl")
+include("docstrings.jl")
 
 
-
-
-
-
-using CSV, DataFrames, HTTP
-
+"""
+$docstring_read_csv
+"""
 function read_csv(file;
                   delim=',',
                   col_names=true,
@@ -18,29 +28,36 @@ function read_csv(file;
                   comment=nothing,
                   missingstring="",
                   escape_double=true,
-                  col_types=nothing)
+                  ntasks::Int = Threads.nthreads(),  # Default ntasks value
+                  num_threads::Union{Int, Nothing}=nothing) # Optional num_threads
+
+    # Use num_threads if provided, otherwise stick with ntasks
+    effective_ntasks = isnothing(num_threads) ? ntasks : num_threads
+    
     # Convert n_max from Inf to Nothing for compatibility with CSV.File's limit argument
     limit = isinf(n_max) ? nothing : Int(n_max)
 
-    # Adjust arguments for CSV.File
-    header_arg = col_names === true ? 1 : 0
-    datarow = skip + 1
+    # Calculate skipto and header correctly
+    skipto = skip + (col_names === true ? 1 : 0)
 
-    # Prepare arguments for CSV.File
-    read_options = Dict(
-        :delim => delim,
-        :header => header_arg,
-        :datarow => datarow,
-        :limit => limit,
-        :comment => comment,
-        :missingstring => missingstring,
-        :quotechar => '"',
-        :escapechar => escape_double ? '"' : '\\',
-        :normalizenames => true
+    # Prepare arguments for CSV.read, including the effective number of tasks to use
+    read_options = (
+        delim = delim,
+        header = col_names === true ? 1 : 0,
+        skipto = skipto + 1,
+        footerskip = 0,
+        limit = limit,
+        comment = comment,
+        missingstring = missingstring,
+        escapechar = escape_double ? '"' : '\\',
+        quotechar = '"',
+        normalizenames = false,
+        ntasks = effective_ntasks > 1
     )
 
+
     # Filter options to remove any set to `nothing`
-    clean_options = Dict{Symbol,Any}(filter(p -> !isnothing(p[2]), read_options))
+   # clean_options = Dict{Symbol,Any}(filter(p -> !isnothing(p[2]), read_options))
 
     # Check if the file is a URL and read accordingly
     if startswith(file, "http://") || startswith(file, "https://")
@@ -53,16 +70,19 @@ function read_csv(file;
         end
 
         # Read the CSV data from the fetched content using cleaned options
-        df = CSV.File(IOBuffer(response.body); clean_options...) |> DataFrame
+        df = CSV.File(IOBuffer(response.body); read_options...) |> DataFrame
     else
         # Read from a local file using cleaned options
-        df = CSV.File(file; clean_options...) |> DataFrame
+        df = CSV.File(file; read_options...) |> DataFrame
     end
 
     return df
 end
 
 
+"""
+$docstring_write_csv
+"""
 function write_csv(
     x::DataFrame,
     file::String;
@@ -83,82 +103,65 @@ function write_csv(
         threaded = num_threads > 1    )
 end
 
-read_csv(csv_path)  
-
-read_csv(csv_path)  
- xf["Sheet1"]
-using XLSX
-
-
-xl_path = "/Users/danielrizk/Downloads/Assignment_Datasets/import.xlsx"
-
-
-df = DataFrame(integers=[1, 2, 3, 4], strings=["This", "Package makes", "File reading/writing", "even smoother"], floats=[10.2, 20.3, 30.4, 40.5], dates=[Date(2018,2,20), Date(2018,2,21), Date(2018,2,22), Date(2018,2,23)], times=[Dates.Time(19,10), Dates.Time(19,20), Dates.Time(19,30), Dates.Time(19,40)], datetimes=[Dates.DateTime(2018,5,20,19,10), Dates.DateTime(2018,5,20,19,20), Dates.DateTime(2018,5,20,19,30), Dates.DateTime(2018,5,20,19,40)])
-
-mtcarsastsv = read_csv(csv_path)
-write_tsv(mtcarsastsv, "/Users/danielrizk/Downloads/mtcars.tsv"  )
-read_tsv("/Users/danielrizk/Downloads/mtcars.tsv", missingstring = " test")
-read_csv("/Users/danielrizk/Downloads/mtcars.tsv")
-read_delim("/Users/danielrizk/Downloads/mtcars.tsv", delim = "\t")
-read_delim("/Users/danielrizk/Downloads/mtcars.csv", delim = ",")
-
-read_csv("/Users/danielrizk/Downloads/mtcars.tsv")
-df = DataFrame(integers=[1, 2, 3, 4], strings=["This", "Package makes", "File reading/writing", "even smoother"], floats=[10.2, 20.3, 30.4, 40.5], dates=[Date(2018,2,20), Date(2018,2,21), Date(2018,2,22), Date(2018,2,23)], times=[Dates.Time(19,10), Dates.Time(19,20), Dates.Time(19,30), Dates.Time(19,40)], datetimes=[Dates.DateTime(2018,5,20,19,10), Dates.DateTime(2018,5,20,19,20), Dates.DateTime(2018,5,20,19,30), Dates.DateTime(2018,5,20,19,40)])
-write_csv(df, "/Users/danielrizk/Downloads/testing.csv" , col_names= true)
-read_csv("/Users/danielrizk/Downloads/testing.csv", missingstring=["40.5", "10.2"])
-
-using DataFrames
-tsv_path = "/Users/danielrizk/Downloads/pythonsratch/UPDATED_NLP_COURSE/TextFiles/moviereviews.tsv"
-
-
+"""
+$docstring_read_tsv
+"""
 function read_tsv(file;
-    col_names=true,
-    skip=0,
-    n_max=Inf,
-    comment=nothing,
-    missingstring="",
-    escape_backslash=false,
-    escape_double=true,
-    col_types=nothing,
-    trim_ws=true)
-    # Convert n_max from Inf to Nothing for compatibility with CSV.read's limit argument
+                  delim='\t',
+                  col_names=true,
+                  skip=0,
+                  n_max=Inf,
+                  comment=nothing,
+                  missingstring="",
+                  escape_double=true,
+                  ntasks::Int = Threads.nthreads(),  # Default ntasks value
+                  num_threads::Union{Int, Nothing}=nothing) # Optional num_threads
+                 
+    # Use num_threads if provided, otherwise stick with ntasks
+    effective_ntasks = isnothing(num_threads) ? ntasks : num_threads
+    
+    # Convert n_max from Inf to Nothing for compatibility with CSV.File's limit argument
     limit = isinf(n_max) ? nothing : Int(n_max)
 
     # Calculate skipto and header correctly
-    if col_names === true
-        header = skip + 1  # Use the first row after skipping as header
-        skipto = skip + 2  # Data starts after the header
-    else
-        header = false
-        skipto = skip + 1  # Start reading data immediately if no header
-    end
+    skipto = skip + (col_names === true ? 1 : 0)
 
-    # Adjust header for CSV.read
-    header_arg = col_names === true ? header : 0
-
-    # Prepare arguments for CSV.read, setting delimiter to tab
-    read_options = Dict(
-    :delim => '\t',  # This is the key change for TSV
-    :header => header_arg,
-    :skipto => skipto,
-    :footerskip => 0,
-    :limit => limit,
-    :comment => comment,
-    :missingstring => missingstring, 
-    :escapechar => escape_double ? '"' : (escape_backslash ? '\\' : nothing),
-    :quotechar => '"',
-    :normalizenames => false
+    # Prepare arguments for CSV.read, including the effective number of tasks to use
+    read_options = (
+        delim = delim,
+        header = col_names === true ? 1 : 0,
+        skipto = skipto + 1,
+        footerskip = 0,
+        limit = limit,
+        comment = comment,
+        missingstring = missingstring,
+        escapechar = escape_double ? '"' : '\\',
+        quotechar = '"',
+        normalizenames = false,
+        ntasks = effective_ntasks > 1
     )
-
-    # Filter options to remove any set to `nothing`
-    clean_options = Dict{Symbol,Any}(filter(p -> !isnothing(p[2]), read_options))
-
     # Read the TSV file into a DataFrame
-    df = CSV.read(file, DataFrame; clean_options...)
+    if startswith(file, "http://") || startswith(file, "https://")
+        # Fetch the content from the URL
+        response = HTTP.get(file)
+        
+        # Ensure the request was successful
+        if response.status != 200
+            error("Failed to fetch the CSV file: HTTP status code ", response.status)
+        end
 
+        # Read the CSV data from the fetched content using cleaned options
+        df = CSV.File(IOBuffer(response.body); read_options...) |> DataFrame
+    else
+        # Read from a local file using cleaned options
+        df = CSV.File(file; read_options...) |> DataFrame
+    end
     return df
 end
 
+"""
+$docstring_write_tsv
+"""
 function write_tsv(
     x::DataFrame,
     file::String;
@@ -180,68 +183,47 @@ function write_tsv(
         threaded = num_threads > 1)
 end
 
-read_tsv("/Users/danielrizk/opt/anaconda3/pkgs/gensim-4.1.2-py39he9d5cce_0/lib/python3.9/site-packages/gensim/test/test_data/wordsim353.tsv")
-read_tsv(tsv_path,col_names = false)
-
-
-
-
-using DataFrames
-read_fwf("/Users/danielrizk/Downloads/fwftest.txt")
-read_table("/Users/danielrizk/Downloads/fwftest.txt", col_names= false)
-
-
-
-
-df1 = DataFrames.DataFrame(COL1=[10,20,30], COL2=["First", "Second", "Third"])
-
-
+"""
+$docstring_read_delim
+"""
 function read_delim(file;
-    delim=',',  # Add delim as a function parameter with default value ','
-    col_names=true,
-    skip=0,
-    n_max=Inf,
-    comment=nothing,
-    missingstring="",
-    escape_backslash=false,
-    escape_double=true,
-    col_types=nothing,
-    trim_ws=true)
-    # Convert n_max from Inf to Nothing for compatibility with CSV.read's limit argument
+                  delim='\t',
+                  col_names=true,
+                  skip=0,
+                  n_max=Inf,
+                  comment=nothing,
+                  missingstring="",
+                  escape_double=true,
+                  ntasks::Int = Threads.nthreads(),  # Default ntasks value
+                  num_threads::Union{Int, Nothing}=nothing) # Optional num_threads
+
+    # Use num_threads if provided, otherwise stick with ntasks
+    effective_ntasks = isnothing(num_threads) ? ntasks : num_threads
+    
+    # Convert n_max from Inf to Nothing for compatibility with CSV.File's limit argument
     limit = isinf(n_max) ? nothing : Int(n_max)
 
     # Calculate skipto and header correctly
     skipto = skip + (col_names === true ? 1 : 0)
 
-    # Prepare arguments for CSV.read
-    read_options = Dict(
-        :delim => delim,  # Use the delim parameter
-        :header => col_names ? skipto : false,
-        :skipto => skipto + 1,
-        :footerskip => 0,
-        :limit => limit,
-        :comment => comment,
-        :missingstring => missingstring,
-        :escapechar => escape_double ? '"' : (escape_backslash ? '\\' : nothing),
-        :quotechar => '"',
-        :normalizenames => false,
-        :types => col_types,
-        :stripwhitespace => trim_ws
+    # Prepare arguments for CSV.read, including the effective number of tasks to use
+    read_options = (
+        delim = delim,
+        header = col_names === true ? 1 : 0,
+        skipto = skipto + 1,
+        footerskip = 0,
+        limit = limit,
+        comment = comment,
+        missingstring = missingstring,
+        escapechar = escape_double ? '"' : '\\',
+        quotechar = '"',
+        normalizenames = false,
+        ntasks = effective_ntasks > 1
     )
-
     # Filter options to remove any set to `nothing`
-    clean_options = Dict{Symbol,Any}(filter(p -> !isnothing(p[2]), read_options))
+  #  clean_options = Dict{Symbol,Any}(filter(p -> !isnothing(p[2]), read_options))
 
     # Read the file into a DataFrame
-    df = CSV.read(file, DataFrame; clean_options...)
-
-    return df
-end
-
-
-using HTTP
-function read_csv(file; kwargs...)
-    # Check if the file is a URL
     if startswith(file, "http://") || startswith(file, "https://")
         # Fetch the content from the URL
         response = HTTP.get(file)
@@ -251,18 +233,18 @@ function read_csv(file; kwargs...)
             error("Failed to fetch the CSV file: HTTP status code ", response.status)
         end
 
-        # Read the CSV data from the fetched content
-        df = CSV.File(IOBuffer(response.body); kwargs...) |> DataFrame
+        # Read the CSV data from the fetched content using cleaned options
+        df = CSV.File(IOBuffer(response.body); read_options...) |> DataFrame
     else
-        # Read from a local file
-        df = CSV.read(file, DataFrame; kwargs...)
+        # Read from a local file using cleaned options
+        df = CSV.File(file; read_options...) |> DataFrame
     end
-
     return df
 end
 
-read_csv("https://github.com/tidyverse/readr/raw/main/inst/extdata/mtcars.csv", skip = 4, missingstring = ["1"])
-
+"""
+$docstring_read_table
+"""
 function read_table(file; 
         col_names=true, 
         skip=0, 
@@ -303,7 +285,11 @@ function read_table(file;
 
     return df
 end
-df
+
+
+"""
+$docstring_write_table
+"""
 function write_table(
     x::DataFrame,
     file::String;
@@ -326,5 +312,4 @@ function write_table(
         threaded = num_threads > 1)
 end
 
-write_table(df, "/Users/danielrizk/Downloads/fwftest2.txt")
-read_table( "/Users/danielrizk/Downloads/fwftest2.txt")
+end

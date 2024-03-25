@@ -1,8 +1,3 @@
-using Dates, XLSX, DataFrames
-
-
-xl_path = "/Users/danielrizk/Downloads/Assignment_Datasets/import.xlsx"
-
 function infer_type(value)
     if isa(value, Missing)
         return Missing
@@ -37,7 +32,10 @@ function convert_column(column)
     end
 end
 
-function read_excel(
+"""
+$docstring_read_xlsx
+"""
+function read_xlsx(
     path;
     sheet = nothing,
     range = nothing,
@@ -48,8 +46,23 @@ function read_excel(
     skip = 0,
     n_max = Inf,
     guess_max = nothing)
-    xf = XLSX.readxlsx(path)
 
+    
+    if startswith(path, "http://") || startswith(path, "https://")
+        # Fetch the content from the URL
+        response = HTTP.get(path)
+
+        # Ensure the request was successful
+        if response.status != 200
+            error("Failed to fetch the Excel file: HTTP status code ", response.status)
+        end
+
+        # Read the Excel data from the fetched content
+        xf = XLSX.readxlsx(IOBuffer(response.body))
+    else
+        # Read from a local file
+        xf = XLSX.readxlsx(path)
+    end
     # Determine the sheet to read from
     sheet_to_read = isnothing(sheet) ? first(XLSX.sheetnames(xf)) : sheet
 
@@ -107,24 +120,9 @@ function read_excel(
     return data
 end
 
-read_excel(xl_path)
-
-
-df1 = DataFrames.DataFrame(COL1=[10,20,30], COL2=["First", "Second", "Third"])
-df2 = DataFrames.DataFrame(AA=["aa", "bb"], AB=[10.1, 10.2])
-
-
-write_xlsx(("REPORT_A" => df1, "REPORT_B" => df2); path="/Users/danielrizk/Downloads/report.xlsx", overwrite = true)
-read_excel("/Users/danielrizk/Downloads/report.xlsx", sheet = "REPORT_B", skip = 1, n_max = 4, missingstring = [10.2])
-write_xlsx("REPORT_A" => df1; path="multi_sheet_report.xlsx")
-
-XLSX.writetable("/Users/danielrizk/Downloads/report.xlsx", sheets)
-
-
-XLSX.writetable("/Users/danielrizk/Downloads/report.xlsx", "REPORT_A" => df1, "REPORT_B" => df2)
-
-
-
+"""
+$docstring_write_xlsx
+"""
 function write_xlsx(x; path::String, overwrite::Bool=false)
     # Handling a single DataFrame input
     if x isa Pair{String, DataFrame}

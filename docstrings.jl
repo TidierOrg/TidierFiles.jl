@@ -1,6 +1,7 @@
+const docstring_read_csv  =
 """
     read_csv(file; delim=',',col_names=true, skip=0, n_max=Inf, 
-        comment=nothing, missingstring="", escape_double=true, col_types=nothing)
+        comment=nothing, missingstring="", escape_double=true, col_types=nothing, num_threads = 1)
 
 Reads a CSV file or URL into a DataFrame, with options to specify delimiter, column names, and other CSV parsing options.
 
@@ -13,15 +14,25 @@ Reads a CSV file or URL into a DataFrame, with options to specify delimiter, col
 `comment`: Character that starts a comment line. Lines beginning with this character are ignored. Default is nothing (no comment lines).
 `missingstring`: String that represents missing values in the CSV. Default is "", can be set to a vector of multiple items.
 `escape_double`: Indicates whether to interpret two consecutive quote characters as a single quote in the data. Default is true.
-`col_types`: An optional specification of column types, can be a single type applied to all columns, or a collection of types with one for each column. Default is nothing (types are inferred).
-
+`num_threads`: specifies the number of concurrent tasks or threads to use for processing, allowing for parallel execution. Defaults to 1
 # Examples
 ```jldoctest 
+julia> df = DataFrame(ID = 1:5, Name = ["Alice", "Bob", "Charlie", "David", "Eva"], Score = [88, 92, 77, 85, 95]);
 
+julia> write_csv(df, "testing_files/csvtest.csv");
 
+julia> read_csv("testing_files/csvtest.csv", skip = 2, n_max = 3, missingstring = ["95", "Charlie"])
+3×3 DataFrame
+ Row │ ID     Name      Score   
+     │ Int64  String7?  Int64?  
+─────┼──────────────────────────
+   1 │     3  missing        77
+   2 │     4  David          85
+   3 │     5  Eva       missing 
 ```
 """
 
+const docstring_read_tsv  =
 """
     read_tsv(file; delim='\t',col_names=true, skip=0, n_max=Inf, 
         comment=nothing, missingstring="", escape_double=true, col_types=nothing)
@@ -29,7 +40,7 @@ Reads a CSV file or URL into a DataFrame, with options to specify delimiter, col
 Reads a TSV file or URL into a DataFrame, with options to specify delimiter, column names, and other CSV parsing options.
 
 # Arguments
-`file`: Path to the CSV file or a URL to a CSV file.
+`file`: Path to the TSV file or a URL to a TSV file.
 `delim`: The character delimiting fields in the file. Default is ','.
 `col_names`: Indicates if the first row of the CSV is used as column names. Can be true, false, or an array of strings. Default is true.
 `skip`: Number of initial lines to skip before reading data. Default is 0.
@@ -37,15 +48,26 @@ Reads a TSV file or URL into a DataFrame, with options to specify delimiter, col
 `comment`: Character that starts a comment line. Lines beginning with this character are ignored. Default is nothing (no comment lines).
 `missingstring`: String that represents missing values in the CSV. Default is "", can be set to a vector of multiple items.
 `escape_double`: Indicates whether to interpret two consecutive quote characters as a single quote in the data. Default is true.
-`col_types`: An optional specification of column types, can be a single type applied to all columns, or a collection of types with one for each column. Default is nothing (types are inferred).
+`num_threads`: specifies the number of concurrent tasks or threads to use for processing, allowing for parallel execution. Default is the number of available threads.
 
 # Examples
 ```jldoctest 
+julia> df = DataFrame(ID = 1:5, Name = ["Alice", "Bob", "Charlie", "David", "Eva"], Score = [88, 92, 77, 85, 95]);
 
+julia> write_tsv(df, "testing_files/csvtest.tsv");
 
+julia> read_tsv("testing_files/tsvtest.tsv", skip = 2, n_max = 3, missingstring = ["Charlie"])
+3×3 DataFrame
+ Row │ ID     Name      Score 
+     │ Int64  String7?  Int64 
+─────┼────────────────────────
+   1 │     3  missing      77
+   2 │     4  David        85
+   3 │     5  Eva          95
 ```
 """
 
+const docstring_read_delim = 
 """
     read_delim(file; delim='\t',col_names=true, skip=0, n_max=Inf, 
         comment=nothing, missingstring="", escape_double=true, col_types=nothing)
@@ -62,16 +84,31 @@ Reads a delimited file or URL into a DataFrame, with options to specify delimite
 `missingstring`: String that represents missing values in the CSV. Default is "", can be set to a vector of multiple items.
 `escape_double`: Indicates whether to interpret two consecutive quote characters as a single quote in the data. Default is true.
 `col_types`: An optional specification of column types, can be a single type applied to all columns, or a collection of types with one for each column. Default is nothing (types are inferred).
+`num_threads`: specifies the number of concurrent tasks or threads to use for processing, allowing for parallel execution. Default is the number of available threads.
 
 # Examples
 ```jldoctest 
+julia> df = DataFrame(ID = 1:5, Name = ["Alice", "Bob", "Charlie", "David", "Eva"], Score = [88, 92, 77, 85, 95]);
 
+julia> write_tsv(df, "testing_files/tsvtest.tsv");
 
+julia> read_delim("testing_files/tsvtest.tsv", col_names = false, num_threads = 4) # col_names are false here for the purpose of demonstration
+6×3 DataFrame
+ Row │ Column1  Column2  Column3 
+     │ String3  String7  String7 
+─────┼───────────────────────────
+   1 │ ID       Name     Score
+   2 │ 1        Alice    88
+   3 │ 2        Bob      92
+   4 │ 3        Charlie  77
+   5 │ 4        David    85
+   6 │ 5        Eva      95
 ```
 """
 
 
 
+const docstring_read_fwf =
 """
     read_fwf(filepath::String; num_lines::Int=4, col_names=nothing)
 Read fixed-width format (FWF) files into a DataFrame.
@@ -85,11 +122,18 @@ Read fixed-width format (FWF) files into a DataFrame.
 - `n_max`=nothing: Maximum number of lines to read from the file. If nothing, read all lines.
 # Examples
 ```jldoctest 
-
+julia> 3×5 DataFrame
+Row │ Column_1     Column_2  Column_3  Column_4         Column_5 
+    │ String       String    String    String           String   
+─────┼────────────────────────────────────────────────────────────
+  1 │ Bob Brown    31        12345     Product Manager  $110,000
+  2 │ Charlie Day  28        345       Sales Associate  $70,000
+  3 │ Diane Poe    35        23456     Data Scientist   $130,000
 ```
 """
 
 
+const docstring_fwf_empty =
 """
     fwf_empty(filepath::String; num_lines::Int=4, col_names=nothing)
 
@@ -105,12 +149,16 @@ num_lines::Int=4: Number of lines to sample from the beginning of the file for a
 - A vector of strings representing the column names.
 # Examples
 ```jldoctest 
+julia> fwf_empty("testing_files/fwftest.txt")
+([13, 5, 8, 20, 8], ["Column_1", "Column_2", "Column_3", "Column_4", "Column_5"])
 
-
+julia> fwf_empty(path, num_lines=4, col_names = ["Name", "Age", "ID", "Position", "Salary"])
+([13, 5, 8, 20, 8], ["Name", "Age", "ID", "Position", "Salary"])
 ```
 """
 
 
+const docstring_write_csv  =
 """
     write_csv(DataFrame, filepath; na = "", append = false, col_names = true, eol = "\n", num_threads = Threads.nthreads())
 Write a DataFrame to a CSV (comma-separated values) file.
@@ -131,6 +179,7 @@ Write a DataFrame to a CSV (comma-separated values) file.
 ```
 """
 
+const docstring_write_tsv  =
 """
     write_tsv(DataFrame, filepath; na = "", append = false, col_names = true, eol = "\n", num_threads = Threads.nthreads())
 Write a DataFrame to a TSV (tab-separated values) file.
@@ -146,11 +195,13 @@ Write a DataFrame to a TSV (tab-separated values) file.
 
 # Examples
 ```jldoctest 
+julia> df = DataFrame(ID = 1:5, Name = ["Alice", "Bob", "Charlie", "David", "Eva"], Score = [88, 92, 77, 85, 95]);
 
-
+julia> write_tsv(df, "testing_files/tsvtest.tsv");
 ```
 """
 
+const docstring_read_table =
 """
     read_table(file; col_names=true, skip=0, n_max=Inf, comment=nothing, missingstring="", kwargs...)
 
@@ -166,12 +217,22 @@ Read a table from a file where columns are separated by any amount of whitespace
 -`kwargs`: Additional keyword arguments passed to CSV.File.
 # Examples
 ```jldoctest 
+julia> df = DataFrame(ID = 1:5, Name = ["Alice", "Bob", "Charlie", "David", "Eva"], Score = [88, 92, 77, 85, 95]);
 
+julia> write_table(df, "testing_files/tabletest.txt");
 
+julia> read_table( "testing_files/tabletest.txt", skip = 2, n_max = 3)
+2×3 DataFrame
+ Row │ 2      Bob      92    
+     │ Int64  String7  Int64 
+─────┼───────────────────────
+   1 │     3  Charlie     77
+   2 │     4  David       85
 ```
 """
 
 
+const docstring_write_table =
 """
     write_table(x, file; delim = '\t', na, append, col_names, eol, num_threads)
 Write a DataFrame to a file, allowing for customization of the delimiter and other options.
@@ -188,13 +249,16 @@ Write a DataFrame to a file, allowing for customization of the delimiter and oth
 
 # Examples
 ```jldoctest 
+julia> df = DataFrame(ID = 1:5, Name = ["Alice", "Bob", "Charlie", "David", "Eva"], Score = [88, 92, 77, 85, 95]);
 
-
+julia> write_table(df, "testing_files/tabletest.txt")
+"testing_files/tabletest.txt"
 ```
 """
 
+const docstring_read_xlsx =
 """
-    read_excel(path; sheet, range, col_names, col_types, missingstring, trim_ws, skip, n_max, guess_max)
+    read_xlsx(path; sheet, range, col_names, col_types, missingstring, trim_ws, skip, n_max, guess_max)
 Read data from an Excel file into a DataFrame.
 
 # Arguments
@@ -211,13 +275,26 @@ Read data from an Excel file into a DataFrame.
 
 # Examples
 ```jldoctest 
+julia> df = DataFrame(integers=[1, 2, 3, 4], strings=["This", "Package makes", "File reading/writing", "even smoother"], floats=[10.2, 20.3, 30.4, 40.5], dates=[Date(2018,2,20), Date(2018,2,21), Date(2018,2,22), Date(2018,2,23)]);
 
+julia> df2 = DataFrames.DataFrame(AA=["aa", "bb"], AB=[10.1, 10.2]);
 
+julia> write_xlsx(("REPORT_A" => df, "REPORT_B" => df2); path="testing_files/xlsxtest.txt", overwrite = true);
+
+julia> read_excel("testing_files/xlsxtest.txt", sheet = "REPORT_A", skip = 1, n_max = 4, missingstring = [2])
+3×4 DataFrame
+ Row │ integers  strings               floats   dates      
+     │ Any       String                Float64  Date       
+─────┼─────────────────────────────────────────────────────
+   1 │ missing   Package makes            20.3  2018-02-21
+   2 │ 3         File reading/writing     30.4  2018-02-22
+   3 │ 4         even smoother            40.5  2018-02-23
 ```
 """
 
+const docstring_write_xlsx =
 """
-    write_excel(x; path, overwrite)
+    write_xlsx(x; path, overwrite)
 Write a DataFrame, or multiple DataFrames, to an Excel file.
 
 #Arguments
@@ -227,7 +304,191 @@ Write a DataFrame, or multiple DataFrames, to an Excel file.
 
 # Examples
 ```jldoctest 
+julia> df = DataFrame(integers=[1, 2, 3, 4], strings=["This", "Package makes", "File reading/writing", "even smoother"], floats=[10.2, 20.3, 30.4, 40.5], dates=[Date(2018,2,20), Date(2018,2,21), Date(2018,2,22), Date(2018,2,23)]);
 
+julia> df2 = DataFrames.DataFrame(AA=["aa", "bb"], AB=[10.1, 10.2]);
 
+julia> write_xlsx(("REPORT_A" => df, "REPORT_B" => df2); path="testing_files/xlsxtest.txt", overwrite = true);
+```
+"""
+
+const docstring_read_dta  =
+"""
+
+    function read_dta(data_file;  encoding=nothing, col_select=nothing, skip=0, n_max=Inf)
+Read data from a Stata (.dta) file into a DataFrame, supporting both local and remote sources.
+
+# Arguments
+-`filepath`: The path to the .dta file or a URL pointing to such a file. If a URL is provided, the file will be downloaded and then read.
+`encoding`: Optional; specifies the encoding of the input file. If not provided, defaults to the package's or function's default.
+`col_select`: Optional; allows specifying a subset of columns to read. This can be a vector of column names or indices. If nothing, all columns are read.
+skip=0: Number of rows at the beginning of the file to skip before reading.
+n_max=Inf: Maximum number of rows to read from the file, after skipping. If Inf, read all available rows.
+`num_threads`: specifies the number of concurrent tasks or threads to use for processing, allowing for parallel execution. Defaults to 1
+
+# Examples
+```jldoctest 
+julia> df = DataFrames.DataFrame(AA=["sav", "por"], AB=[10.1, 10.2]);
+
+julia> read_sas("testing_files/test.dta")
+2×2 ReadStatTable:
+ Row │     AA       AB 
+     │ String  Float64 
+─────┼─────────────────
+   1 │    sav     10.1
+   2 │    por     10.2
+```
+"""
+
+const docstring_read_sas =
+"""
+    function read_sas(data_file;  encoding=nothing, col_select=nothing, skip=0, n_max=Inf, num_threads)
+Read data from a SAS (.sas7bdat and .xpt) file into a DataFrame, supporting both local and remote sources.
+
+# Arguments
+-`filepath`: The path to the .dta file or a URL pointing to such a file. If a URL is provided, the file will be downloaded and then read.
+`encoding`: Optional; specifies the encoding of the input file. If not provided, defaults to the package's or function's default.
+`col_select`: Optional; allows specifying a subset of columns to read. This can be a vector of column names or indices. If nothing, all columns are read.
+skip=0: Number of rows at the beginning of the file to skip before reading.
+n_max=Inf: Maximum number of rows to read from the file, after skipping. If Inf, read all available rows.
+`num_threads`: specifies the number of concurrent tasks or threads to use for processing, allowing for parallel execution. Defaults to 1
+
+# Examples
+```jldoctest 
+julia> df = DataFrames.DataFrame(AA=["sav", "por"], AB=[10.1, 10.2]);
+
+julia> read_sas("testing_files/test.sas7bdat")
+2×2 ReadStatTable:
+ Row │     AA       AB 
+     │ String  Float64 
+─────┼─────────────────
+   1 │    sav     10.1
+   2 │    por     10.2
+
+julia> read_sas("testing_files/test.xpt")
+2×2 ReadStatTable:
+ Row │     AA       AB 
+     │ String  Float64 
+─────┼─────────────────
+   1 │    sav     10.1
+   2 │    por     10.2   
+"""
+
+const docstring_read_sav  =
+"""
+    function read_sav(data_file;  encoding=nothing, col_select=nothing, skip=0, n_max=Inf)
+Read data from a SPSS (.sav and .por) file into a DataFrame, supporting both local and remote sources.
+
+# Arguments
+-`filepath`: The path to the .sav or .por file or a URL pointing to such a file. If a URL is provided, the file will be downloaded and then read.
+`encoding`: Optional; specifies the encoding of the input file. If not provided, defaults to the package's or function's default.
+`col_select`: Optional; allows specifying a subset of columns to read. This can be a vector of column names or indices. If nothing, all columns are read.
+skip=0: Number of rows at the beginning of the file to skip before reading.
+n_max=Inf: Maximum number of rows to read from the file, after skipping. If Inf, read all available rows.
+`num_threads`: specifies the number of concurrent tasks or threads to use for processing, allowing for parallel execution. Defaults to 1
+
+# Examples
+```jldoctest 
+julia> df = DataFrames.DataFrame(AA=["sav", "por"], AB=[10.1, 10.2]);
+
+julia> read_sav("testing_files/test.sav")
+2×2 ReadStatTable:
+ Row │     AA       AB 
+     │ String  Float64 
+─────┼─────────────────
+   1 │    sav     10.1
+   2 │    por     10.2
+
+julia> read_sav("testing_files/test.por")
+2×2 ReadStatTable:
+ Row │     AA       AB 
+     │ String  Float64 
+─────┼─────────────────
+   1 │    sav     10.1
+   2 │    por     10.2
+```
+"""
+
+const docstring_write_sav =
+"""
+    write_sav(df, path)
+Write a DataFrame to a SPSS (.sav or .por) file.
+
+Arguments
+-`df`: The DataFrame to be written to a file.
+-`path`: String as path where the .dta file will be created. If a file at this path already exists, it will be overwritten.
+
+# Examples
+```jldoctest 
+julia> df = DataFrames.DataFrame(AA=["sav", "por"], AB=[10.1, 10.2]);
+
+julia> write_sav(df , "testing_files/test.sav")
+2×2 ReadStatTable:
+ Row │     AA       AB 
+     │ String  Float64 
+─────┼─────────────────
+   1 │    sav     10.1
+   2 │    por     10.2
+
+julia> write_sav(df , "testing_files/test.por")
+2×2 ReadStatTable:
+ Row │     AA       AB 
+     │ String  Float64 
+─────┼─────────────────
+   1 │    sav     10.1
+   2 │    por     10.2
+```
+"""
+const docstring_write_sas =
+"""
+    write_sas(df, path)
+Write a DataFrame to a SAS (.sas7bdat or .xpt) file.
+
+Arguments
+-`df`: The DataFrame to be written to a file.
+-`path`: String as path where the .dta file will be created. If a file at this path already exists, it will be overwritten.
+
+# Examples
+```jldoctest 
+julia> df = DataFrames.DataFrame(AA=["sav", "por"], AB=[10.1, 10.2]);
+
+julia> write_sav(df , "testing_files/test.sas7bdat")
+2×2 ReadStatTable:
+ Row │     AA       AB 
+     │ String  Float64 
+─────┼─────────────────
+   1 │    sav     10.1
+   2 │    por     10.2
+
+julia> write_sav(df , "testing_files/test.xpt")
+2×2 ReadStatTable:
+ Row │     AA       AB 
+     │ String  Float64 
+─────┼─────────────────
+   1 │    sav     10.1
+   2 │    por     10.2
+```
+"""
+
+const docstring_write_dta =
+"""
+    write_dta(df, path)
+Write a DataFrame to a Stata (.dta) file.
+
+Arguments
+-`df`: The DataFrame to be written to a file.
+-`path`: String as path where the .dta file will be created. If a file at this path already exists, it will be overwritten.
+
+# Examples
+```jldoctest 
+julia> df = DataFrames.DataFrame(AA=["sav", "por"], AB=[10.1, 10.2]);
+
+julia> write_dta(df , "testing_files/test.dta")
+2×2 ReadStatTable:
+ Row │     AA       AB 
+     │ String  Float64 
+─────┼─────────────────
+   1 │    sav     10.1
+   2 │    por     10.2
 ```
 """
