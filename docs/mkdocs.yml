@@ -59,7 +59,7 @@ site_description: TidierFiles.jl
 site_author: Lazaro Alonso and Karandeep Singh
 site_url: ""
 
-repo_url: https://github.com/drizk1/TidierFiles.jl 
+repo_url: https://github.com/TidierOrg/TidierFiles.jl 
 repo_name: TidierFiles.jl
 edit_uri: "" # No edit button, as some of our pages are in /docs and some in /examples via symlink, so it's impossible for them all to be accurate
 
