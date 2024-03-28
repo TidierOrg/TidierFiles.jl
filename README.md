@@ -2,7 +2,6 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://github.com/TidierOrg/Tidier.jl/blob/main/LICENSE)
 [![Docs: Latest](https://img.shields.io/badge/Docs-Latest-blue.svg)](https://tidierorg.github.io/TidierFiles.jl/latest)
-[![Downloads](https://shields.io/endpoint?url=https://pkgs.genieframework.com/api/v1/badge/TidierFiles&label=Downloads)](https://pkgs.genieframework.com?packages=TidierFiles)
 
 <img src="/assets/logo.png" align="right" style="padding-left:10px;" width="150"/>
 
