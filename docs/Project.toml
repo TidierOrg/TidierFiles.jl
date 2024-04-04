@@ -6,3 +6,4 @@ HTTP = "cd3eb016-35fb-5094-929b-558a96fad6f3"
 ReadStatTables = "52522f7a-9570-4e34-8ac6-c005c74d4b84"
 Reexport = "189a3867-3050-52da-a836-e630ba90ab69"
 XLSX = "fdbf4ff8-1666-58a4-91e7-1b58723a45e0
+TidierFiles = "8ae5e7a9-bdd3-4c93-9cc3-9df4d5d947db"

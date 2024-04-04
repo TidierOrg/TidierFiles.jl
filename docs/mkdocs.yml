@@ -116,3 +116,6 @@ plugins:
   - mkdocs-video
 nav:
   - "Home": "index.md"
+  - "Delimited Files": "examples/generated/UserGuide/delim.md"
+  - "Excel Files": "examples/generated/UserGuide/xl.md"
+  - "Stats Files": "examples/generated/UserGuide/stats.md"

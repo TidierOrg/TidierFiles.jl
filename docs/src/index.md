@@ -1,9 +1,9 @@
 ## What is TidierFiles.jl?
 
 TidierFiles.jl is a 100% Julia implementation of the readr and haven R packages.
-Powered by the CSV.jl, XLSX.jl and ReadStatTables.jl packages, TidierFiles.jl. 
-TidierFiles.jl seeks to harmonize and unify the arguments across multiple file types 
-for reading and writing. 
+Powered by the CSV.jl, XLSX.jl and ReadStatTables.jl packages, TidierFiles.jl 
+seeks to harmonize file reading/writing by unifying the arguments across multiple 
+file types. 
 
 TidierFiles.jl currently supports 
 ```@raw html
@@ -32,7 +32,8 @@ Read functions include the following arguments and support HTTP reading:
 ```julia
 using TidierFiles
 
-read_csv("https://raw.githubusercontent.com/drizk1/TidierFiles.jl/main/testing_files/csvtest.csv", skip = 2, n_max = 3, col_select = ["ID", "Score"], missingstring = ["4"])
+read_csv("https://raw.githubusercontent.com/TidierOrg/TidierFiles.jl/main/testing_files/csvtest.csv", skip = 2, n_max = 3, col_select = ["ID", "Score"], missingstring = ["4"])
+
 ```
 ```
 3×2 DataFrame
