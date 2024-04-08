@@ -21,7 +21,7 @@ Reads a CSV file or URL into a DataFrame, with options to specify delimiter, col
 julia> read_csv(joinpath(testing_files_path, "csvtest.csv"), skip = 2, n_max = 3, missingstring = ["95", "Charlie"])
 3×3 DataFrame
  Row │ ID     Name     Score   
-     │ Int64  String7  Int64? 
+     │ Int64  String7  Int64?  
 ─────┼─────────────────────────
    1 │     3  missing       77
    2 │     4  David         85
@@ -52,8 +52,8 @@ Reads a TSV file or URL into a DataFrame, with options to specify delimiter, col
 ```jldoctest 
 julia> read_tsv(joinpath(testing_files_path, "tsvtest.tsv"), skip = 2, n_max = 3, missingstring = ["Charlie"])
 3×3 DataFrame
- Row │ ID     Name     Score
-     │ Int64  String7  Int64
+ Row │ ID     Name     Score 
+     │ Int64  String7  Int64 
 ─────┼───────────────────────
    1 │     3  missing     77
    2 │     4  David       85
@@ -260,7 +260,7 @@ Read data from an Excel file into a DataFrame.
 -`range`: Specifies a specific range of cells to be read from the sheet. If nothing, the entire sheet is read.
 -`col_names`: Indicates whether the first row of the specified range should be treated as column names. If false, columns will be named automatically.
 -`col_types`: Allows specifying column types explicitly. Can be a single type applied to all columns, a list or a dictionary mapping column names or indices to types. If nothing, types will be inferred.
--`missingstring`: The string that represents missing values in the Excel file.
+-`missingstring`: The value or vector that represents missing values in the Excel file.
 -`trim_ws`: Whether to trim leading and trailing whitespace from cells in the Excel file.
 -`skip`: Number of rows to skip at the beginning of the sheet or range before reading data.
 -`n_max`: The maximum number of rows to read from the sheet or range, after skipping. Inf means read all available rows.
@@ -291,7 +291,9 @@ Write a DataFrame, or multiple DataFrames, to an Excel file.
 
 # Examples
 ```jldoctest 
-julia> df = DataFrame(integers=[1, 2, 3, 4], strings=["This", "Package makes", "File reading/writing", "even smoother"], floats=[10.2, 20.3, 30.4, 40.5]);
+julia> df = DataFrame(integers=[1, 2, 3, 4],
+       strings=["This", "Package makes", "File reading/writing", "even smoother"],
+       floats=[10.2, 20.3, 30.4, 40.5]);
 
 julia> df2 = DataFrame(AA=["aa", "bb"], AB=[10.1, 10.2]);
 
@@ -343,7 +345,7 @@ n_max=Inf: Maximum number of rows to read from the file, after skipping. If Inf,
 julia> read_sas(joinpath(testing_files_path, "test.sas7bdat"))
 2×2 DataFrame
  Row │ AA       AB      
-     │ String   Float64 
+     │ String3  Float64 
 ─────┼──────────────────
    1 │ sav         10.1
    2 │ por         10.2
@@ -351,7 +353,7 @@ julia> read_sas(joinpath(testing_files_path, "test.sas7bdat"))
 julia> read_sas(joinpath(testing_files_path, "test.xpt"))
 2×2 DataFrame
  Row │ AA       AB      
-     │ String   Float64 
+     │ String3  Float64 
 ─────┼──────────────────
    1 │ sav         10.1
    2 │ por         10.2
@@ -405,19 +407,19 @@ julia> df = DataFrame(AA=["sav", "por"], AB=[10.1, 10.2]);
 
 julia> write_sav(df , joinpath(testing_files_path, "test.sav"))
 2×2 ReadStatTable:
- Row │     AA       AB 
-     │ String  Float64 
-─────┼─────────────────
-   1 │    sav     10.1
-   2 │    por     10.2
+ Row │     AA        AB 
+     │ String  Float64? 
+─────┼──────────────────
+   1 │    sav      10.1
+   2 │    por      10.2
 
 julia> write_sav(df , joinpath(testing_files_path, "test.por"))
 2×2 ReadStatTable:
- Row │     AA       AB 
-     │ String  Float64 
-─────┼─────────────────
-   1 │    sav     10.1
-   2 │    por     10.2
+ Row │     AA        AB 
+     │ String  Float64? 
+─────┼──────────────────
+   1 │    sav      10.1
+   2 │    por      10.2
 ```
 """
 const docstring_write_sas =
@@ -435,19 +437,19 @@ julia> df = DataFrame(AA=["sav", "por"], AB=[10.1, 10.2]);
 
 julia> write_sav(df , joinpath(testing_files_path, "test.sas7bdat"))
 2×2 ReadStatTable:
- Row │     AA       AB 
-     │ String  Float64 
-─────┼─────────────────
-   1 │    sav     10.1
-   2 │    por     10.2
+ Row │     AA        AB 
+     │ String  Float64? 
+─────┼──────────────────
+   1 │    sav      10.1
+   2 │    por      10.2
 
 julia> write_sav(df , joinpath(testing_files_path, "test.xpt"))
 2×2 ReadStatTable:
- Row │     AA       AB 
-     │ String  Float64 
-─────┼─────────────────
-   1 │    sav     10.1
-   2 │    por     10.2
+ Row │     AA        AB 
+     │ String  Float64? 
+─────┼──────────────────
+   1 │    sav      10.1
+   2 │    por      10.2
 ```
 """
 
@@ -466,10 +468,10 @@ julia> df = DataFrame(AA=["sav", "por"], AB=[10.1, 10.2]);
 
 julia> write_dta(df , joinpath(testing_files_path, "test.dta"))
 2×2 ReadStatTable:
- Row │     AA       AB 
-     │ String  Float64 
-─────┼─────────────────
-   1 │    sav     10.1
-   2 │    por     10.2
+ Row │     AA        AB 
+     │ String  Float64? 
+─────┼──────────────────
+   1 │    sav      10.1
+   2 │    por      10.2
 ```
 """

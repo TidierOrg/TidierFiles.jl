@@ -103,7 +103,7 @@ function write_csv(
         file,
         x,
         append = append,
-        writeheader = col_names && !append,
+        header = col_names && !append,
         missingstring = missingstring,
         newline = eol,
         threaded = num_threads > 1    )
@@ -185,7 +185,7 @@ function write_tsv(
         x,
         delim = '\t',  # Use tab as the delimiter for TSV
         append = append,
-        writeheader = col_names && !append,
+        header = col_names && !append,
         missingstring = missingstring,
         newline = eol,
         threaded = num_threads > 1)
@@ -331,7 +331,7 @@ function write_table(
         x,
         delim = delim,  # Flexible delimiter based on argument
         append = append,
-        writeheader = col_names && !append,
+        header = col_names && !append,
         missingstring = missingstring,
         newline = eol,
         threaded = num_threads > 1)

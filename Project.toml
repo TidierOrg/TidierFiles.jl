@@ -15,6 +15,14 @@ XLSX = "fdbf4ff8-1666-58a4-91e7-1b58723a45e0"
 
 [compat]
 julia = "1.9"
+CSV = "0.10"
+DataFrames = "1.5"
+Dates = "1.9"
+Documenter = "0.27, 1"
+HTTP = "1.10"
+ReadStatTables = "0.3"
+Reexport = "0.2, 1"
+XLSX = "0.10"
 
 [extras]
 Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
