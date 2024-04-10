@@ -1,4 +1,25 @@
 """
+$docstring_write_sas
+"""
+function write_sas(df::DataFrame, path::String)
+    writestat(path, df);
+end
+
+"""
+$docstring_write_sav
+"""
+function write_sav(df::DataFrame, path::String)
+    return writestat(path, df);
+end
+
+"""
+$docstring_write_dta
+"""
+function write_dta(df::DataFrame, path::String)
+    return writestat(path, df);
+end
+
+"""
 $docstring_read_sas
 """
 function read_sas(data_file; 
@@ -131,26 +152,4 @@ function read_dta(data_file;
     df = DataFrame(ReadStatTables.readstat(file_to_read; kwargs...))
     
     return df
-end
-
-
-"""
-$docstring_write_sas
-"""
-function write_sas(df::DataFrame, path::String)
-    writestat(path, df);
-end
-
-"""
-$docstring_write_sav
-"""
-function write_sav(df::DataFrame, path::String)
-    return writestat(path, df);
-end
-
-"""
-$docstring_write_dta
-"""
-function write_dta(df::DataFrame, path::String)
-    return writestat(path, df);
 end

@@ -20,6 +20,28 @@ include("fwf.jl")
 include("xlfiles.jl")
 include("statsfiles.jl")
 
+"""
+$docstring_write_csv
+"""
+function write_csv(
+    x::DataFrame,
+    file::String;
+    missingstring::String = "NA",
+    append::Bool = false,
+    col_names::Bool = true,
+    eol::String = "\n",
+    num_threads::Int = Threads.nthreads())
+
+    # Configure threading
+    CSV.write(
+        file,
+        x,
+        append = append,
+        header = col_names && !append,
+        missingstring = missingstring,
+        newline = eol,
+        threaded = num_threads > 1    )
+end
 
 """
 $docstring_read_csv
@@ -82,88 +104,6 @@ function read_csv(file;
         df = CSV.File(file; read_options...) |> DataFrame
     end
 
-    return df
-end
-
-
-"""
-$docstring_write_csv
-"""
-function write_csv(
-    x::DataFrame,
-    file::String;
-    missingstring::String = "NA",
-    append::Bool = false,
-    col_names::Bool = true,
-    eol::String = "\n",
-    num_threads::Int = Threads.nthreads())
-
-    # Configure threading
-    CSV.write(
-        file,
-        x,
-        append = append,
-        header = col_names && !append,
-        missingstring = missingstring,
-        newline = eol,
-        threaded = num_threads > 1    )
-end
-
-"""
-$docstring_read_tsv
-"""
-function read_tsv(file;
-                  delim='\t',
-                  col_names=true,
-                  skip=0,
-                  n_max=Inf,
-                  col_select=nothing,
-                  comment=nothing,
-                  missingstring="",
-                  escape_double=true,
-                  ntasks::Int = Threads.nthreads(),  # Default ntasks value
-                  num_threads::Union{Int, Nothing}=nothing) # Optional num_threads
-                 
-    # Use num_threads if provided, otherwise stick with ntasks
-    effective_ntasks = isnothing(num_threads) ? ntasks : num_threads
-    
-    # Convert n_max from Inf to Nothing for compatibility with CSV.File's limit argument
-    limit = isinf(n_max) ? nothing : Int(n_max)
-
-    # Calculate skipto and header correctly
-    skipto = skip + (col_names === true ? 1 : 0)
-
-    # Prepare arguments for CSV.read, including the effective number of tasks to use
-    read_options = (
-        delim = delim,
-        header = col_names === true ? 1 : 0,
-        skipto = skipto + 1,
-        footerskip = 0,
-        limit = limit,
-        select = col_select,
-        comment = comment,
-        missingstring = missingstring,
-        escapechar = escape_double ? '"' : '\\',
-        quotechar = '"',
-        normalizenames = false,
-        ntasks = effective_ntasks > 1
-    )
-    # Read the TSV file into a DataFrame
-    if startswith(file, "http://") || startswith(file, "https://")
-        # Fetch the content from the URL
-        response = HTTP.get(file)
-        
-        # Ensure the request was successful
-        if response.status != 200
-            error("Failed to fetch the TSV file: HTTP status code ", response.status)
-        end
-
-        # Read the CSV data from the fetched content using cleaned options
-        df = CSV.File(IOBuffer(response.body); read_options...) |> DataFrame
-    else
-        # Read from a local file using cleaned options
-        df = CSV.File(file; read_options...) |> DataFrame
-    end
     return df
 end
 
@@ -253,6 +193,89 @@ function read_delim(file;
 end
 
 """
+$docstring_read_tsv
+"""
+function read_tsv(file;
+                  delim='\t',
+                  col_names=true,
+                  skip=0,
+                  n_max=Inf,
+                  col_select=nothing,
+                  comment=nothing,
+                  missingstring="",
+                  escape_double=true,
+                  ntasks::Int = Threads.nthreads(),  # Default ntasks value
+                  num_threads::Union{Int, Nothing}=nothing) # Optional num_threads
+                 
+    # Use num_threads if provided, otherwise stick with ntasks
+    effective_ntasks = isnothing(num_threads) ? ntasks : num_threads
+    
+    # Convert n_max from Inf to Nothing for compatibility with CSV.File's limit argument
+    limit = isinf(n_max) ? nothing : Int(n_max)
+
+    # Calculate skipto and header correctly
+    skipto = skip + (col_names === true ? 1 : 0)
+
+    # Prepare arguments for CSV.read, including the effective number of tasks to use
+    read_options = (
+        delim = delim,
+        header = col_names === true ? 1 : 0,
+        skipto = skipto + 1,
+        footerskip = 0,
+        limit = limit,
+        select = col_select,
+        comment = comment,
+        missingstring = missingstring,
+        escapechar = escape_double ? '"' : '\\',
+        quotechar = '"',
+        normalizenames = false,
+        ntasks = effective_ntasks > 1
+    )
+    # Read the TSV file into a DataFrame
+    if startswith(file, "http://") || startswith(file, "https://")
+        # Fetch the content from the URL
+        response = HTTP.get(file)
+        
+        # Ensure the request was successful
+        if response.status != 200
+            error("Failed to fetch the TSV file: HTTP status code ", response.status)
+        end
+
+        # Read the CSV data from the fetched content using cleaned options
+        df = CSV.File(IOBuffer(response.body); read_options...) |> DataFrame
+    else
+        # Read from a local file using cleaned options
+        df = CSV.File(file; read_options...) |> DataFrame
+    end
+    return df
+end
+
+"""
+$docstring_write_table
+"""
+function write_table(
+    x::DataFrame,
+    file::String;
+    delim::Char = '\t',  # Default to TSV, but allow flexibility
+    missingstring::String = "",
+    append::Bool = false,
+    col_names::Bool = true,
+    eol::String = "\n",
+    num_threads::Int = Threads.nthreads())
+    
+    # Write DataFrame to a file with the specified delimiter
+    CSV.write(
+        file,
+        x,
+        delim = delim,  # Flexible delimiter based on argument
+        append = append,
+        header = col_names && !append,
+        missingstring = missingstring,
+        newline = eol,
+        threaded = num_threads > 1)
+end
+
+"""
 $docstring_read_table
 """
 function read_table(file; 
@@ -309,32 +332,6 @@ function read_table(file;
                   kwargs...) |> DataFrame
 
     return df
-end
-
-
-"""
-$docstring_write_table
-"""
-function write_table(
-    x::DataFrame,
-    file::String;
-    delim::Char = '\t',  # Default to TSV, but allow flexibility
-    missingstring::String = "",
-    append::Bool = false,
-    col_names::Bool = true,
-    eol::String = "\n",
-    num_threads::Int = Threads.nthreads())
-    
-    # Write DataFrame to a file with the specified delimiter
-    CSV.write(
-        file,
-        x,
-        delim = delim,  # Flexible delimiter based on argument
-        append = append,
-        header = col_names && !append,
-        missingstring = missingstring,
-        newline = eol,
-        threaded = num_threads > 1)
 end
 
 end

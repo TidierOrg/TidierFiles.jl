@@ -33,6 +33,22 @@ function convert_column(column)
 end
 
 """
+$docstring_write_xlsx
+"""
+function write_xlsx(x; path::String, overwrite::Bool=false)
+    # Handling a single DataFrame input
+    if x isa Pair{String, DataFrame}
+        # Single sheet: Convert the single DataFrame to the required structure
+        XLSX.writetable(path, x, overwrite=overwrite)
+    elseif x isa Tuple
+        # Multiple sheets: Unpack the tuple of pairs directly to XLSX.writetable
+        XLSX.writetable(path, x..., overwrite=overwrite)
+    else
+        error("Input must be a Pair of a sheet name and a DataFrame or a Tuple of such Pairs for multiple sheets.")
+    end
+end
+
+"""
 $docstring_read_xlsx
 """
 function read_xlsx(
@@ -118,20 +134,4 @@ function read_xlsx(
     end
 
     return data
-end
-
-"""
-$docstring_write_xlsx
-"""
-function write_xlsx(x; path::String, overwrite::Bool=false)
-    # Handling a single DataFrame input
-    if x isa Pair{String, DataFrame}
-        # Single sheet: Convert the single DataFrame to the required structure
-        XLSX.writetable(path, x, overwrite=overwrite)
-    elseif x isa Tuple
-        # Multiple sheets: Unpack the tuple of pairs directly to XLSX.writetable
-        XLSX.writetable(path, x..., overwrite=overwrite)
-    else
-        error("Input must be a Pair of a sheet name and a DataFrame or a Tuple of such Pairs for multiple sheets.")
-    end
 end
