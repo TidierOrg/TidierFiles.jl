@@ -28,7 +28,7 @@ DocMeta.setdocmeta!(TidierFiles, :DocTestSetup, :(begin
     Hank Zuse    45    12345  System Analyst      120,000 
     """
     
-    file = open(joinpath(testing_files_path, "fwftest.csv"), "w")
+    file = open(joinpath(testing_files_path, "fwftest.txt"), "w")
     write(file, fwf_data)
     close(file)
     
