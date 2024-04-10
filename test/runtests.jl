@@ -8,7 +8,7 @@ DocMeta.setdocmeta!(TidierFiles, :DocTestSetup, :(begin
     using TidierFiles
     # Determine the package root directory dynamically
     # project_root = dirname(dirname(pathof(TidierFiles)))
-    testing_files_path = joinpath(tempdir(), "testing_files")
+    testing_files_path = tempdir()
 
     # Need to write fwf data because there is no `write_fwf()` function
     # For every other file, write_* is written before read_* to ensure that
