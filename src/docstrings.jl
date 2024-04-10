@@ -225,7 +225,6 @@ julia> read_table(joinpath(testing_files_path, "tabletest.txt"), skip = 2, n_max
 ```
 """
 
-
 const docstring_write_table =
 """
     write_table(x, file; delim = '\t', na, append, col_names, eol, num_threads)
@@ -405,7 +404,7 @@ Arguments
 ```jldoctest 
 julia> df = DataFrame(AA=["sav", "por"], AB=[10.1, 10.2]);
 
-julia> write_sav(df , joinpath(testing_files_path, "test.sav"))
+julia> write_sav(df, joinpath(testing_files_path, "test.sav"))
 2×2 ReadStatTable:
  Row │     AA        AB 
      │ String  Float64? 
@@ -413,7 +412,7 @@ julia> write_sav(df , joinpath(testing_files_path, "test.sav"))
    1 │    sav      10.1
    2 │    por      10.2
 
-julia> write_sav(df , joinpath(testing_files_path, "test.por"))
+julia> write_sav(df, joinpath(testing_files_path, "test.por"))
 2×2 ReadStatTable:
  Row │     AA        AB 
      │ String  Float64? 
@@ -435,7 +434,7 @@ Arguments
 ```jldoctest 
 julia> df = DataFrame(AA=["sav", "por"], AB=[10.1, 10.2]);
 
-julia> write_sav(df , joinpath(testing_files_path, "test.sas7bdat"))
+julia> write_sas(df , joinpath(testing_files_path, "test.sas7bdat"))
 2×2 ReadStatTable:
  Row │     AA        AB 
      │ String  Float64? 
@@ -443,7 +442,7 @@ julia> write_sav(df , joinpath(testing_files_path, "test.sas7bdat"))
    1 │    sav      10.1
    2 │    por      10.2
 
-julia> write_sav(df , joinpath(testing_files_path, "test.xpt"))
+julia> write_sas(df , joinpath(testing_files_path, "test.xpt"))
 2×2 ReadStatTable:
  Row │     AA        AB 
      │ String  Float64? 
