@@ -18,7 +18,7 @@ Reads a CSV file or URL into a DataFrame, with options to specify delimiter, col
 `num_threads`: specifies the number of concurrent tasks or threads to use for processing, allowing for parallel execution. Defaults to 1
 # Examples
 ```jldoctest 
-julia> read_csv(joinpath(testing_files_path, "csvtest.csv"), skip = 2, n_max = 3, missingstring = ["95", "Charlie"])
+julia> read_csv(joinpath(tempdir(), "csvtest.csv"), skip = 2, n_max = 3, missingstring = ["95", "Charlie"])
 3×3 DataFrame
  Row │ ID     Name     Score   
      │ Int64  String7  Int64?  
@@ -50,7 +50,7 @@ Reads a TSV file or URL into a DataFrame, with options to specify delimiter, col
 
 # Examples
 ```jldoctest 
-julia> read_tsv(joinpath(testing_files_path, "tsvtest.tsv"), skip = 2, n_max = 3, missingstring = ["Charlie"])
+julia> read_tsv(joinpath(tempdir(), "tsvtest.tsv"), skip = 2, n_max = 3, missingstring = ["Charlie"])
 3×3 DataFrame
  Row │ ID     Name     Score 
      │ Int64  String7  Int64 
@@ -83,7 +83,7 @@ Reads a delimited file or URL into a DataFrame, with options to specify delimite
 
 # Examples
 ```jldoctest 
-julia> read_delim(joinpath(testing_files_path, "csvtest.csv"), delim = ",", col_names = false, num_threads = 4) # col_names are false here for the purpose of demonstration
+julia> read_delim(joinpath(tempdir(), "csvtest.csv"), delim = ",", col_names = false, num_threads = 4) # col_names are false here for the purpose of demonstration
 6×3 DataFrame
  Row │ Column1  Column2  Column3 
      │ String3  String7  String7 
@@ -113,7 +113,7 @@ Read fixed-width format (FWF) files into a DataFrame.
 - `n_max`=nothing: Maximum number of lines to read from the file. If nothing, read all lines.
 # Examples
 ```jldoctest 
-julia> path = joinpath(testing_files_path, "fwftest.txt");
+julia> path = joinpath(tempdir(), "fwftest.txt");
 
 julia> read_fwf(path, fwf_empty(path, num_lines=4, col_names = ["Name", "Age", "ID", "Position", "Salary"]), skip_to=3, n_max=3)
 3×5 DataFrame
@@ -143,10 +143,10 @@ num_lines::Int=4: Number of lines to sample from the beginning of the file for a
 - A vector of strings representing the column names.
 # Examples
 ```jldoctest 
-julia> fwf_empty(joinpath(testing_files_path, "fwftest.txt"))
+julia> fwf_empty(joinpath(tempdir(), "fwftest.txt"))
 ([13, 5, 8, 20, 8], ["Column_1", "Column_2", "Column_3", "Column_4", "Column_5"])
 
-julia> fwf_empty(joinpath(testing_files_path, "fwftest.txt"), num_lines=4, col_names = ["Name", "Age", "ID", "Position", "Salary"])
+julia> fwf_empty(joinpath(tempdir(), "fwftest.txt"), num_lines=4, col_names = ["Name", "Age", "ID", "Position", "Salary"])
 ([13, 5, 8, 20, 8], ["Name", "Age", "ID", "Position", "Salary"])
 ```
 """
@@ -170,7 +170,7 @@ Write a DataFrame to a CSV (comma-separated values) file.
 ```jldoctest 
 julia> df = DataFrame(ID = 1:5, Name = ["Alice", "Bob", "Charlie", "David", "Eva"], Score = [88, 92, 77, 85, 95]);
 
-julia> write_csv(df, joinpath(testing_files_path, "csvtest.csv"));
+julia> write_csv(df, joinpath(tempdir(), "csvtest.csv"));
 ```
 """
 
@@ -192,7 +192,7 @@ Write a DataFrame to a TSV (tab-separated values) file.
 ```jldoctest 
 julia> df = DataFrame(ID = 1:5, Name = ["Alice", "Bob", "Charlie", "David", "Eva"], Score = [88, 92, 77, 85, 95]);
 
-julia> write_tsv(df, joinpath(testing_files_path, "tsvtest.tsv"));
+julia> write_tsv(df, joinpath(tempdir(), "tsvtest.tsv"));
 ```
 """
 
@@ -213,7 +213,7 @@ Read a table from a file where columns are separated by any amount of whitespace
 -`kwargs`: Additional keyword arguments passed to CSV.File.
 # Examples
 ```jldoctest 
-julia> read_table(joinpath(testing_files_path, "tabletest.txt"), skip = 2, n_max = 3, col_select = ["Name"])
+julia> read_table(joinpath(tempdir(), "tabletest.txt"), skip = 2, n_max = 3, col_select = ["Name"])
 3×1 DataFrame
  Row │ Name    
      │ String7 
@@ -244,7 +244,7 @@ Write a DataFrame to a file, allowing for customization of the delimiter and oth
 ```jldoctest 
 julia> df = DataFrame(ID = 1:5, Name = ["Alice", "Bob", "Charlie", "David", "Eva"], Score = [88, 92, 77, 85, 95]);
 
-julia> write_table(df, joinpath(testing_files_path, "tabletest.txt"));
+julia> write_table(df, joinpath(tempdir(), "tabletest.txt"));
 ```
 """
 
@@ -267,7 +267,7 @@ Read data from an Excel file into a DataFrame.
 
 # Examples
 ```jldoctest 
-julia> read_xlsx(joinpath(testing_files_path, "xlsxtest.xlsx"), sheet = "REPORT_A", skip = 1, n_max = 4, missingstring = [2])
+julia> read_xlsx(joinpath(tempdir(), "xlsxtest.xlsx"), sheet = "REPORT_A", skip = 1, n_max = 4, missingstring = [2])
 3×3 DataFrame
  Row │ integers  strings               floats  
      │ Any       String                Float64 
@@ -296,7 +296,7 @@ julia> df = DataFrame(integers=[1, 2, 3, 4],
 
 julia> df2 = DataFrame(AA=["aa", "bb"], AB=[10.1, 10.2]);
 
-julia> write_xlsx(("REPORT_A" => df, "REPORT_B" => df2); path=joinpath(testing_files_path, "xlsxtest.xlsx"), overwrite = true);
+julia> write_xlsx(("REPORT_A" => df, "REPORT_B" => df2); path=joinpath(tempdir(), "xlsxtest.xlsx"), overwrite = true);
 ```
 """
 
@@ -316,7 +316,7 @@ n_max=Inf: Maximum number of rows to read from the file, after skipping. If Inf,
 
 # Examples
 ```jldoctest 
-julia> read_sas(joinpath(testing_files_path, "test.dta"))
+julia> read_sas(joinpath(tempdir(), "test.dta"))
 2×2 DataFrame
  Row │ AA       AB      
      │ String3  Float64 
@@ -341,7 +341,7 @@ n_max=Inf: Maximum number of rows to read from the file, after skipping. If Inf,
 
 # Examples
 ```jldoctest 
-julia> read_sas(joinpath(testing_files_path, "test.sas7bdat"))
+julia> read_sas(joinpath(tempdir(), "test.sas7bdat"))
 2×2 DataFrame
  Row │ AA       AB      
      │ String3  Float64 
@@ -349,7 +349,7 @@ julia> read_sas(joinpath(testing_files_path, "test.sas7bdat"))
    1 │ sav         10.1
    2 │ por         10.2
 
-julia> read_sas(joinpath(testing_files_path, "test.xpt"))
+julia> read_sas(joinpath(tempdir(), "test.xpt"))
 2×2 DataFrame
  Row │ AA       AB      
      │ String3  Float64 
@@ -373,7 +373,7 @@ n_max=Inf: Maximum number of rows to read from the file, after skipping. If Inf,
 
 # Examples
 ```jldoctest 
-julia> read_sav(joinpath(testing_files_path, "test.sav"))
+julia> read_sav(joinpath(tempdir(), "test.sav"))
 2×2 DataFrame
  Row │ AA      AB      
      │ String  Float64 
@@ -381,7 +381,7 @@ julia> read_sav(joinpath(testing_files_path, "test.sav"))
    1 │ sav        10.1
    2 │ por        10.2
 
-julia> read_sav(joinpath(testing_files_path, "test.por"))
+julia> read_sav(joinpath(tempdir(), "test.por"))
 2×2 DataFrame
  Row │ AA      AB      
      │ String  Float64 
@@ -404,7 +404,7 @@ Arguments
 ```jldoctest 
 julia> df = DataFrame(AA=["sav", "por"], AB=[10.1, 10.2]);
 
-julia> write_sav(df, joinpath(testing_files_path, "test.sav"))
+julia> write_sav(df, joinpath(tempdir(), "test.sav"))
 2×2 ReadStatTable:
  Row │     AA        AB 
      │ String  Float64? 
@@ -412,7 +412,7 @@ julia> write_sav(df, joinpath(testing_files_path, "test.sav"))
    1 │    sav      10.1
    2 │    por      10.2
 
-julia> write_sav(df, joinpath(testing_files_path, "test.por"))
+julia> write_sav(df, joinpath(tempdir(), "test.por"))
 2×2 ReadStatTable:
  Row │     AA        AB 
      │ String  Float64? 
@@ -434,7 +434,7 @@ Arguments
 ```jldoctest 
 julia> df = DataFrame(AA=["sav", "por"], AB=[10.1, 10.2]);
 
-julia> write_sas(df , joinpath(testing_files_path, "test.sas7bdat"))
+julia> write_sas(df , joinpath(tempdir(), "test.sas7bdat"))
 2×2 ReadStatTable:
  Row │     AA        AB 
      │ String  Float64? 
@@ -442,7 +442,7 @@ julia> write_sas(df , joinpath(testing_files_path, "test.sas7bdat"))
    1 │    sav      10.1
    2 │    por      10.2
 
-julia> write_sas(df , joinpath(testing_files_path, "test.xpt"))
+julia> write_sas(df , joinpath(tempdir(), "test.xpt"))
 2×2 ReadStatTable:
  Row │     AA        AB 
      │ String  Float64? 
@@ -465,7 +465,7 @@ Arguments
 ```jldoctest 
 julia> df = DataFrame(AA=["sav", "por"], AB=[10.1, 10.2]);
 
-julia> write_dta(df , joinpath(testing_files_path, "test.dta"))
+julia> write_dta(df , joinpath(tempdir(), "test.dta"))
 2×2 ReadStatTable:
  Row │     AA        AB 
      │ String  Float64? 
