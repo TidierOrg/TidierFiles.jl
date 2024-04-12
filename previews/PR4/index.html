@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#what-is-tidierfilesjl" class="md-skip">
+        <a href="#tidierfilesjl" class="md-skip">
           Skip to content
         </a>
       
@@ -274,6 +274,8 @@
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
+        
+      
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
           
@@ -301,6 +303,8 @@
 <nav class="md-nav md-nav--secondary" aria-label="Table of contents">
   
   
+  
+    
   
   
     <label class="md-nav__title" for="__toc">
@@ -403,6 +407,8 @@
   
   
   
+    
+  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
@@ -434,16 +440,15 @@
                   
 
 
-  <h1>Home</h1>
-
-<div><p><a id="What-is-TidierFiles.jl?"></a></p>
+<div><p><a id="TidierFiles.jl"></a></p>
+<p><a id="TidierFiles.jl-1"></a></p>
+<h1 id="tidierfilesjl">TidierFiles.jl<a class="headerlink" href="#tidierfilesjl" title="Permanent link">¤</a></h1>
+<p><a id="What-is-TidierFiles.jl?"></a></p>
 <p><a id="What-is-TidierFiles.jl?-1"></a></p>
 <h2 id="what-is-tidierfilesjl">What is TidierFiles.jl?<a class="headerlink" href="#what-is-tidierfilesjl" title="Permanent link">¤</a></h2>
-<p>TidierFiles.jl is a 100% Julia implementation of the readr and haven R packages. Powered by the CSV.jl, XLSX.jl and ReadStatTables.jl packages, TidierFiles.jl  seeks to harmonize file reading/writing by unifying the arguments across multiple  file types. </p>
-<p>TidierFiles.jl currently supports </p>
-<div class="admonition example">
-<p class="admonition-title">Example</p>
-</div>
+<p>TidierFiles.jl is a 100% Julia implementation of the readr, haven, readxl, and writexl R packages.</p>
+<p>Powered by the CSV.jl, XLSX.jl and ReadStatTables.jl packages, TidierFiles.jl aims to bring a consistent interface to the reading and writing of tabular data, including a consistent syntax to read files locally versus from the web and consistent keyword arguments across data formats.</p>
+<p>Currently supported file types:</p>
 <ul>
 <li><code>read_csv</code> and <code>write_csv</code></li>
 <li><code>read_tsv</code> and <code>write_tsv</code></li>
@@ -453,9 +458,36 @@
 <li><code>read_fwf</code> and <code>fwf_empty</code></li>
 <li><code>read_sav</code> and <code>write_sav</code> (.sav and .por)</li>
 <li><code>read_sas</code> and <code>write_sas</code> (.sas7bdat and .xpt)</li>
-<li><code>read_dta</code> and <code>write_dta</code> (.dta) </li>
+<li><code>read_dta</code> and <code>write_dta</code> (.dta)</li>
 </ul>
-<p>Read functions include the following arguments and support HTTP reading:</p>
+<p><a id="Examples"></a></p>
+<p><a id="Examples-1"></a></p>
+<h1 id="examples">Examples<a class="headerlink" href="#examples" title="Permanent link">¤</a></h1>
+<p>Here is an example of how to write and read a CSV file.</p>
+<div class="highlight"><pre><span></span><code><span class="k">using</span><span class="w"> </span><span class="n">TidierFiles</span>
+
+<span class="n">df</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DataFrame</span><span class="p">(</span>
+<span class="w">       </span><span class="n">integers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">],</span>
+<span class="w">       </span><span class="n">strings</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s">"This"</span><span class="p">,</span><span class="w"> </span><span class="s">"Package makes"</span><span class="p">,</span><span class="w"> </span><span class="s">"File reading/writing"</span><span class="p">,</span><span class="w"> </span><span class="s">"even smoother"</span><span class="p">],</span>
+<span class="w">       </span><span class="n">floats</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mf">10.2</span><span class="p">,</span><span class="w"> </span><span class="mf">20.3</span><span class="p">,</span><span class="w"> </span><span class="mf">30.4</span><span class="p">,</span><span class="w"> </span><span class="mf">40.5</span><span class="p">],</span>
+<span class="w">       </span><span class="n">dates</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="n">Date</span><span class="p">(</span><span class="mi">2018</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">20</span><span class="p">),</span><span class="w"> </span><span class="n">Date</span><span class="p">(</span><span class="mi">2018</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">21</span><span class="p">),</span><span class="w"> </span><span class="n">Date</span><span class="p">(</span><span class="mi">2018</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">22</span><span class="p">),</span><span class="w"> </span><span class="n">Date</span><span class="p">(</span><span class="mi">2018</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">23</span><span class="p">)],</span>
+<span class="w">       </span><span class="n">times</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="n">Dates</span><span class="o">.</span><span class="n">Time</span><span class="p">(</span><span class="mi">19</span><span class="p">,</span><span class="mi">10</span><span class="p">),</span><span class="w"> </span><span class="n">Dates</span><span class="o">.</span><span class="n">Time</span><span class="p">(</span><span class="mi">19</span><span class="p">,</span><span class="mi">20</span><span class="p">),</span><span class="w"> </span><span class="n">Dates</span><span class="o">.</span><span class="n">Time</span><span class="p">(</span><span class="mi">19</span><span class="p">,</span><span class="mi">30</span><span class="p">),</span><span class="w"> </span><span class="n">Dates</span><span class="o">.</span><span class="n">Time</span><span class="p">(</span><span class="mi">19</span><span class="p">,</span><span class="mi">40</span><span class="p">)]</span>
+<span class="w">     </span><span class="p">)</span>
+
+<span class="n">write_csv</span><span class="p">(</span><span class="n">df</span><span class="p">,</span><span class="w"> </span><span class="s">"testing.csv"</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="n">col_names</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">)</span>
+
+<span class="n">read_csv</span><span class="p">(</span><span class="s">"testing.csv"</span><span class="p">,</span><span class="w"> </span><span class="n">missingstring</span><span class="o">=</span><span class="p">[</span><span class="s">"40.5"</span><span class="p">,</span><span class="w"> </span><span class="s">"10.2"</span><span class="p">])</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>4×5 DataFrame
+ Row │ integers  strings               floats     dates       times    
+     │ Int64     String31              Float64?   Date        Time     
+─────┼─────────────────────────────────────────────────────────────────
+   1 │        1  This                  missing    2018-02-20  19:10:00
+   2 │        2  Package makes              20.3  2018-02-21  19:20:00
+   3 │        3  File reading/writing       30.4  2018-02-22  19:30:00
+   4 │        4  even smoother         missing    2018-02-23  19:40:00:00
+</code></pre></div>
+<p>The file reading functions include the following keyword arguments:</p>
 <ul>
 <li><code>path</code></li>
 <li><code>missingstring</code></li>
@@ -464,11 +496,10 @@
 <li><code>num_threads</code></li>
 <li><code>skip</code></li>
 <li><code>n_max</code></li>
-<li><code>delim</code> (where applies)</li>
+<li><code>delim</code> (where applicable)</li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="k">using</span><span class="w"> </span><span class="n">TidierFiles</span>
-
-<span class="n">read_csv</span><span class="p">(</span><span class="s">"https://raw.githubusercontent.com/TidierOrg/TidierFiles.jl/main/testing_files/csvtest.csv"</span><span class="p">,</span><span class="w"> </span><span class="n">skip</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="n">n_max</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="n">col_select</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s">"ID"</span><span class="p">,</span><span class="w"> </span><span class="s">"Score"</span><span class="p">],</span><span class="w"> </span><span class="n">missingstring</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s">"4"</span><span class="p">])</span>
+<p>The path can be a file available either locally or on the web.</p>
+<div class="highlight"><pre><span></span><code><span class="n">read_csv</span><span class="p">(</span><span class="s">"https://raw.githubusercontent.com/TidierOrg/TidierFiles.jl/main/testing_files/csvtest.csv"</span><span class="p">,</span><span class="w"> </span><span class="n">skip</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="n">n_max</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="n">col_select</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s">"ID"</span><span class="p">,</span><span class="w"> </span><span class="s">"Score"</span><span class="p">],</span><span class="w"> </span><span class="n">missingstring</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s">"4"</span><span class="p">])</span>
 </code></pre></div>
 <div class="highlight"><pre><span></span><code>3×2 DataFrame
  Row │ ID       Score 
