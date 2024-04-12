@@ -119,3 +119,4 @@ nav:
   - "Delimited Files": "examples/generated/UserGuide/delim.md"
   - "Excel Files": "examples/generated/UserGuide/xl.md"
   - "Stats Files": "examples/generated/UserGuide/stats.md"
+  - "Reference" : "reference.md"
