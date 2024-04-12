@@ -17,11 +17,15 @@ Reads a CSV file or URL into a DataFrame, with options to specify delimiter, col
 `escape_double`: Indicates whether to interpret two consecutive quote characters as a single quote in the data. Default is true.
 `num_threads`: specifies the number of concurrent tasks or threads to use for processing, allowing for parallel execution. Defaults to 1
 # Examples
-```jldoctest 
-julia> read_csv(joinpath(testing_files_path, "csvtest.csv"), skip = 2, n_max = 3, missingstring = ["95", "Charlie"])
+```jldoctest
+julia> df = DataFrame(ID = 1:5, Name = ["Alice", "Bob", "Charlie", "David", "Eva"], Score = [88, 92, 77, 85, 95]);
+
+julia> write_csv(df, "csvtest.csv");
+
+julia> read_csv("csvtest.csv", skip = 2, n_max = 3, missingstring = ["95", "Charlie"])
 3×3 DataFrame
  Row │ ID     Name     Score   
-     │ Int64  String7  Int64? 
+     │ Int64  String7  Int64?  
 ─────┼─────────────────────────
    1 │     3  missing       77
    2 │     4  David         85
@@ -49,11 +53,15 @@ Reads a TSV file or URL into a DataFrame, with options to specify delimiter, col
 `num_threads`: specifies the number of concurrent tasks or threads to use for processing, allowing for parallel execution. Default is the number of available threads.
 
 # Examples
-```jldoctest 
-julia> read_tsv(joinpath(testing_files_path, "tsvtest.tsv"), skip = 2, n_max = 3, missingstring = ["Charlie"])
+```jldoctest
+julia> df = DataFrame(ID = 1:5, Name = ["Alice", "Bob", "Charlie", "David", "Eva"], Score = [88, 92, 77, 85, 95]);
+
+julia> write_tsv(df, "tsvtest.tsv");
+
+julia> read_tsv("tsvtest.tsv", skip = 2, n_max = 3, missingstring = ["Charlie"])
 3×3 DataFrame
- Row │ ID     Name     Score
-     │ Int64  String7  Int64
+ Row │ ID     Name     Score 
+     │ Int64  String7  Int64 
 ─────┼───────────────────────
    1 │     3  missing     77
    2 │     4  David       85
@@ -82,8 +90,12 @@ Reads a delimited file or URL into a DataFrame, with options to specify delimite
 `num_threads`: specifies the number of concurrent tasks or threads to use for processing, allowing for parallel execution. Default is the number of available threads.
 
 # Examples
-```jldoctest 
-julia> read_delim(joinpath(testing_files_path, "csvtest.csv"), delim = ",", col_names = false, num_threads = 4) # col_names are false here for the purpose of demonstration
+```jldoctest
+julia> df = DataFrame(ID = 1:5, Name = ["Alice", "Bob", "Charlie", "David", "Eva"], Score = [88, 92, 77, 85, 95]);
+
+julia> write_csv(df, "csvtest.csv");
+
+julia> read_delim("csvtest.csv", delim = ",", col_names = false, num_threads = 4) # col_names are false here for the purpose of demonstration
 6×3 DataFrame
  Row │ Column1  Column2  Column3 
      │ String3  String7  String7 
@@ -96,8 +108,6 @@ julia> read_delim(joinpath(testing_files_path, "csvtest.csv"), delim = ",", col_
    6 │ 5        Eva      95
 ```
 """
-
-
 
 const docstring_read_fwf =
 """
@@ -112,8 +122,15 @@ Read fixed-width format (FWF) files into a DataFrame.
 - `skip_to`=0: Number of lines at the beginning of the file to skip before reading data.
 - `n_max`=nothing: Maximum number of lines to read from the file. If nothing, read all lines.
 # Examples
-```jldoctest 
-julia> path = joinpath(testing_files_path, "fwftest.txt");
+```jldoctest
+julia> fwf_data = 
+       "John Smith   35    12345  Software Engineer   120,000 \\nJane Doe     29     2345  Marketing Manager   95,000  \\nAlice Jones  42   123456  CEO                 250,000 \\nBob Brown    31    12345  Product Manager     110,000 \\nCharlie Day  28      345  Sales Associate     70,000  \\nDiane Poe    35    23456  Data Scientist      130,000 \\nEve Stone    40   123456  Chief Financial Off 200,000 \\nFrank Moore  33     1234  Graphic Designer    80,000  \\nGrace Lee    27   123456  Software Developer  115,000 \\nHank Zuse    45    12345  System Analyst      120,000 ";
+
+julia> open("fwftest.txt", "w") do file
+         write(file, fwf_data)
+       end;
+
+julia> path = "fwftest.txt";
 
 julia> read_fwf(path, fwf_empty(path, num_lines=4, col_names = ["Name", "Age", "ID", "Position", "Salary"]), skip_to=3, n_max=3)
 3×5 DataFrame
@@ -125,7 +142,6 @@ julia> read_fwf(path, fwf_empty(path, num_lines=4, col_names = ["Name", "Age", "
    3 │ Diane Poe    35      23456   Data Scientist   130,000
 ```
 """
-
 
 const docstring_fwf_empty =
 """
@@ -142,15 +158,23 @@ num_lines::Int=4: Number of lines to sample from the beginning of the file for a
 - A vector of integers representing the detected column widths.
 - A vector of strings representing the column names.
 # Examples
-```jldoctest 
-julia> fwf_empty(joinpath(testing_files_path, "fwftest.txt"))
+```jldoctest
+julia> fwf_data = 
+       "John Smith   35    12345  Software Engineer   120,000 \\nJane Doe     29     2345  Marketing Manager   95,000  \\nAlice Jones  42   123456  CEO                 250,000 \\nBob Brown    31    12345  Product Manager     110,000 \\nCharlie Day  28      345  Sales Associate     70,000  \\nDiane Poe    35    23456  Data Scientist      130,000 \\nEve Stone    40   123456  Chief Financial Off 200,000 \\nFrank Moore  33     1234  Graphic Designer    80,000  \\nGrace Lee    27   123456  Software Developer  115,000 \\nHank Zuse    45    12345  System Analyst      120,000 ";
+
+julia> open("fwftest.txt", "w") do file
+         write(file, fwf_data)
+       end;
+
+julia> path = "fwftest.txt";
+
+julia> fwf_empty(path)
 ([13, 5, 8, 20, 8], ["Column_1", "Column_2", "Column_3", "Column_4", "Column_5"])
 
-julia> fwf_empty(joinpath(testing_files_path, "fwftest.txt"), num_lines=4, col_names = ["Name", "Age", "ID", "Position", "Salary"])
+julia> fwf_empty(path, num_lines=4, col_names = ["Name", "Age", "ID", "Position", "Salary"])
 ([13, 5, 8, 20, 8], ["Name", "Age", "ID", "Position", "Salary"])
 ```
 """
-
 
 const docstring_write_csv  =
 """
@@ -170,7 +194,7 @@ Write a DataFrame to a CSV (comma-separated values) file.
 ```jldoctest 
 julia> df = DataFrame(ID = 1:5, Name = ["Alice", "Bob", "Charlie", "David", "Eva"], Score = [88, 92, 77, 85, 95]);
 
-julia> write_csv(df, joinpath(testing_files_path, "csvtest.csv"));
+julia> write_csv(df, "csvtest.csv");
 ```
 """
 
@@ -192,7 +216,7 @@ Write a DataFrame to a TSV (tab-separated values) file.
 ```jldoctest 
 julia> df = DataFrame(ID = 1:5, Name = ["Alice", "Bob", "Charlie", "David", "Eva"], Score = [88, 92, 77, 85, 95]);
 
-julia> write_tsv(df, joinpath(testing_files_path, "tsvtest.tsv"));
+julia> write_tsv(df, "tsvtest.tsv");
 ```
 """
 
@@ -213,7 +237,11 @@ Read a table from a file where columns are separated by any amount of whitespace
 -`kwargs`: Additional keyword arguments passed to CSV.File.
 # Examples
 ```jldoctest 
-julia> read_table(joinpath(testing_files_path, "tabletest.txt"), skip = 2, n_max = 3, col_select = ["Name"])
+julia> df = DataFrame(ID = 1:5, Name = ["Alice", "Bob", "Charlie", "David", "Eva"], Score = [88, 92, 77, 85, 95]);
+
+julia> write_table(df, "tabletest.txt");
+
+julia> read_table("tabletest.txt", skip = 2, n_max = 3, col_select = ["Name"])
 3×1 DataFrame
  Row │ Name    
      │ String7 
@@ -224,7 +252,6 @@ julia> read_table(joinpath(testing_files_path, "tabletest.txt"), skip = 2, n_max
 
 ```
 """
-
 
 const docstring_write_table =
 """
@@ -245,7 +272,7 @@ Write a DataFrame to a file, allowing for customization of the delimiter and oth
 ```jldoctest 
 julia> df = DataFrame(ID = 1:5, Name = ["Alice", "Bob", "Charlie", "David", "Eva"], Score = [88, 92, 77, 85, 95]);
 
-julia> write_table(df, joinpath(testing_files_path, "tabletest.txt"));
+julia> write_table(df, "tabletest.txt");
 ```
 """
 
@@ -260,15 +287,23 @@ Read data from an Excel file into a DataFrame.
 -`range`: Specifies a specific range of cells to be read from the sheet. If nothing, the entire sheet is read.
 -`col_names`: Indicates whether the first row of the specified range should be treated as column names. If false, columns will be named automatically.
 -`col_types`: Allows specifying column types explicitly. Can be a single type applied to all columns, a list or a dictionary mapping column names or indices to types. If nothing, types will be inferred.
--`missingstring`: The string that represents missing values in the Excel file.
+-`missingstring`: The value or vector that represents missing values in the Excel file.
 -`trim_ws`: Whether to trim leading and trailing whitespace from cells in the Excel file.
 -`skip`: Number of rows to skip at the beginning of the sheet or range before reading data.
 -`n_max`: The maximum number of rows to read from the sheet or range, after skipping. Inf means read all available rows.
 -`guess_max`: The maximum number of rows to scan for type guessing and column names detection. Only relevant if col_types is nothing or col_names is true. If nothing, a default heuristic is used.
 
 # Examples
-```jldoctest 
-julia> read_xlsx(joinpath(testing_files_path, "xlsxtest.xlsx"), sheet = "REPORT_A", skip = 1, n_max = 4, missingstring = [2])
+```jldoctest
+julia> df = DataFrame(integers=[1, 2, 3, 4],
+       strings=["This", "Package makes", "File reading/writing", "even smoother"],
+       floats=[10.2, 20.3, 30.4, 40.5]);
+
+julia> df2 = DataFrame(AA=["aa", "bb"], AB=[10.1, 10.2]);
+
+julia> write_xlsx(("REPORT_A" => df, "REPORT_B" => df2); path="xlsxtest.xlsx", overwrite = true);
+
+julia> read_xlsx("xlsxtest.xlsx", sheet = "REPORT_A", skip = 1, n_max = 4, missingstring = [2])
 3×3 DataFrame
  Row │ integers  strings               floats  
      │ Any       String                Float64 
@@ -291,11 +326,13 @@ Write a DataFrame, or multiple DataFrames, to an Excel file.
 
 # Examples
 ```jldoctest 
-julia> df = DataFrame(integers=[1, 2, 3, 4], strings=["This", "Package makes", "File reading/writing", "even smoother"], floats=[10.2, 20.3, 30.4, 40.5]);
+julia> df = DataFrame(integers=[1, 2, 3, 4],
+       strings=["This", "Package makes", "File reading/writing", "even smoother"],
+       floats=[10.2, 20.3, 30.4, 40.5]);
 
 julia> df2 = DataFrame(AA=["aa", "bb"], AB=[10.1, 10.2]);
 
-julia> write_xlsx(("REPORT_A" => df, "REPORT_B" => df2); path=joinpath(testing_files_path, "xlsxtest.xlsx"), overwrite = true);
+julia> write_xlsx(("REPORT_A" => df, "REPORT_B" => df2); path="xlsxtest.xlsx", overwrite = true);
 ```
 """
 
@@ -314,8 +351,12 @@ n_max=Inf: Maximum number of rows to read from the file, after skipping. If Inf,
 `num_threads`: specifies the number of concurrent tasks or threads to use for processing, allowing for parallel execution. Defaults to 1
 
 # Examples
-```jldoctest 
-julia> read_sas(joinpath(testing_files_path, "test.dta"))
+```jldoctest
+julia> df = DataFrame(AA=["sav", "por"], AB=[10.1, 10.2]);
+
+julia> write_dta(df, "test.dta");
+
+julia> read_dta("test.dta")
 2×2 DataFrame
  Row │ AA       AB      
      │ String3  Float64 
@@ -339,25 +380,31 @@ n_max=Inf: Maximum number of rows to read from the file, after skipping. If Inf,
 `num_threads`: specifies the number of concurrent tasks or threads to use for processing, allowing for parallel execution. Defaults to 1
 
 # Examples
-```jldoctest 
-julia> read_sas(joinpath(testing_files_path, "test.sas7bdat"))
+```jldoctest
+julia> df = DataFrame(AA=["sav", "por"], AB=[10.1, 10.2]);
+
+julia> write_sas(df, "test.sas7bdat");
+
+julia> read_sas("test.sas7bdat")
 2×2 DataFrame
  Row │ AA       AB      
-     │ String   Float64 
+     │ String3  Float64 
 ─────┼──────────────────
    1 │ sav         10.1
    2 │ por         10.2
 
-julia> read_sas(joinpath(testing_files_path, "test.xpt"))
+julia> write_sas(df, "test.xpt");
+
+julia> read_sas("test.xpt")
 2×2 DataFrame
  Row │ AA       AB      
-     │ String   Float64 
+     │ String3  Float64 
 ─────┼──────────────────
    1 │ sav         10.1
    2 │ por         10.2
 """
 
-const docstring_read_sav  =
+const docstring_read_sav =
 """
     function read_sav(data_file;  encoding=nothing, col_select=nothing, skip=0, n_max=Inf)
 Read data from a SPSS (.sav and .por) file into a DataFrame, supporting both local and remote sources.
@@ -371,8 +418,12 @@ n_max=Inf: Maximum number of rows to read from the file, after skipping. If Inf,
 `num_threads`: specifies the number of concurrent tasks or threads to use for processing, allowing for parallel execution. Defaults to 1
 
 # Examples
-```jldoctest 
-julia> read_sav(joinpath(testing_files_path, "test.sav"))
+```jldoctest
+julia> df = DataFrame(AA=["sav", "por"], AB=[10.1, 10.2]);
+
+julia> write_sav(df, "test.sav");
+
+julia> read_sav("test.sav")
 2×2 DataFrame
  Row │ AA      AB      
      │ String  Float64 
@@ -380,7 +431,9 @@ julia> read_sav(joinpath(testing_files_path, "test.sav"))
    1 │ sav        10.1
    2 │ por        10.2
 
-julia> read_sav(joinpath(testing_files_path, "test.por"))
+julia> write_sav(df, "test.por");
+
+julia> read_sav("test.por")
 2×2 DataFrame
  Row │ AA      AB      
      │ String  Float64 
@@ -403,21 +456,21 @@ Arguments
 ```jldoctest 
 julia> df = DataFrame(AA=["sav", "por"], AB=[10.1, 10.2]);
 
-julia> write_sav(df , joinpath(testing_files_path, "test.sav"))
+julia> write_sav(df, "test.sav")
 2×2 ReadStatTable:
- Row │     AA       AB 
-     │ String  Float64 
-─────┼─────────────────
-   1 │    sav     10.1
-   2 │    por     10.2
+ Row │     AA        AB 
+     │ String  Float64? 
+─────┼──────────────────
+   1 │    sav      10.1
+   2 │    por      10.2
 
-julia> write_sav(df , joinpath(testing_files_path, "test.por"))
+julia> write_sav(df, "test.por")
 2×2 ReadStatTable:
- Row │     AA       AB 
-     │ String  Float64 
-─────┼─────────────────
-   1 │    sav     10.1
-   2 │    por     10.2
+ Row │     AA        AB 
+     │ String  Float64? 
+─────┼──────────────────
+   1 │    sav      10.1
+   2 │    por      10.2
 ```
 """
 const docstring_write_sas =
@@ -433,21 +486,21 @@ Arguments
 ```jldoctest 
 julia> df = DataFrame(AA=["sav", "por"], AB=[10.1, 10.2]);
 
-julia> write_sav(df , joinpath(testing_files_path, "test.sas7bdat"))
+julia> write_sas(df, "test.sas7bdat")
 2×2 ReadStatTable:
- Row │     AA       AB 
-     │ String  Float64 
-─────┼─────────────────
-   1 │    sav     10.1
-   2 │    por     10.2
+ Row │     AA        AB 
+     │ String  Float64? 
+─────┼──────────────────
+   1 │    sav      10.1
+   2 │    por      10.2
 
-julia> write_sav(df , joinpath(testing_files_path, "test.xpt"))
+julia> write_sas(df, "test.xpt")
 2×2 ReadStatTable:
- Row │     AA       AB 
-     │ String  Float64 
-─────┼─────────────────
-   1 │    sav     10.1
-   2 │    por     10.2
+ Row │     AA        AB 
+     │ String  Float64? 
+─────┼──────────────────
+   1 │    sav      10.1
+   2 │    por      10.2
 ```
 """
 
@@ -464,12 +517,12 @@ Arguments
 ```jldoctest 
 julia> df = DataFrame(AA=["sav", "por"], AB=[10.1, 10.2]);
 
-julia> write_dta(df , joinpath(testing_files_path, "test.dta"))
+julia> write_dta(df, "test.dta")
 2×2 ReadStatTable:
- Row │     AA       AB 
-     │ String  Float64 
-─────┼─────────────────
-   1 │    sav     10.1
-   2 │    por     10.2
+ Row │     AA        AB 
+     │ String  Float64? 
+─────┼──────────────────
+   1 │    sav      10.1
+   2 │    por      10.2
 ```
 """

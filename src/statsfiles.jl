@@ -31,7 +31,7 @@ function read_sas(data_file;
         :row_limit => n_max == Inf ? nothing : n_max,  # Convert Inf to nothing for unlimited
         :row_offset => skip,  # Skip the specified number of rows
         :ntasks => num_threads > 1 ? num_threads : nothing,  # Use num_threads for parallel reading if > 1
-        :convert_datetime => true,  # Assuming default behavior is to convert datetime
+        # :convert_datetime => true,  # Assuming default behavior is to convert datetime
         :apply_value_labels => true,  # Apply value labels if available
         :file_encoding => encoding,  # Set file encoding if provided
         :handler_encoding => encoding != nothing ? encoding : "UTF-8"  # Set handler encoding, default to UTF-8
@@ -76,7 +76,7 @@ function read_sav(data_file;
         :row_limit => n_max == Inf ? nothing : n_max,  # Convert Inf to nothing for unlimited
         :row_offset => skip,  # Skip the specified number of rows
         :ntasks => num_threads > 1 ? num_threads : nothing,  # Use num_threads for parallel reading if > 1
-        :convert_datetime => true,  # Assuming default behavior is to convert datetime
+        # :convert_datetime => true,  # Assuming default behavior is to convert datetime
         :apply_value_labels => true,  # Apply value labels if available
         :file_encoding => encoding,  # Set file encoding if provided
         :handler_encoding => encoding != nothing ? encoding : "UTF-8"  # Set handler encoding, default to UTF-8
@@ -121,7 +121,7 @@ function read_dta(data_file;
         :row_limit => n_max == Inf ? nothing : n_max,  # Convert Inf to nothing for unlimited
         :row_offset => skip,  # Skip the specified number of rows
         :ntasks => num_threads > 1 ? num_threads : nothing,  # Use num_threads for parallel reading if > 1
-        :convert_datetime => true,  # Assuming default behavior is to convert datetime
+        # :convert_datetime => true,  # Assuming default behavior is to convert datetime
         :apply_value_labels => true,  # Apply value labels if available
         :file_encoding => encoding,  # Set file encoding if provided
         :handler_encoding => encoding != nothing ? encoding : "UTF-8"  # Set handler encoding, default to UTF-8
@@ -132,7 +132,6 @@ function read_dta(data_file;
     
     return df
 end
-
 
 """
 $docstring_write_sas
