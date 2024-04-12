@@ -10,7 +10,7 @@ DocMeta.setdocmeta!(TidierFiles,
     recursive=true)
 makedocs(
     modules=[TidierFiles],
-    clean=false,
+    clean=true,
     doctest=true,
     #format   = Documenter.HTML(prettyurls = get(ENV, "CI", nothing) == "true"),
     sitename="TidierFiles.jl",
