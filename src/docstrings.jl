@@ -144,7 +144,9 @@ num_lines::Int=4: Number of lines to sample from the beginning of the file for a
 - A vector of strings representing the column names.
 # Examples
 ```jldoctest 
-julia> open("fwftest.txt", "w") do file
+julia> path = "fwftest.txt";
+
+julia> open(path, "w") do file
          write(file, fwf_data)
        end;
 
