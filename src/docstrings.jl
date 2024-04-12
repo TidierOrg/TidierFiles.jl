@@ -113,10 +113,6 @@ Read fixed-width format (FWF) files into a DataFrame.
 ```jldoctest
 julia> path = "fwftest.txt";
 
-julia> open(path, "w") do file
-         write(file, fwf_data)
-       end;
-
 julia> read_fwf(path, fwf_empty(path, num_lines=4, col_names = ["Name", "Age", "ID", "Position", "Salary"]), skip_to=3, n_max=3)
 3×5 DataFrame
  Row │ Name         Age     ID      Position         Salary  
@@ -145,10 +141,6 @@ num_lines::Int=4: Number of lines to sample from the beginning of the file for a
 # Examples
 ```jldoctest 
 julia> path = "fwftest.txt";
-
-julia> open(path, "w") do file
-         write(file, fwf_data)
-       end;
 
 julia> fwf_empty(path)
 ([13, 5, 8, 20, 8], ["Column_1", "Column_2", "Column_3", "Column_4", "Column_5"])
