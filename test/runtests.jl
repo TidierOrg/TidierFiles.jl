@@ -26,27 +26,27 @@ DocMeta.setdocmeta!(TidierFiles, :DocTestSetup, :(begin
     Hank Zuse    45    12345  System Analyst      120,000 
     """
     
-    file = open(joinpath(tempdir(), "fwftest.txt"), "w")
-    write(file, fwf_data)
-    close(file)
+    open("fwftest.txt", "w") do file
+        write(file, fwf_data)
+    end;
 
     df = DataFrame(ID = 1:5, Name = ["Alice", "Bob", "Charlie", "David", "Eva"], Score = [88, 92, 77, 85, 95]);
-    write_csv(df, joinpath(tempdir(), "csvtest.csv"));
-    write_table(df, joinpath(tempdir(), "tabletest.txt"));
-    write_tsv(df, joinpath(tempdir(), "tsvtest.tsv"));
+    write_csv(df, "csvtest.csv");
+    write_table(df, "tabletest.txt");
+    write_tsv(df, "tsvtest.tsv");
 
     df = DataFrame(integers=[1, 2, 3, 4],
        strings=["This", "Package makes", "File reading/writing", "even smoother"],
        floats=[10.2, 20.3, 30.4, 40.5]);
     df2 = DataFrame(AA=["aa", "bb"], AB=[10.1, 10.2]);
-    write_xlsx(("REPORT_A" => df, "REPORT_B" => df2); path=joinpath(tempdir(), "xlsxtest.xlsx"), overwrite = true);
+    write_xlsx(("REPORT_A" => df, "REPORT_B" => df2); path="xlsxtest.xlsx", overwrite = true);
 
     df = DataFrame(AA=["sav", "por"], AB=[10.1, 10.2]);
-    write_sav(df, joinpath(tempdir(), "test.sav"));
-    write_sav(df, joinpath(tempdir(), "test.por"));
-    write_sas(df , joinpath(tempdir(), "test.sas7bdat"));
-    write_sas(df , joinpath(tempdir(), "test.xpt"));
-    write_dta(df , joinpath(tempdir(), "test.dta"));
+    write_sav(df, "test.sav");
+    write_sav(df, "test.por");
+    write_sas(df , "test.sas7bdat");
+    write_sas(df , "test.xpt");
+    write_dta(df ,"test.dta");
     
 end); recursive=true)
 

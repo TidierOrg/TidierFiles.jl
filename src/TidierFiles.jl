@@ -21,29 +21,6 @@ include("xlfiles.jl")
 include("statsfiles.jl")
 
 """
-$docstring_write_csv
-"""
-function write_csv(
-    x::DataFrame,
-    file::String;
-    missingstring::String = "NA",
-    append::Bool = false,
-    col_names::Bool = true,
-    eol::String = "\n",
-    num_threads::Int = Threads.nthreads())
-
-    # Configure threading
-    CSV.write(
-        file,
-        x,
-        append = append,
-        header = col_names && !append,
-        missingstring = missingstring,
-        newline = eol,
-        threaded = num_threads > 1    )
-end
-
-"""
 $docstring_read_csv
 """
 function read_csv(file;
@@ -105,30 +82,6 @@ function read_csv(file;
     end
 
     return df
-end
-
-"""
-$docstring_write_tsv
-"""
-function write_tsv(
-    x::DataFrame,
-    file::String;
-    missingstring::String = "",
-    append::Bool = false,
-    col_names::Bool = true,
-    eol::String = "\n",
-    num_threads::Int = Threads.nthreads())
-
-    # Write DataFrame to TSV
-    CSV.write(
-        file,
-        x,
-        delim = '\t',  # Use tab as the delimiter for TSV
-        append = append,
-        header = col_names && !append,
-        missingstring = missingstring,
-        newline = eol,
-        threaded = num_threads > 1)
 end
 
 """
@@ -251,31 +204,6 @@ function read_tsv(file;
 end
 
 """
-$docstring_write_table
-"""
-function write_table(
-    x::DataFrame,
-    file::String;
-    delim::Char = '\t',  # Default to TSV, but allow flexibility
-    missingstring::String = "",
-    append::Bool = false,
-    col_names::Bool = true,
-    eol::String = "\n",
-    num_threads::Int = Threads.nthreads())
-    
-    # Write DataFrame to a file with the specified delimiter
-    CSV.write(
-        file,
-        x,
-        delim = delim,  # Flexible delimiter based on argument
-        append = append,
-        header = col_names && !append,
-        missingstring = missingstring,
-        newline = eol,
-        threaded = num_threads > 1)
-end
-
-"""
 $docstring_read_table
 """
 function read_table(file; 
@@ -332,6 +260,78 @@ function read_table(file;
                   kwargs...) |> DataFrame
 
     return df
+end
+
+"""
+$docstring_write_csv
+"""
+function write_csv(
+    x::DataFrame,
+    file::String;
+    missingstring::String = "NA",
+    append::Bool = false,
+    col_names::Bool = true,
+    eol::String = "\n",
+    num_threads::Int = Threads.nthreads())
+
+    # Configure threading
+    CSV.write(
+        file,
+        x,
+        append = append,
+        header = col_names && !append,
+        missingstring = missingstring,
+        newline = eol,
+        threaded = num_threads > 1    )
+end
+
+"""
+$docstring_write_tsv
+"""
+function write_tsv(
+    x::DataFrame,
+    file::String;
+    missingstring::String = "",
+    append::Bool = false,
+    col_names::Bool = true,
+    eol::String = "\n",
+    num_threads::Int = Threads.nthreads())
+
+    # Write DataFrame to TSV
+    CSV.write(
+        file,
+        x,
+        delim = '\t',  # Use tab as the delimiter for TSV
+        append = append,
+        header = col_names && !append,
+        missingstring = missingstring,
+        newline = eol,
+        threaded = num_threads > 1)
+end
+
+"""
+$docstring_write_table
+"""
+function write_table(
+    x::DataFrame,
+    file::String;
+    delim::Char = '\t',  # Default to TSV, but allow flexibility
+    missingstring::String = "",
+    append::Bool = false,
+    col_names::Bool = true,
+    eol::String = "\n",
+    num_threads::Int = Threads.nthreads())
+    
+    # Write DataFrame to a file with the specified delimiter
+    CSV.write(
+        file,
+        x,
+        delim = delim,  # Flexible delimiter based on argument
+        append = append,
+        header = col_names && !append,
+        missingstring = missingstring,
+        newline = eol,
+        threaded = num_threads > 1)
 end
 
 end
