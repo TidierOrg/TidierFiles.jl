@@ -13,7 +13,7 @@
       
       
       
-        <link rel="prev" href="../examples/generated/UserGuide/stats/">
+        <link rel="prev" href="../examples/generated/UserGuide/parquet/">
       
       
       
@@ -345,6 +345,46 @@
       
   
   
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/generated/UserGuide/Arrow/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Arrow Files
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/generated/UserGuide/parquet/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Parquet Files
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
     
   
   
@@ -408,26 +448,11 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#arguments-x-the-data-to-write-can-be-a-single-pairstring-dataframe-for-writing-one-sheet-or-a-tuple-of-such-pairs-for-writing-multiple-sheets-the-string-in-each-pair-specifies-the-sheet-name-and-the-dataframe-is-the-data-to-write-to-that-sheet-path-the-path-to-the-excel-file-where-the-data-will-be-written-overwrite-defaults-to-false-whether-to-overwrite-an-existing-file-if-false-an-error-is-thrown-when-attempting-to-write-to-an-existing-file" class="md-nav__link">
-    <span class="md-ellipsis">
-      Arguments -x: The data to write. Can be a single Pair{String, DataFrame} for writing one sheet, or a Tuple of such pairs for writing multiple sheets. The String in each pair specifies the sheet name, and the DataFrame is the data to write to that sheet. -path: The path to the Excel file where the data will be written. -overwrite: Defaults to false. Whether to overwrite an existing file. If false, an error is thrown when attempting to write to an existing file.
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Arguments -x: The data to write. Can be a single Pair{String, DataFrame} for writing one sheet, or a Tuple of such pairs for writing multiple sheets. The String in each pair specifies the sheet name, and the DataFrame is the data to write to that sheet. -path: The path to the Excel file where the data will be written. -overwrite: Defaults to false. Whether to overwrite an existing file. If false, an error is thrown when attempting to write to an existing file.">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
   <a href="#reference-internal-functions" class="md-nav__link">
     <span class="md-ellipsis">
       Reference - Internal functions
     </span>
   </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -482,26 +507,11 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#arguments-x-the-data-to-write-can-be-a-single-pairstring-dataframe-for-writing-one-sheet-or-a-tuple-of-such-pairs-for-writing-multiple-sheets-the-string-in-each-pair-specifies-the-sheet-name-and-the-dataframe-is-the-data-to-write-to-that-sheet-path-the-path-to-the-excel-file-where-the-data-will-be-written-overwrite-defaults-to-false-whether-to-overwrite-an-existing-file-if-false-an-error-is-thrown-when-attempting-to-write-to-an-existing-file" class="md-nav__link">
-    <span class="md-ellipsis">
-      Arguments -x: The data to write. Can be a single Pair{String, DataFrame} for writing one sheet, or a Tuple of such pairs for writing multiple sheets. The String in each pair specifies the sheet name, and the DataFrame is the data to write to that sheet. -path: The path to the Excel file where the data will be written. -overwrite: Defaults to false. Whether to overwrite an existing file. If false, an error is thrown when attempting to write to an existing file.
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Arguments -x: The data to write. Can be a single Pair{String, DataFrame} for writing one sheet, or a Tuple of such pairs for writing multiple sheets. The String in each pair specifies the sheet name, and the DataFrame is the data to write to that sheet. -path: The path to the Excel file where the data will be written. -overwrite: Defaults to false. Whether to overwrite an existing file. If false, an error is thrown when attempting to write to an existing file.">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
   <a href="#reference-internal-functions" class="md-nav__link">
     <span class="md-ellipsis">
       Reference - Internal functions
     </span>
   </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -520,22 +530,28 @@
                   
 
 
+  <h1>Reference</h1>
+
 <div><p><a id="Index"></a></p>
 <p><a id="Index-1"></a></p>
 <h2 id="index">Index<a class="headerlink" href="#index" title="Permanent link">¤</a></h2>
 <ul>
 <li><a href="./#TidierFiles.fwf_empty-Tuple{String}"><code>TidierFiles.fwf_empty</code></a></li>
+<li><a href="./#TidierFiles.read_arrow-Tuple{Any}"><code>TidierFiles.read_arrow</code></a></li>
 <li><a href="./#TidierFiles.read_csv-Tuple{Any}"><code>TidierFiles.read_csv</code></a></li>
 <li><a href="./#TidierFiles.read_delim-Tuple{Any}"><code>TidierFiles.read_delim</code></a></li>
 <li><a href="./#TidierFiles.read_dta-Tuple{Any}"><code>TidierFiles.read_dta</code></a></li>
 <li><a href="./#TidierFiles.read_fwf-Tuple{String,%20Tuple{Vector{Int64},%20Union{Nothing,%20Vector{String}}}}"><code>TidierFiles.read_fwf</code></a></li>
+<li><a href="./#TidierFiles.read_parquet-Tuple{Any}"><code>TidierFiles.read_parquet</code></a></li>
 <li><a href="./#TidierFiles.read_sas-Tuple{Any}"><code>TidierFiles.read_sas</code></a></li>
 <li><a href="./#TidierFiles.read_sav-Tuple{Any}"><code>TidierFiles.read_sav</code></a></li>
 <li><a href="./#TidierFiles.read_table-Tuple{Any}"><code>TidierFiles.read_table</code></a></li>
 <li><a href="./#TidierFiles.read_tsv-Tuple{Any}"><code>TidierFiles.read_tsv</code></a></li>
 <li><a href="./#TidierFiles.read_xlsx-Tuple{Any}"><code>TidierFiles.read_xlsx</code></a></li>
+<li><a href="./#TidierFiles.write_arrow-Tuple{Any,%20String}"><code>TidierFiles.write_arrow</code></a></li>
 <li><a href="./#TidierFiles.write_csv-Tuple{DataFrame,%20String}"><code>TidierFiles.write_csv</code></a></li>
 <li><a href="./#TidierFiles.write_dta-Tuple{DataFrame,%20String}"><code>TidierFiles.write_dta</code></a></li>
+<li><a href="./#TidierFiles.write_parquet-Tuple{Any,%20String}"><code>TidierFiles.write_parquet</code></a></li>
 <li><a href="./#TidierFiles.write_sas-Tuple{DataFrame,%20String}"><code>TidierFiles.write_sas</code></a></li>
 <li><a href="./#TidierFiles.write_sav-Tuple{DataFrame,%20String}"><code>TidierFiles.write_sav</code></a></li>
 <li><a href="./#TidierFiles.write_table-Tuple{DataFrame,%20String}"><code>TidierFiles.write_table</code></a></li>
@@ -580,7 +596,26 @@
 <span class="gp">julia&gt;</span><span class="w"> </span><span class="n">fwf_empty</span><span class="p">(</span><span class="n">path</span><span class="p">,</span><span class="w"> </span><span class="n">num_lines</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="n">col_names</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s">"Name"</span><span class="p">,</span><span class="w"> </span><span class="s">"Age"</span><span class="p">,</span><span class="w"> </span><span class="s">"ID"</span><span class="p">,</span><span class="w"> </span><span class="s">"Position"</span><span class="p">,</span><span class="w"> </span><span class="s">"Salary"</span><span class="p">])</span>
 <span class="go">([13, 5, 8, 20, 8], ["Name", "Age", "ID", "Position", "Salary"])</span>
 </code></pre></div>
-<p><a target="_blank" href="https://github.com/TidierOrg/TidierFiles.jl/blob/6b88722cc77afa473a8235749b3fe5f0dbb92db2/src/fwf.jl#L62-L92" class="documenter-source">source</a><br></p>
+<p><a target="_blank" href="https://github.com/TidierOrg/TidierFiles.jl/blob/2f9199d67984c2e83e34f93888f74e42dc7729a0/src/fwf.jl#L62-L92" class="documenter-source">source</a><br></p>
+<p><a id="TidierFiles.read_arrow-Tuple{Any}" href="#TidierFiles.read_arrow-Tuple{Any}">#</a>
+<strong><code>TidierFiles.read_arrow</code></strong> — <em>Method</em>.</p>
+<div class="highlight"><pre><span></span><code><span class="n">read_arrow</span><span class="p">(</span><span class="n">df</span><span class="p">,</span><span class="w"> </span><span class="n">path</span><span class="p">)</span>
+</code></pre></div>
+<p>Read an Arrow file (.arrow) to a DataFrame. Arguments -<code>df</code>: The DataFrame to be written to a file. -<code>path</code>: String as path where the .dta file will be created. If a file at this path already exists, it will be overwritten. <code>skip</code>: Number of initial lines to skip before reading data. Default is 0. <code>n_max</code>: Maximum number of rows to read. Default is Inf (read all rows). -<code>col_select</code>: Optional vector of symbols or strings to select which columns to load.</p>
+<p><strong>Examples</strong></p>
+<div class="highlight"><pre><span></span><code><span class="gp">julia&gt;</span><span class="w"> </span><span class="n">df</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DataFrame</span><span class="p">(</span><span class="n">AA</span><span class="o">=</span><span class="p">[</span><span class="s">"Arr"</span><span class="p">,</span><span class="w"> </span><span class="s">"ow"</span><span class="p">],</span><span class="w"> </span><span class="n">AB</span><span class="o">=</span><span class="p">[</span><span class="mf">10.1</span><span class="p">,</span><span class="w"> </span><span class="mf">10.2</span><span class="p">]);</span>
+
+<span class="gp">julia&gt;</span><span class="w"> </span><span class="n">write_arrow</span><span class="p">(</span><span class="n">df</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="s">"test.arrow"</span><span class="p">);</span>
+
+<span class="gp">julia&gt;</span><span class="w"> </span><span class="n">read_arrow</span><span class="p">(</span><span class="s">"test.arrow"</span><span class="p">)</span>
+<span class="go">2×2 DataFrame</span>
+<span class="go"> Row │ AA      AB      </span>
+<span class="go">     │ String  Float64 </span>
+<span class="go">─────┼─────────────────</span>
+<span class="go">   1 │ Arr        10.1</span>
+<span class="go">   2 │ ow         10.2</span>
+</code></pre></div>
+<p><a target="_blank" href="https://github.com/TidierOrg/TidierFiles.jl/blob/2f9199d67984c2e83e34f93888f74e42dc7729a0/src/arrow_files.jl#L1-L24" class="documenter-source">source</a><br></p>
 <p><a id="TidierFiles.read_csv-Tuple{Any}" href="#TidierFiles.read_csv-Tuple{Any}">#</a>
 <strong><code>TidierFiles.read_csv</code></strong> — <em>Method</em>.</p>
 <div class="highlight"><pre><span></span><code><span class="n">read_csv</span><span class="p">(</span><span class="n">file</span><span class="p">;</span><span class="w"> </span><span class="n">delim</span><span class="o">=</span><span class="sc">','</span><span class="p">,</span><span class="n">col_names</span><span class="o">=</span><span class="nb">true</span><span class="p">,</span><span class="w"> </span><span class="n">skip</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">n_max</span><span class="o">=</span><span class="nb">Inf</span><span class="p">,</span><span class="w"> </span>
@@ -603,7 +638,7 @@
 <span class="go">   2 │     4  David         85</span>
 <span class="go">   3 │     5  Eva      missing </span>
 </code></pre></div>
-<p><a target="_blank" href="https://github.com/TidierOrg/TidierFiles.jl/blob/6b88722cc77afa473a8235749b3fe5f0dbb92db2/src/TidierFiles.jl#L23-L55" class="documenter-source">source</a><br></p>
+<p><a target="_blank" href="https://github.com/TidierOrg/TidierFiles.jl/blob/2f9199d67984c2e83e34f93888f74e42dc7729a0/src/TidierFiles.jl#L27-L59" class="documenter-source">source</a><br></p>
 <p><a id="TidierFiles.read_delim-Tuple{Any}" href="#TidierFiles.read_delim-Tuple{Any}">#</a>
 <strong><code>TidierFiles.read_delim</code></strong> — <em>Method</em>.</p>
 <div class="highlight"><pre><span></span><code><span class="n">read_delim</span><span class="p">(</span><span class="n">file</span><span class="p">;</span><span class="w"> </span><span class="n">delim</span><span class="o">=</span><span class="err">'</span><span class="w">    </span><span class="err">'</span><span class="p">,</span><span class="n">col_names</span><span class="o">=</span><span class="nb">true</span><span class="p">,</span><span class="w"> </span><span class="n">skip</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">n_max</span><span class="o">=</span><span class="nb">Inf</span><span class="p">,</span><span class="w"> </span>
@@ -629,7 +664,7 @@
 <span class="go">   5 │ 4        David    85</span>
 <span class="go">   6 │ 5        Eva      95</span>
 </code></pre></div>
-<p><a target="_blank" href="https://github.com/TidierOrg/TidierFiles.jl/blob/6b88722cc77afa473a8235749b3fe5f0dbb92db2/src/TidierFiles.jl#L87-L124" class="documenter-source">source</a><br></p>
+<p><a target="_blank" href="https://github.com/TidierOrg/TidierFiles.jl/blob/2f9199d67984c2e83e34f93888f74e42dc7729a0/src/TidierFiles.jl#L91-L128" class="documenter-source">source</a><br></p>
 <p><a id="TidierFiles.read_dta-Tuple{Any}" href="#TidierFiles.read_dta-Tuple{Any}">#</a>
 <strong><code>TidierFiles.read_dta</code></strong> — <em>Method</em>.</p>
 <div class="highlight"><pre><span></span><code><span class="k">function</span><span class="w"> </span><span class="n">read_dta</span><span class="p">(</span><span class="n">data_file</span><span class="p">;</span><span class="w">  </span><span class="n">encoding</span><span class="o">=</span><span class="nb">nothing</span><span class="p">,</span><span class="w"> </span><span class="n">col_select</span><span class="o">=</span><span class="nb">nothing</span><span class="p">,</span><span class="w"> </span><span class="n">skip</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">n_max</span><span class="o">=</span><span class="nb">Inf</span><span class="p">)</span>
@@ -650,7 +685,7 @@
 <span class="go">   1 │ sav         10.1</span>
 <span class="go">   2 │ por         10.2</span>
 </code></pre></div>
-<p><a target="_blank" href="https://github.com/TidierOrg/TidierFiles.jl/blob/6b88722cc77afa473a8235749b3fe5f0dbb92db2/src/statsfiles.jl#L91-L118" class="documenter-source">source</a><br></p>
+<p><a target="_blank" href="https://github.com/TidierOrg/TidierFiles.jl/blob/2f9199d67984c2e83e34f93888f74e42dc7729a0/src/statsfiles.jl#L91-L118" class="documenter-source">source</a><br></p>
 <p><a id="TidierFiles.read_fwf-Tuple{String, Tuple{Vector{Int64}, Union{Nothing, Vector{String}}}}" href="#TidierFiles.read_fwf-Tuple{String,%20Tuple{Vector{Int64},%20Union{Nothing,%20Vector{String}}}}">#</a>
 <strong><code>TidierFiles.read_fwf</code></strong> — <em>Method</em>.</p>
 <div class="highlight"><pre><span></span><code><span class="n">read_fwf</span><span class="p">(</span><span class="n">filepath</span><span class="o">::</span><span class="kt">String</span><span class="p">;</span><span class="w"> </span><span class="n">num_lines</span><span class="o">::</span><span class="kt">Int</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="n">col_names</span><span class="o">=</span><span class="nb">nothing</span><span class="p">)</span>
@@ -682,7 +717,26 @@
 <span class="go">   2 │ Charlie Day  28      345     Sales Associate  70,000</span>
 <span class="go">   3 │ Diane Poe    35      23456   Data Scientist   130,000</span>
 </code></pre></div>
-<p><a target="_blank" href="https://github.com/TidierOrg/TidierFiles.jl/blob/6b88722cc77afa473a8235749b3fe5f0dbb92db2/src/fwf.jl#L11-L42" class="documenter-source">source</a><br></p>
+<p><a target="_blank" href="https://github.com/TidierOrg/TidierFiles.jl/blob/2f9199d67984c2e83e34f93888f74e42dc7729a0/src/fwf.jl#L11-L42" class="documenter-source">source</a><br></p>
+<p><a id="TidierFiles.read_parquet-Tuple{Any}" href="#TidierFiles.read_parquet-Tuple{Any}">#</a>
+<strong><code>TidierFiles.read_parquet</code></strong> — <em>Method</em>.</p>
+<div class="highlight"><pre><span></span><code><span class="n">read_parquet</span><span class="p">(</span><span class="n">df</span><span class="p">,</span><span class="w"> </span><span class="n">path</span><span class="p">)</span>
+</code></pre></div>
+<p>Read a Paquet File (.parquet) to a DataFrame.. Arguments -<code>df</code>: The DataFrame to be written to a file. -<code>path</code>: String as path where the .dta file will be created. If a file at this path already exists, it will be overwritten. <code>col_names</code>: Indicates if the first row of the CSV is used as column names. Can be true, false, or an array of strings. Default is true. <code>skip</code>: Number of initial lines to skip before reading data. Default is 0. <code>n_max</code>: Maximum number of rows to read. Default is Inf (read all rows). -<code>col_select</code>: Optional vector of symbols or strings to select which columns to load.</p>
+<p><strong>Examples</strong></p>
+<div class="highlight"><pre><span></span><code><span class="gp">julia&gt;</span><span class="w"> </span><span class="n">df</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DataFrame</span><span class="p">(</span><span class="n">AA</span><span class="o">=</span><span class="p">[</span><span class="s">"Par"</span><span class="p">,</span><span class="w"> </span><span class="s">"quet"</span><span class="p">],</span><span class="w"> </span><span class="n">AB</span><span class="o">=</span><span class="p">[</span><span class="mf">10.1</span><span class="p">,</span><span class="w"> </span><span class="mf">10.2</span><span class="p">]);</span>
+
+<span class="gp">julia&gt;</span><span class="w"> </span><span class="n">write_parquet</span><span class="p">(</span><span class="n">df</span><span class="p">,</span><span class="w"> </span><span class="s">"test.parquet"</span><span class="p">);</span>
+
+<span class="gp">julia&gt;</span><span class="w"> </span><span class="n">read_parquet</span><span class="p">(</span><span class="s">"test.parquet"</span><span class="p">)</span>
+<span class="go">2×2 DataFrame</span>
+<span class="go"> Row │ AA      AB      </span>
+<span class="go">     │ String  Float64 </span>
+<span class="go">─────┼─────────────────</span>
+<span class="go">   1 │ Par        10.1</span>
+<span class="go">   2 │ quet       10.2</span>
+</code></pre></div>
+<p><a target="_blank" href="https://github.com/TidierOrg/TidierFiles.jl/blob/2f9199d67984c2e83e34f93888f74e42dc7729a0/src/parquet_files.jl#L1-L25" class="documenter-source">source</a><br></p>
 <p><a id="TidierFiles.read_sas-Tuple{Any}" href="#TidierFiles.read_sas-Tuple{Any}">#</a>
 <strong><code>TidierFiles.read_sas</code></strong> — <em>Method</em>.</p>
 <div class="highlight"><pre><span></span><code><span class="k">function</span><span class="w"> </span><span class="n">read_sas</span><span class="p">(</span><span class="n">data_file</span><span class="p">;</span><span class="w">  </span><span class="n">encoding</span><span class="o">=</span><span class="nb">nothing</span><span class="p">,</span><span class="w"> </span><span class="n">col_select</span><span class="o">=</span><span class="nb">nothing</span><span class="p">,</span><span class="w"> </span><span class="n">skip</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">n_max</span><span class="o">=</span><span class="nb">Inf</span><span class="p">,</span><span class="w"> </span><span class="n">num_threads</span><span class="p">)</span>
@@ -696,7 +750,7 @@
 <p>julia&gt; read_sas("test.sas7bdat") 2×2 DataFrame  Row │ AA       AB            │ String3  Float64  ─────┼──────────────────    1 │ sav         10.1    2 │ por         10.2</p>
 <p>julia&gt; write_sas(df, "test.xpt");</p>
 <p>julia&gt; read_sas("test.xpt") 2×2 DataFrame  Row │ AA       AB            │ String3  Float64  ─────┼──────────────────    1 │ sav         10.1    2 │ por         10.2</p>
-<p><a target="_blank" href="https://github.com/TidierOrg/TidierFiles.jl/blob/6b88722cc77afa473a8235749b3fe5f0dbb92db2/src/statsfiles.jl#L1-L36" class="documenter-source">source</a><br></p>
+<p><a target="_blank" href="https://github.com/TidierOrg/TidierFiles.jl/blob/2f9199d67984c2e83e34f93888f74e42dc7729a0/src/statsfiles.jl#L1-L36" class="documenter-source">source</a><br></p>
 <p><a id="TidierFiles.read_sav-Tuple{Any}" href="#TidierFiles.read_sav-Tuple{Any}">#</a>
 <strong><code>TidierFiles.read_sav</code></strong> — <em>Method</em>.</p>
 <div class="highlight"><pre><span></span><code><span class="k">function</span><span class="w"> </span><span class="n">read_sav</span><span class="p">(</span><span class="n">data_file</span><span class="p">;</span><span class="w">  </span><span class="n">encoding</span><span class="o">=</span><span class="nb">nothing</span><span class="p">,</span><span class="w"> </span><span class="n">col_select</span><span class="o">=</span><span class="nb">nothing</span><span class="p">,</span><span class="w"> </span><span class="n">skip</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">n_max</span><span class="o">=</span><span class="nb">Inf</span><span class="p">)</span>
@@ -727,7 +781,7 @@
 <span class="go">   1 │ sav        10.1</span>
 <span class="go">   2 │ por        10.2</span>
 </code></pre></div>
-<p><a target="_blank" href="https://github.com/TidierOrg/TidierFiles.jl/blob/6b88722cc77afa473a8235749b3fe5f0dbb92db2/src/statsfiles.jl#L46-L82" class="documenter-source">source</a><br></p>
+<p><a target="_blank" href="https://github.com/TidierOrg/TidierFiles.jl/blob/2f9199d67984c2e83e34f93888f74e42dc7729a0/src/statsfiles.jl#L46-L82" class="documenter-source">source</a><br></p>
 <p><a id="TidierFiles.read_table-Tuple{Any}" href="#TidierFiles.read_table-Tuple{Any}">#</a>
 <strong><code>TidierFiles.read_table</code></strong> — <em>Method</em>.</p>
 <div class="highlight"><pre><span></span><code><span class="n">read_table</span><span class="p">(</span><span class="n">file</span><span class="p">;</span><span class="w"> </span><span class="n">col_names</span><span class="o">=</span><span class="nb">true</span><span class="p">,</span><span class="w"> </span><span class="n">skip</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">n_max</span><span class="o">=</span><span class="nb">Inf</span><span class="p">,</span><span class="w"> </span><span class="n">comment</span><span class="o">=</span><span class="nb">nothing</span><span class="p">,</span><span class="w"> </span><span class="n">col_select</span><span class="p">,</span><span class="w"> </span><span class="n">missingstring</span><span class="o">=</span><span class="s">""</span><span class="p">,</span><span class="w"> </span><span class="n">kwargs</span><span class="o">...</span><span class="p">)</span>
@@ -749,7 +803,7 @@
 <span class="go">   2 │ David</span>
 <span class="go">   3 │ Eva</span>
 </code></pre></div>
-<p><a target="_blank" href="https://github.com/TidierOrg/TidierFiles.jl/blob/6b88722cc77afa473a8235749b3fe5f0dbb92db2/src/TidierFiles.jl#L206-L236" class="documenter-source">source</a><br></p>
+<p><a target="_blank" href="https://github.com/TidierOrg/TidierFiles.jl/blob/2f9199d67984c2e83e34f93888f74e42dc7729a0/src/TidierFiles.jl#L210-L240" class="documenter-source">source</a><br></p>
 <p><a id="TidierFiles.read_tsv-Tuple{Any}" href="#TidierFiles.read_tsv-Tuple{Any}">#</a>
 <strong><code>TidierFiles.read_tsv</code></strong> — <em>Method</em>.</p>
 <div class="highlight"><pre><span></span><code><span class="n">read_tsv</span><span class="p">(</span><span class="n">file</span><span class="p">;</span><span class="w"> </span><span class="n">delim</span><span class="o">=</span><span class="err">'</span><span class="w">  </span><span class="err">'</span><span class="p">,</span><span class="n">col_names</span><span class="o">=</span><span class="nb">true</span><span class="p">,</span><span class="w"> </span><span class="n">skip</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">n_max</span><span class="o">=</span><span class="nb">Inf</span><span class="p">,</span><span class="w"> </span>
@@ -772,7 +826,7 @@
 <span class="go">   2 │     4  David       85</span>
 <span class="go">   3 │     5  Eva         95</span>
 </code></pre></div>
-<p><a target="_blank" href="https://github.com/TidierOrg/TidierFiles.jl/blob/6b88722cc77afa473a8235749b3fe5f0dbb92db2/src/TidierFiles.jl#L148-L181" class="documenter-source">source</a><br></p>
+<p><a target="_blank" href="https://github.com/TidierOrg/TidierFiles.jl/blob/2f9199d67984c2e83e34f93888f74e42dc7729a0/src/TidierFiles.jl#L152-L185" class="documenter-source">source</a><br></p>
 <p><a id="TidierFiles.read_xlsx-Tuple{Any}" href="#TidierFiles.read_xlsx-Tuple{Any}">#</a>
 <strong><code>TidierFiles.read_xlsx</code></strong> — <em>Method</em>.</p>
 <div class="highlight"><pre><span></span><code><span class="n">read_xlsx</span><span class="p">(</span><span class="n">path</span><span class="p">;</span><span class="w"> </span><span class="n">sheet</span><span class="p">,</span><span class="w"> </span><span class="n">range</span><span class="p">,</span><span class="w"> </span><span class="n">col_names</span><span class="p">,</span><span class="w"> </span><span class="n">col_types</span><span class="p">,</span><span class="w"> </span><span class="n">missingstring</span><span class="p">,</span><span class="w"> </span><span class="n">trim_ws</span><span class="p">,</span><span class="w"> </span><span class="n">skip</span><span class="p">,</span><span class="w"> </span><span class="n">n_max</span><span class="p">,</span><span class="w"> </span><span class="n">guess_max</span><span class="p">)</span>
@@ -798,7 +852,18 @@
 <span class="go">   2 │ 3         File reading/writing     30.4</span>
 <span class="go">   3 │ 4         even smoother            40.5</span>
 </code></pre></div>
-<p><a target="_blank" href="https://github.com/TidierOrg/TidierFiles.jl/blob/6b88722cc77afa473a8235749b3fe5f0dbb92db2/src/xlfiles.jl#L35-L70" class="documenter-source">source</a><br></p>
+<p><a target="_blank" href="https://github.com/TidierOrg/TidierFiles.jl/blob/2f9199d67984c2e83e34f93888f74e42dc7729a0/src/xlfiles.jl#L35-L70" class="documenter-source">source</a><br></p>
+<p><a id="TidierFiles.write_arrow-Tuple{Any, String}" href="#TidierFiles.write_arrow-Tuple{Any,%20String}">#</a>
+<strong><code>TidierFiles.write_arrow</code></strong> — <em>Method</em>.</p>
+<div class="highlight"><pre><span></span><code><span class="n">write_arrow</span><span class="p">(</span><span class="n">df</span><span class="p">,</span><span class="w"> </span><span class="n">path</span><span class="p">)</span>
+</code></pre></div>
+<p>Write a DataFrame to an Arrow (.arrow) file. Arguments -<code>df</code>: The DataFrame to be written to a file. -<code>path</code>: String as path where the .dta file will be created. If a file at this path already exists, it will be overwritten.</p>
+<p><strong>Examples</strong></p>
+<div class="highlight"><pre><span></span><code><span class="gp">julia&gt;</span><span class="w"> </span><span class="n">df</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DataFrame</span><span class="p">(</span><span class="n">AA</span><span class="o">=</span><span class="p">[</span><span class="s">"Arr"</span><span class="p">,</span><span class="w"> </span><span class="s">"ow"</span><span class="p">],</span><span class="w"> </span><span class="n">AB</span><span class="o">=</span><span class="p">[</span><span class="mf">10.1</span><span class="p">,</span><span class="w"> </span><span class="mf">10.2</span><span class="p">]);</span>
+
+<span class="gp">julia&gt;</span><span class="w"> </span><span class="n">write_arrow</span><span class="p">(</span><span class="n">df</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="s">"test.arrow"</span><span class="p">);</span>
+</code></pre></div>
+<p><a target="_blank" href="https://github.com/TidierOrg/TidierFiles.jl/blob/2f9199d67984c2e83e34f93888f74e42dc7729a0/src/arrow_files.jl#L43-L55" class="documenter-source">source</a><br></p>
 <p><a id="TidierFiles.write_csv-Tuple{DataFrame, String}" href="#TidierFiles.write_csv-Tuple{DataFrame,%20String}">#</a>
 <strong><code>TidierFiles.write_csv</code></strong> — <em>Method</em>.</p>
 <div class="highlight"><pre><span></span><code><span class="n">write_csv</span><span class="p">(</span><span class="n">DataFrame</span><span class="p">,</span><span class="w"> </span><span class="n">filepath</span><span class="p">;</span><span class="w"> </span><span class="n">na</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">""</span><span class="p">,</span><span class="w"> </span><span class="n">append</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">,</span><span class="w"> </span><span class="n">col_names</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">,</span><span class="w"> </span><span class="n">missingstring</span><span class="p">,</span><span class="w"> </span><span class="n">eol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"</span>
@@ -822,7 +887,7 @@
 
 <span class="gp">julia&gt;</span><span class="w"> </span><span class="n">write_csv</span><span class="p">(</span><span class="n">df</span><span class="p">,</span><span class="w"> </span><span class="s">"csvtest.csv"</span><span class="p">);</span>
 </code></pre></div>
-<p><a target="_blank" href="https://github.com/TidierOrg/TidierFiles.jl/blob/6b88722cc77afa473a8235749b3fe5f0dbb92db2/src/TidierFiles.jl#L265-L286" class="documenter-source">source</a><br></p>
+<p><a target="_blank" href="https://github.com/TidierOrg/TidierFiles.jl/blob/2f9199d67984c2e83e34f93888f74e42dc7729a0/src/TidierFiles.jl#L269-L290" class="documenter-source">source</a><br></p>
 <p><a id="TidierFiles.write_dta-Tuple{DataFrame, String}" href="#TidierFiles.write_dta-Tuple{DataFrame,%20String}">#</a>
 <strong><code>TidierFiles.write_dta</code></strong> — <em>Method</em>.</p>
 <div class="highlight"><pre><span></span><code><span class="n">write_dta</span><span class="p">(</span><span class="n">df</span><span class="p">,</span><span class="w"> </span><span class="n">path</span><span class="p">)</span>
@@ -840,7 +905,18 @@
 <span class="go">   1 │    sav      10.1</span>
 <span class="go">   2 │    por      10.2</span>
 </code></pre></div>
-<p><a target="_blank" href="https://github.com/TidierOrg/TidierFiles.jl/blob/6b88722cc77afa473a8235749b3fe5f0dbb92db2/src/statsfiles.jl#L150-L170" class="documenter-source">source</a><br></p>
+<p><a target="_blank" href="https://github.com/TidierOrg/TidierFiles.jl/blob/2f9199d67984c2e83e34f93888f74e42dc7729a0/src/statsfiles.jl#L150-L170" class="documenter-source">source</a><br></p>
+<p><a id="TidierFiles.write_parquet-Tuple{Any, String}" href="#TidierFiles.write_parquet-Tuple{Any,%20String}">#</a>
+<strong><code>TidierFiles.write_parquet</code></strong> — <em>Method</em>.</p>
+<div class="highlight"><pre><span></span><code><span class="n">write_parquet</span><span class="p">(</span><span class="n">df</span><span class="p">,</span><span class="w"> </span><span class="p">)</span>
+</code></pre></div>
+<p>Write a DataFrame to an Parquet (.parquet) file. Arguments -<code>df</code>: The DataFrame to be written to a file. -<code>path</code>: String as path where the .dta file will be created. If a file at this path already exists, it will be overwritten.</p>
+<p><strong>Examples</strong></p>
+<div class="highlight"><pre><span></span><code><span class="gp">julia&gt;</span><span class="w"> </span><span class="n">df</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DataFrame</span><span class="p">(</span><span class="n">AA</span><span class="o">=</span><span class="p">[</span><span class="s">"Par"</span><span class="p">,</span><span class="w"> </span><span class="s">"quet"</span><span class="p">],</span><span class="w"> </span><span class="n">AB</span><span class="o">=</span><span class="p">[</span><span class="mf">10.1</span><span class="p">,</span><span class="w"> </span><span class="mf">10.2</span><span class="p">]);</span>
+
+<span class="gp">julia&gt;</span><span class="w"> </span><span class="n">write_parquet</span><span class="p">(</span><span class="n">df</span><span class="p">,</span><span class="w"> </span><span class="s">"test.parquet"</span><span class="p">);</span>
+</code></pre></div>
+<p><a target="_blank" href="https://github.com/TidierOrg/TidierFiles.jl/blob/2f9199d67984c2e83e34f93888f74e42dc7729a0/src/parquet_files.jl#L57-L69" class="documenter-source">source</a><br></p>
 <p><a id="TidierFiles.write_sas-Tuple{DataFrame, String}" href="#TidierFiles.write_sas-Tuple{DataFrame,%20String}">#</a>
 <strong><code>TidierFiles.write_sas</code></strong> — <em>Method</em>.</p>
 <div class="highlight"><pre><span></span><code><span class="n">write_sas</span><span class="p">(</span><span class="n">df</span><span class="p">,</span><span class="w"> </span><span class="n">path</span><span class="p">)</span>
@@ -866,7 +942,7 @@
 <span class="go">   1 │    sav      10.1</span>
 <span class="go">   2 │    por      10.2</span>
 </code></pre></div>
-<p><a target="_blank" href="https://github.com/TidierOrg/TidierFiles.jl/blob/6b88722cc77afa473a8235749b3fe5f0dbb92db2/src/statsfiles.jl#L136-L164" class="documenter-source">source</a><br></p>
+<p><a target="_blank" href="https://github.com/TidierOrg/TidierFiles.jl/blob/2f9199d67984c2e83e34f93888f74e42dc7729a0/src/statsfiles.jl#L136-L164" class="documenter-source">source</a><br></p>
 <p><a id="TidierFiles.write_sav-Tuple{DataFrame, String}" href="#TidierFiles.write_sav-Tuple{DataFrame,%20String}">#</a>
 <strong><code>TidierFiles.write_sav</code></strong> — <em>Method</em>.</p>
 <div class="highlight"><pre><span></span><code><span class="n">write_sav</span><span class="p">(</span><span class="n">df</span><span class="p">,</span><span class="w"> </span><span class="n">path</span><span class="p">)</span>
@@ -892,7 +968,7 @@
 <span class="go">   1 │    sav      10.1</span>
 <span class="go">   2 │    por      10.2</span>
 </code></pre></div>
-<p><a target="_blank" href="https://github.com/TidierOrg/TidierFiles.jl/blob/6b88722cc77afa473a8235749b3fe5f0dbb92db2/src/statsfiles.jl#L143-L171" class="documenter-source">source</a><br></p>
+<p><a target="_blank" href="https://github.com/TidierOrg/TidierFiles.jl/blob/2f9199d67984c2e83e34f93888f74e42dc7729a0/src/statsfiles.jl#L143-L171" class="documenter-source">source</a><br></p>
 <p><a id="TidierFiles.write_table-Tuple{DataFrame, String}" href="#TidierFiles.write_table-Tuple{DataFrame,%20String}">#</a>
 <strong><code>TidierFiles.write_table</code></strong> — <em>Method</em>.</p>
 <div class="highlight"><pre><span></span><code><span class="n">write_table</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">file</span><span class="p">;</span><span class="w"> </span><span class="n">delim</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">'</span><span class="w">  </span><span class="err">'</span><span class="p">,</span><span class="w"> </span><span class="n">na</span><span class="p">,</span><span class="w"> </span><span class="n">append</span><span class="p">,</span><span class="w"> </span><span class="n">col_names</span><span class="p">,</span><span class="w"> </span><span class="n">eol</span><span class="p">,</span><span class="w"> </span><span class="n">num_threads</span><span class="p">)</span>
@@ -905,7 +981,7 @@
 
 <span class="gp">julia&gt;</span><span class="w"> </span><span class="n">write_table</span><span class="p">(</span><span class="n">df</span><span class="p">,</span><span class="w"> </span><span class="s">"tabletest.txt"</span><span class="p">);</span>
 </code></pre></div>
-<p><a target="_blank" href="https://github.com/TidierOrg/TidierFiles.jl/blob/6b88722cc77afa473a8235749b3fe5f0dbb92db2/src/TidierFiles.jl#L312-L333" class="documenter-source">source</a><br></p>
+<p><a target="_blank" href="https://github.com/TidierOrg/TidierFiles.jl/blob/2f9199d67984c2e83e34f93888f74e42dc7729a0/src/TidierFiles.jl#L316-L337" class="documenter-source">source</a><br></p>
 <p><a id="TidierFiles.write_tsv-Tuple{DataFrame, String}" href="#TidierFiles.write_tsv-Tuple{DataFrame,%20String}">#</a>
 <strong><code>TidierFiles.write_tsv</code></strong> — <em>Method</em>.</p>
 <div class="highlight"><pre><span></span><code><span class="n">write_tsv</span><span class="p">(</span><span class="n">DataFrame</span><span class="p">,</span><span class="w"> </span><span class="n">filepath</span><span class="p">;</span><span class="w"> </span><span class="n">na</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">""</span><span class="p">,</span><span class="w"> </span><span class="n">append</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">,</span><span class="w"> </span><span class="n">col_names</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">,</span><span class="w"> </span><span class="n">missingstring</span><span class="p">,</span><span class="w"> </span><span class="n">eol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"</span>
@@ -929,13 +1005,14 @@
 
 <span class="gp">julia&gt;</span><span class="w"> </span><span class="n">write_tsv</span><span class="p">(</span><span class="n">df</span><span class="p">,</span><span class="w"> </span><span class="s">"tsvtest.tsv"</span><span class="p">);</span>
 </code></pre></div>
-<p><a target="_blank" href="https://github.com/TidierOrg/TidierFiles.jl/blob/6b88722cc77afa473a8235749b3fe5f0dbb92db2/src/TidierFiles.jl#L288-L309" class="documenter-source">source</a><br></p>
+<p><a target="_blank" href="https://github.com/TidierOrg/TidierFiles.jl/blob/2f9199d67984c2e83e34f93888f74e42dc7729a0/src/TidierFiles.jl#L292-L313" class="documenter-source">source</a><br></p>
 <p><a id="TidierFiles.write_xlsx-Tuple{Any}" href="#TidierFiles.write_xlsx-Tuple{Any}">#</a>
 <strong><code>TidierFiles.write_xlsx</code></strong> — <em>Method</em>.</p>
 <div class="highlight"><pre><span></span><code><span class="n">write_xlsx</span><span class="p">(</span><span class="n">x</span><span class="p">;</span><span class="w"> </span><span class="n">path</span><span class="p">,</span><span class="w"> </span><span class="n">overwrite</span><span class="p">)</span>
 </code></pre></div>
 <p>Write a DataFrame, or multiple DataFrames, to an Excel file.</p>
-<h1 id="arguments-x-the-data-to-write-can-be-a-single-pairstring-dataframe-for-writing-one-sheet-or-a-tuple-of-such-pairs-for-writing-multiple-sheets-the-string-in-each-pair-specifies-the-sheet-name-and-the-dataframe-is-the-data-to-write-to-that-sheet-path-the-path-to-the-excel-file-where-the-data-will-be-written-overwrite-defaults-to-false-whether-to-overwrite-an-existing-file-if-false-an-error-is-thrown-when-attempting-to-write-to-an-existing-file">Arguments -<code>x</code>: The data to write. Can be a single Pair{String, DataFrame} for writing one sheet, or a Tuple of such pairs for writing multiple sheets. The String in each pair specifies the sheet name, and the DataFrame is the data to write to that sheet. -<code>path</code>: The path to the Excel file where the data will be written. -<code>overwrite</code>: Defaults to false. Whether to overwrite an existing file. If false, an error is thrown when attempting to write to an existing file.<a class="headerlink" href="#arguments-x-the-data-to-write-can-be-a-single-pairstring-dataframe-for-writing-one-sheet-or-a-tuple-of-such-pairs-for-writing-multiple-sheets-the-string-in-each-pair-specifies-the-sheet-name-and-the-dataframe-is-the-data-to-write-to-that-sheet-path-the-path-to-the-excel-file-where-the-data-will-be-written-overwrite-defaults-to-false-whether-to-overwrite-an-existing-file-if-false-an-error-is-thrown-when-attempting-to-write-to-an-existing-file" title="Permanent link">¤</a></h1>
+<p><strong>Arguments</strong></p>
+<p>-<code>x</code>: The data to write. Can be a single Pair{String, DataFrame} for writing one sheet, or a Tuple of such pairs for writing multiple sheets. The String in each pair specifies the sheet name, and the DataFrame is the data to write to that sheet. -<code>path</code>: The path to the Excel file where the data will be written. -<code>overwrite</code>: Defaults to false. Whether to overwrite an existing file. If false, an error is thrown when attempting to write to an existing file.</p>
 <p><strong>Examples</strong></p>
 <div class="highlight"><pre><span></span><code><span class="gp">julia&gt;</span><span class="w"> </span><span class="n">df</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DataFrame</span><span class="p">(</span><span class="n">integers</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">],</span>
 <span class="w">       </span><span class="n">strings</span><span class="o">=</span><span class="p">[</span><span class="s">"This"</span><span class="p">,</span><span class="w"> </span><span class="s">"Package makes"</span><span class="p">,</span><span class="w"> </span><span class="s">"File reading/writing"</span><span class="p">,</span><span class="w"> </span><span class="s">"even smoother"</span><span class="p">],</span>
@@ -945,7 +1022,7 @@
 
 <span class="gp">julia&gt;</span><span class="w"> </span><span class="n">write_xlsx</span><span class="p">((</span><span class="s">"REPORT_A"</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">df</span><span class="p">,</span><span class="w"> </span><span class="s">"REPORT_B"</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">df2</span><span class="p">);</span><span class="w"> </span><span class="n">path</span><span class="o">=</span><span class="s">"xlsxtest.xlsx"</span><span class="p">,</span><span class="w"> </span><span class="n">overwrite</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">);</span>
 </code></pre></div>
-<p><a target="_blank" href="https://github.com/TidierOrg/TidierFiles.jl/blob/6b88722cc77afa473a8235749b3fe5f0dbb92db2/src/xlfiles.jl#L123-L142" class="documenter-source">source</a><br></p>
+<p><a target="_blank" href="https://github.com/TidierOrg/TidierFiles.jl/blob/2f9199d67984c2e83e34f93888f74e42dc7729a0/src/xlfiles.jl#L123-L142" class="documenter-source">source</a><br></p>
 <p><a id="Reference-Internal-functions"></a></p>
 <p><a id="Reference-Internal-functions-1"></a></p>
 <h2 id="reference-internal-functions">Reference - Internal functions<a class="headerlink" href="#reference-internal-functions" title="Permanent link">¤</a></h2></div>
@@ -984,7 +1061,7 @@
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../examples/generated/UserGuide/stats/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Stats Files">
+          <a href="../examples/generated/UserGuide/parquet/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Parquet Files">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
@@ -994,7 +1071,7 @@
                 Previous
               </span>
               <div class="md-ellipsis">
-                Stats Files
+                Parquet Files
               </div>
             </div>
           </a>

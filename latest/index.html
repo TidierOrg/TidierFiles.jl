@@ -397,6 +397,46 @@
   
   
     <li class="md-nav__item">
+      <a href="examples/generated/UserGuide/Arrow/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Arrow Files
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="examples/generated/UserGuide/parquet/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Parquet Files
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="reference/" class="md-nav__link">
         
   
@@ -463,11 +503,12 @@
 <div><p><a id="TidierFiles.jl"></a></p>
 <p><a id="TidierFiles.jl-1"></a></p>
 <h1 id="tidierfilesjl">TidierFiles.jl<a class="headerlink" href="#tidierfilesjl" title="Permanent link">¤</a></h1>
+<p><img src="/assets/logo.png" align="right" style="padding-left:10px;" width="150"></p>
 <p><a id="What-is-TidierFiles.jl?"></a></p>
 <p><a id="What-is-TidierFiles.jl?-1"></a></p>
 <h2 id="what-is-tidierfilesjl">What is TidierFiles.jl?<a class="headerlink" href="#what-is-tidierfilesjl" title="Permanent link">¤</a></h2>
 <p>TidierFiles.jl is a 100% Julia implementation of the readr, haven, readxl, and writexl R packages.</p>
-<p>Powered by the CSV.jl, XLSX.jl and ReadStatTables.jl packages, TidierFiles.jl aims to bring a consistent interface to the reading and writing of tabular data, including a consistent syntax to read files locally versus from the web and consistent keyword arguments across data formats.</p>
+<p>Powered by the CSV.jl, XLSX.jl, ReadStatTables.jl, Arrow.jl and Parquet2.jl packages, TidierFiles.jl aims to bring a consistent interface to the reading and writing of tabular data, including a consistent syntax to read files locally versus from the web and consistent keyword arguments across data formats.</p>
 <p>Currently supported file types:</p>
 <ul>
 <li><code>read_csv</code> and <code>write_csv</code></li>
@@ -479,6 +520,8 @@
 <li><code>read_sav</code> and <code>write_sav</code> (.sav and .por)</li>
 <li><code>read_sas</code> and <code>write_sas</code> (.sas7bdat and .xpt)</li>
 <li><code>read_dta</code> and <code>write_dta</code> (.dta)</li>
+<li><code>read_arrow</code> and <code>write_arrow</code></li>
+<li><code>read_parquet</code> and <code>write_parquet</code></li>
 </ul>
 <p><a id="Examples"></a></p>
 <p><a id="Examples-1"></a></p>
