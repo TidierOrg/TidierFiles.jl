@@ -16,11 +16,13 @@ Reexport = "189a3867-3050-52da-a836-e630ba90ab69"
 XLSX = "fdbf4ff8-1666-58a4-91e7-1b58723a45e0"
 
 [compat]
+Arrow = "2.7"
 CSV = "0.10"
 DataFrames = "1.5"
 Dates = "1.9"
 Documenter = "0.27, 1"
 HTTP = "1.10"
+Parquet2 = ".2"
 ReadStatTables = "0.3"
 Reexport = "0.2, 1"
 XLSX = "0.10"
