@@ -319,7 +319,7 @@ const docstring_write_xlsx =
     write_xlsx(x; path, overwrite)
 Write a DataFrame, or multiple DataFrames, to an Excel file.
 
-#Arguments
+# Arguments
 -`x`: The data to write. Can be a single Pair{String, DataFrame} for writing one sheet, or a Tuple of such pairs for writing multiple sheets. The String in each pair specifies the sheet name, and the DataFrame is the data to write to that sheet.
 -`path`: The path to the Excel file where the data will be written.
 -`overwrite`: Defaults to false. Whether to overwrite an existing file. If false, an error is thrown when attempting to write to an existing file.
@@ -526,3 +526,87 @@ julia> write_dta(df, "test.dta")
    2 │    por      10.2
 ```
 """
+
+const docstring_write_arrow =
+"""
+    write_arrow(df, path)
+Write a DataFrame to an Arrow (.arrow) file.
+Arguments
+-`df`: The DataFrame to be written to a file.
+-`path`: String as path where the .dta file will be created. If a file at this path already exists, it will be overwritten.
+# Examples
+```jldoctest 
+julia> df = DataFrame(AA=["Arr", "ow"], AB=[10.1, 10.2]);
+
+julia> write_arrow(df , "test.arrow");
+```
+"""
+
+const docstring_read_arrow =
+"""
+    read_arrow(df, path)
+Read an Arrow file (.arrow) to a DataFrame.
+Arguments
+-`df`: The DataFrame to be written to a file.
+-`path`: String as path where the .dta file will be created. If a file at this path already exists, it will be overwritten.
+`skip`: Number of initial lines to skip before reading data. Default is 0.
+`n_max`: Maximum number of rows to read. Default is Inf (read all rows).
+-`col_select`: Optional vector of symbols or strings to select which columns to load.
+# Examples
+```jldoctest 
+julia> df = DataFrame(AA=["Arr", "ow"], AB=[10.1, 10.2]);
+
+julia> write_arrow(df , "test.arrow");
+
+julia> read_arrow("test.arrow")
+2×2 DataFrame
+ Row │ AA      AB      
+     │ String  Float64 
+─────┼─────────────────
+   1 │ Arr        10.1
+   2 │ ow         10.2
+```
+"""
+
+const docstring_write_parquet =
+"""
+    write_parquet(df, )
+Write a DataFrame to an Parquet (.parquet) file.
+Arguments
+-`df`: The DataFrame to be written to a file.
+-`path`: String as path where the .dta file will be created. If a file at this path already exists, it will be overwritten.
+# Examples
+```jldoctest 
+julia> df = DataFrame(AA=["Par", "quet"], AB=[10.1, 10.2]);
+
+julia> write_parquet(df, "test.parquet");
+```
+"""
+
+const docstring_read_parquet =
+"""
+    read_parquet(df, path)
+Read a Paquet File (.parquet) to a DataFrame..
+Arguments
+-`df`: The DataFrame to be written to a file.
+-`path`: String as path where the .dta file will be created. If a file at this path already exists, it will be overwritten.
+`col_names`: Indicates if the first row of the CSV is used as column names. Can be true, false, or an array of strings. Default is true.
+`skip`: Number of initial lines to skip before reading data. Default is 0.
+`n_max`: Maximum number of rows to read. Default is Inf (read all rows).
+-`col_select`: Optional vector of symbols or strings to select which columns to load.
+# Examples
+```jldoctest 
+julia> df = DataFrame(AA=["Par", "quet"], AB=[10.1, 10.2]);
+
+julia> write_parquet(df, "test.parquet");
+
+julia> read_parquet("test.parquet")
+2×2 DataFrame
+ Row │ AA      AB      
+     │ String  Float64 
+─────┼─────────────────
+   1 │ Par        10.1
+   2 │ quet       10.2
+```
+"""
+
