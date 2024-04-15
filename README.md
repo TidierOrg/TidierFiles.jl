@@ -6,7 +6,7 @@
 <img src="/assets/logo.png" align="right" style="padding-left:10px;" width="150"/>
 
 ## What is TidierFiles.jl?
-TidierFiles.jl leverages the `CSV.jl`, `XLSX.jl`, and `ReadStatTables.jl` packages to reimplement the R `haven` and `readr` packages.
+TidierFiles.jl leverages the `CSV.jl`, `XLSX.jl`, `ReadStatTables.jl`, `Arrow.jl` and `Parquet2.jl `packages to reimplement the R `haven` and `readr` packages.
 
 Currently supported file types 
 - `read_csv` and `write_csv`
@@ -18,6 +18,8 @@ Currently supported file types
 - `read_sav` and `write_sav` (.sav and .por)
 - `read_sas` and `write_sas` (.sas7bdat and .xpt)
 - `read_dta` and `write_dta` (.dta) 
+- `read_arrow` and `write_arrow`
+- `read_parquet` and `write_parquet`
 
 # Examples
 For CSVs (also TSV, white space tables, other delimters)

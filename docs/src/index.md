@@ -1,7 +1,9 @@
 ## What is TidierFiles.jl?
 
+<img src="/assets/logo.png" align="right" style="padding-left:10px;" width="150"/>
+
 TidierFiles.jl is a 100% Julia implementation of the readr and haven R packages.
-Powered by the CSV.jl, XLSX.jl and ReadStatTables.jl packages, TidierFiles.jl 
+Powered by the CSV.jl, XLSX.jl, ReadStatTables.jl, Arrow.jl and Parquet2.jl packages, TidierFiles.jl 
 seeks to harmonize file reading/writing by unifying the arguments across multiple 
 file types. 
 
@@ -17,6 +19,8 @@ TidierFiles.jl currently supports
 - `read_sav` and `write_sav` (.sav and .por)
 - `read_sas` and `write_sas` (.sas7bdat and .xpt)
 - `read_dta` and `write_dta` (.dta) 
+- `read_arrow` and `write_arrow`
+- `read_parquet` and `write_parquet`
 ```
 
 Read functions include the following arguments and support HTTP reading:

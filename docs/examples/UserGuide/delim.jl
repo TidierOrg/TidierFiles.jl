@@ -28,7 +28,7 @@ read_csv("https://raw.githubusercontent.com/TidierOrg/TidierFiles.jl/main/testin
 
 # The functions return a DataFrame containing the parsed data from the file.
 
-# ## `write_csv` and # ## `write_tsv`
+# ## `write_csv` and `write_tsv`
 
 # write_csv(x, file; missingstring="", append=false, col_names=true, eol="\n", num_threads=Threads.nthreads())
 

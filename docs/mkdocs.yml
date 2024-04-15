@@ -119,3 +119,5 @@ nav:
   - "Delimited Files": "examples/generated/UserGuide/delim.md"
   - "Excel Files": "examples/generated/UserGuide/xl.md"
   - "Stats Files": "examples/generated/UserGuide/stats.md"
+  - "Arrow Files": "examples/generated/UserGuide/Arrow.md"
+  - "Parquet Files": "examples/generated/UserGuide/parquet.md"
