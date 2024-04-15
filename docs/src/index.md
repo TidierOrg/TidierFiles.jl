@@ -1,10 +1,12 @@
 # TidierFiles.jl
 
+<img src="/assets/logo.png" align="right" style="padding-left:10px;" width="150"/>
+
 ## What is TidierFiles.jl?
 
 TidierFiles.jl is a 100% Julia implementation of the readr, haven, readxl, and writexl R packages.
 
-Powered by the CSV.jl, XLSX.jl and ReadStatTables.jl packages, TidierFiles.jl aims to bring a consistent interface to the reading and writing of tabular data, including a consistent syntax to read files locally versus from the web and consistent keyword arguments across data formats.
+Powered by the CSV.jl, XLSX.jl, ReadStatTables.jl, Arrow.jl and Parquet2.jl packages, TidierFiles.jl aims to bring a consistent interface to the reading and writing of tabular data, including a consistent syntax to read files locally versus from the web and consistent keyword arguments across data formats.
 
 
 Currently supported file types:
@@ -17,6 +19,8 @@ Currently supported file types:
 - `read_sav` and `write_sav` (.sav and .por)
 - `read_sas` and `write_sas` (.sas7bdat and .xpt)
 - `read_dta` and `write_dta` (.dta) 
+- `read_arrow` and `write_arrow`
+- `read_parquet` and `write_parquet`
 
 # Examples
 
