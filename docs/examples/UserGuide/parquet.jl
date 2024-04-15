@@ -1,6 +1,6 @@
 # Parquet file reading and writing is powered by Parquet2.jl
 # ## `read_parquet`
-# read_parquet(path; col_names=true, skip=0, n_max=Inf, col_select=nothing)
+# `read_parquet(path; col_names=true, skip=0, n_max=Inf, col_select=nothing)`
 
 # This function reads a Parquet (.parquet) file into a DataFrame. The arguments are:
 
