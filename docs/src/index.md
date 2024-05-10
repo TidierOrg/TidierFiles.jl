@@ -1,6 +1,6 @@
 # TidierFiles.jl
 
-<img src="/assets/logo.png" align="right" style="padding-left:10px;" width="150"/>
+<img src="assets/logo.png" align="left" style="padding-right:10px"; width="150"></img>
 
 ## What is TidierFiles.jl?
 
