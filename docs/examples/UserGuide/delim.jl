@@ -10,7 +10,9 @@ read_csv("https://raw.githubusercontent.com/TidierOrg/TidierFiles.jl/main/testin
 
 #read_tsv(file; delim='\t', col_names=true, skip=0, n_max=Inf, comment=nothing, missingstring="", col_select=nothing, escape_double=true, col_types=nothing, num_threads=Threads.nthreads())
 
-#read_delim(file; delim='\t', col_names=true, skip=0, n_max=Inf, comment=nothing, missingstring="", col_select=nothing, escape_double=true, col_types=nothing, num_threads=Threads.nthreads())
+#read_delim(file; delim='\t', decimal = '.', groupmark = nothing col_names=true, skip=0, n_max=Inf, comment=nothing, missingstring="", col_select=nothing, escape_double=true, col_types=nothing, num_threads=Threads.nthreads())
+
+#read_csv2(file; delim=';', decimal = ',', col_names=true, skip=0, n_max=Inf, comment=nothing, missingstring="", col_select=nothing, escape_double=true, col_types=nothing, num_threads=Threads.nthreads())
 
 #These functions read a delimited file (CSV, TSV, or custom delimiter) into a DataFrame. The arguments are:
 
@@ -22,13 +24,15 @@ read_csv("https://raw.githubusercontent.com/TidierOrg/TidierFiles.jl/main/testin
 # - `comment`: Character indicating comment lines to ignore. Default is `nothing`.
 # - `missingstring`: String(s) representing missing values. Default is `""`.
 # - `col_select`: Optional vector of symbols or strings to select columns to load. Default is `nothing`.
+# - `groupmark`: A symbol that separates groups of digits Default is `nothing`.
+# - `decimal`: An ASCII Char argument that is used when parsing float values. Default is '.'.
 # - `escape_double`: Interpret two consecutive quote characters as a single quote. Default is `true`.
 # - `col_types`: Optional specification of column types. Default is `nothing` (types are inferred).
 # - `num_threads`: Number of threads to use for parallel execution. Default is 1 for `read_csv` and the number of available threads for `read_tsv` and `read_delim`.
 
 # The functions return a DataFrame containing the parsed data from the file.
 
-# ## `write_csv` and # ## `write_tsv`
+# ## `write_csv` and `write_tsv`
 
 # write_csv(x, file; missingstring="", append=false, col_names=true, eol="\n", num_threads=Threads.nthreads())
 

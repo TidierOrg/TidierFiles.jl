@@ -14,7 +14,7 @@ using Arrow
 
 export read_csv, write_csv, read_tsv, write_tsv, read_table, write_table, read_delim, read_xlsx, write_xlsx, 
  read_fwf, write_fwf, fwf_empty, fwf_positions, fwf_positions, read_sav, read_sas, read_dta, write_sav, write_sas, 
- write_dta, read_arrow, write_arrow, read_parquet, write_parquet
+ write_dta, read_arrow, write_arrow, read_parquet, write_parquet, read_csv2
  
 
 include("docstrings.jl")
@@ -93,9 +93,11 @@ $docstring_read_delim
 """
 function read_delim(file;
                   delim='\t',
+                  decimal = '.',
                   col_names=true,
                   skip=0,
                   n_max=Inf,
+                  groupmark=nothing,
                   col_select=nothing,
                   comment=nothing,
                   missingstring="",
@@ -115,9 +117,11 @@ function read_delim(file;
     # Prepare arguments for CSV.read, including the effective number of tasks to use
     read_options = (
         delim = delim,
+        decimal = decimal,
         header = col_names === true ? 1 : 0,
         skipto = skipto + 1,
         select = col_select,
+        groupmark=groupmark,
         footerskip = 0,
         limit = limit,
         comment = comment,
@@ -206,6 +210,82 @@ function read_tsv(file;
     end
     return df
 end
+
+
+#"""
+#$docstring_read_csv2
+#"""
+function read_csv2(file;
+                  delim=';',
+                  decimal = ',',
+                  col_names=true,
+                  groupmark=nothing,
+                  skip=0,
+                  n_max=Inf,
+                  col_select=nothing,
+                  comment=nothing,
+                  missingstring="",
+                  escape_double=true,
+                  ntasks::Int = Threads.nthreads(),  # Default ntasks value
+                  num_threads::Union{Int, Nothing}=nothing) # Optional num_threads
+
+    # Use num_threads if provided, otherwise stick with ntasks
+    effective_ntasks = isnothing(num_threads) ? ntasks : num_threads
+    
+    # Convert n_max from Inf to Nothing for compatibility with CSV.File's limit argument
+    limit = isinf(n_max) ? nothing : Int(n_max)
+
+    # Calculate skipto and header correctly
+    skipto = skip + (col_names === true ? 1 : 0)
+
+    # Prepare arguments for CSV.read, including the effective number of tasks to use
+    read_options = (
+        delim = delim,
+        decimal = decimal,
+        header = col_names === true ? 1 : 0,
+        groupmark = groupmark,
+        skipto = skipto + 1,
+        footerskip = 0,
+        select = col_select,
+        limit = limit,
+        comment = comment,
+        missingstring = missingstring,
+        escapechar = escape_double ? '"' : '\\',
+        quotechar = '"',
+        normalizenames = false,
+        ntasks = effective_ntasks > 1
+    )
+
+
+    # Filter options to remove any set to `nothing`
+   # clean_options = Dict{Symbol,Any}(filter(p -> !isnothing(p[2]), read_options))
+
+    # Check if the file is a URL and read accordingly
+    if startswith(file, "http://") || startswith(file, "https://")
+        # Fetch the content from the URL
+        response = HTTP.get(file)
+        
+        # Ensure the request was successful
+        if response.status != 200
+            error("Failed to fetch the CSV file: HTTP status code ", response.status)
+        end
+
+        # Read the CSV data from the fetched content using cleaned options
+        df = CSV.File(IOBuffer(response.body); read_options...) |> DataFrame
+    else
+        # Read from a local file using cleaned options
+        df = CSV.File(file; read_options...) |> DataFrame
+    end
+
+    return df
+end
+
+
+
+
+
+
+
 
 """
 $docstring_read_table
