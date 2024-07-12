@@ -523,7 +523,7 @@
 <p><code>read_parquet(path; col_names=true, skip=0, n_max=Inf, col_select=nothing)</code></p>
 <p>This function reads a Parquet (.parquet) file into a DataFrame. The arguments are:</p>
 <ul>
-<li><code>path</code>: The path to the .parquet file.</li>
+<li><code>path</code>: The path or vector of paths or URLs to the .parquet file.</li>
 <li><code>col_names</code>: Indicates if the first row of the file is used as column names. Default is <code>true</code>.</li>
 <li><code>skip</code>: Number of initial rows to skip before reading data. Default is 0.</li>
 <li><code>n_max</code>: Maximum number of rows to read. Default is <code>Inf</code> (read all rows).</li>
