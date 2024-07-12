@@ -71,7 +71,6 @@ The path can be a file available either locally or on the web.
 ```julia
 read_csv("https://raw.githubusercontent.com/TidierOrg/TidierFiles.jl/main/testing_files/csvtest.csv", skip = 2, n_max = 3, col_select = ["ID", "Score"], missingstring = ["4"])
 ```
-
 ```
 3×2 DataFrame
  Row │ ID       Score 
@@ -80,4 +79,20 @@ read_csv("https://raw.githubusercontent.com/TidierOrg/TidierFiles.jl/main/testin
    1 │       3     77
    2 │ missing     85
    3 │       5     95
+```
+
+Read multiple files by passing paths as a vector. 
+```
+path = "https://raw.githubusercontent.com/TidierOrg/TidierFiles.jl/main/testing_files/csvtest.csv"
+read_csv([path, path], skip=3)
+```
+```
+4×3 DataFrame
+ Row │ ID     Name     Score 
+     │ Int64  String7  Int64 
+─────┼───────────────────────
+   1 │     4  David       85
+   2 │     5  Eva         95
+   3 │     4  David       85
+   4 │     5  Eva         95
 ```
