@@ -16,7 +16,7 @@ read_csv("https://raw.githubusercontent.com/TidierOrg/TidierFiles.jl/main/testin
 
 #These functions read a delimited file (CSV, TSV, or custom delimiter) into a DataFrame. The arguments are:
 
-# - `file`: Path to the file or a URL.
+# - `file`: Path or vector of paths to the file(s) or a URL(s).
 # - `delim`: Field delimiter. Default is ',' for `read_csv`, '\t' for `read_tsv` and `read_delim`.
 # - `col_names`: Use first row as column names. Can be `true`, `false`, or an array of strings. Default is `true`.
 # - `skip`: Number of lines to skip before reading data. Default is 0.

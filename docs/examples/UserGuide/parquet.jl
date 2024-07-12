@@ -4,7 +4,7 @@
 
 # This function reads a Parquet (.parquet) file into a DataFrame. The arguments are:
 
-# - `path`: The path to the .parquet file.
+# - `path`: The path or vector of paths or URLs to the .parquet file.
 # - `col_names`: Indicates if the first row of the file is used as column names. Default is `true`.
 # - `skip`: Number of initial rows to skip before reading data. Default is 0.
 # - `n_max`: Maximum number of rows to read. Default is `Inf` (read all rows).

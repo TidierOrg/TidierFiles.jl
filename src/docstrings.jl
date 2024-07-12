@@ -6,7 +6,7 @@ const docstring_read_csv  =
 Reads a CSV file or URL into a DataFrame, with options to specify delimiter, column names, and other CSV parsing options.
 
 # Arguments
-`file`: Path to the CSV file or a URL to a CSV file.
+`file`: Path or vector of paths to the CSV file or a URL to a CSV file.
 `delim`: The character delimiting fields in the file. Default is ','.
 `col_names`: Indicates if the first row of the CSV is used as column names. Can be true, false, or an array of strings. Default is true.
 `skip`: Number of initial lines to skip before reading data. Default is 0.
@@ -41,7 +41,7 @@ const docstring_read_tsv  =
 Reads a TSV file or URL into a DataFrame, with options to specify delimiter, column names, and other CSV parsing options.
 
 # Arguments
-`file`: Path to the TSV file or a URL to a TSV file.
+`file`: Path or vector of paths to the TSV file or a URL to a TSV file.
 `delim`: The character delimiting fields in the file. Default is ','.
 `col_names`: Indicates if the first row of the CSV is used as column names. Can be true, false, or an array of strings. Default is true.
 `skip`: Number of initial lines to skip before reading data. Default is 0.
@@ -77,7 +77,7 @@ const docstring_read_delim =
 Reads a delimited file or URL into a DataFrame, with options to specify delimiter, column names, and other CSV parsing options.
 
 # Arguments
-`file`: Path to the CSV file or a URL to a CSV file.
+`file`: Path or vector of paths to the CSV file or a URL to a CSV file.
 `delim`: The character delimiting fields in the file. Default is ','.
 `col_names`: Indicates if the first row of the CSV is used as column names. Can be true, false, or an array of strings. Default is true.
 `skip`: Number of initial lines to skip before reading data. Default is 0.
@@ -575,6 +575,7 @@ Write a DataFrame to an Parquet (.parquet) file.
 Arguments
 -`df`: The DataFrame to be written to a file.
 -`path`: String as path where the .dta file will be created. If a file at this path already exists, it will be overwritten.
+
 # Examples
 ```jldoctest 
 julia> df = DataFrame(AA=["Par", "quet"], AB=[10.1, 10.2]);
@@ -585,15 +586,15 @@ julia> write_parquet(df, "test.parquet");
 
 const docstring_read_parquet =
 """
-    read_parquet(df, path)
-Read a Paquet File (.parquet) to a DataFrame..
+    read_parquet(path)
+Read a Paquet File (.parquet) to a DataFrame.
 Arguments
--`df`: The DataFrame to be written to a file.
--`path`: String as path where the .dta file will be created. If a file at this path already exists, it will be overwritten.
+-`path`: Path or vector of paths or URLs to parquet file to be read 
 `col_names`: Indicates if the first row of the CSV is used as column names. Can be true, false, or an array of strings. Default is true.
 `skip`: Number of initial lines to skip before reading data. Default is 0.
 `n_max`: Maximum number of rows to read. Default is Inf (read all rows).
 -`col_select`: Optional vector of symbols or strings to select which columns to load.
+
 # Examples
 ```jldoctest 
 julia> df = DataFrame(AA=["Par", "quet"], AB=[10.1, 10.2]);

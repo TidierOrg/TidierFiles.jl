@@ -27,7 +27,7 @@ include("arrow_files.jl")
 """
 $docstring_read_csv
 """
-function read_csv(file;
+function read_csv(files;
                   delim=',',
                   col_names=true,
                   skip=0,
@@ -36,19 +36,22 @@ function read_csv(file;
                   comment=nothing,
                   missingstring="",
                   escape_double=true,
-                  ntasks::Int = Threads.nthreads(),  # Default ntasks value
-                  num_threads::Union{Int, Nothing}=nothing) # Optional num_threads
+                  ntasks::Int = Threads.nthreads(),
+                  num_threads::Union{Int, Nothing}=nothing)
 
-    # Use num_threads if provided, otherwise stick with ntasks
+    # Normalize input to always be a vector of files
+    file_list = (typeof(files) <: AbstractString) ? [files] : files
+
+    # Use num_threads if provided, otherwise use ntasks
     effective_ntasks = isnothing(num_threads) ? ntasks : num_threads
-    
-    # Convert n_max from Inf to Nothing for compatibility with CSV.File's limit argument
+
+    # Convert n_max from Inf to Nothing for compatibility
     limit = isinf(n_max) ? nothing : Int(n_max)
 
-    # Calculate skipto and header correctly
+    # Calculate skipto and header
     skipto = skip + (col_names === true ? 1 : 0)
 
-    # Prepare arguments for CSV.read, including the effective number of tasks to use
+    # Prepare CSV reading options
     read_options = (
         delim = delim,
         header = col_names === true ? 1 : 0,
@@ -64,64 +67,68 @@ function read_csv(file;
         ntasks = effective_ntasks > 1
     )
 
+    # Initialize an empty DataFrame
+    final_df = DataFrame()
 
-    # Filter options to remove any set to `nothing`
-   # clean_options = Dict{Symbol,Any}(filter(p -> !isnothing(p[2]), read_options))
-
-    # Check if the file is a URL and read accordingly
-    if startswith(file, "http://") || startswith(file, "https://")
-        # Fetch the content from the URL
-        response = HTTP.get(file)
-        
-        # Ensure the request was successful
-        if response.status != 200
-            error("Failed to fetch the CSV file: HTTP status code ", response.status)
+    # Loop over files
+    for file in file_list
+        if startswith(file, "http://") || startswith(file, "https://")
+            # Fetch the content from the URL
+            response = HTTP.get(file)
+            if response.status != 200
+                error("Failed to fetch the CSV file: HTTP status code ", response.status)
+            end
+            # Read the CSV data
+            df = CSV.File(IOBuffer(response.body); read_options...) |> DataFrame
+        else
+            # Read from a local file
+            df = CSV.File(file; read_options...) |> DataFrame
         end
 
-        # Read the CSV data from the fetched content using cleaned options
-        df = CSV.File(IOBuffer(response.body); read_options...) |> DataFrame
-    else
-        # Read from a local file using cleaned options
-        df = CSV.File(file; read_options...) |> DataFrame
+        # Concatenate the read DataFrame to the final DataFrame
+        final_df = isempty(final_df) ? df : vcat(final_df, df, cols=:union)
     end
 
-    return df
+    return final_df
 end
 
 """
 $docstring_read_delim
 """
-function read_delim(file;
-                  delim='\t',
-                  decimal = '.',
-                  col_names=true,
-                  skip=0,
-                  n_max=Inf,
-                  groupmark=nothing,
-                  col_select=nothing,
-                  comment=nothing,
-                  missingstring="",
-                  escape_double=true,
-                  ntasks::Int = Threads.nthreads(),  # Default ntasks value
-                  num_threads::Union{Int, Nothing}=nothing) # Optional num_threads
+function read_delim(files;
+                    delim='\t',
+                    decimal='.',
+                    col_names=true,
+                    skip=0,
+                    n_max=Inf,
+                    groupmark=nothing,
+                    col_select=nothing,
+                    comment=nothing,
+                    missingstring="",
+                    escape_double=true,
+                    ntasks::Int = Threads.nthreads(),
+                    num_threads::Union{Int, Nothing}=nothing)
 
-    # Use num_threads if provided, otherwise stick with ntasks
+    # Normalize input to always be a vector of files
+    file_list = (typeof(files) <: AbstractString) ? [files] : files
+
+    # Use num_threads if provided, otherwise use ntasks
     effective_ntasks = isnothing(num_threads) ? ntasks : num_threads
-    
-    # Convert n_max from Inf to Nothing for compatibility with CSV.File's limit argument
+
+    # Convert n_max from Inf to Nothing for compatibility
     limit = isinf(n_max) ? nothing : Int(n_max)
 
-    # Calculate skipto and header correctly
+    # Calculate skipto and header
     skipto = skip + (col_names === true ? 1 : 0)
 
-    # Prepare arguments for CSV.read, including the effective number of tasks to use
+    # Prepare CSV reading options
     read_options = (
         delim = delim,
         decimal = decimal,
         header = col_names === true ? 1 : 0,
         skipto = skipto + 1,
         select = col_select,
-        groupmark=groupmark,
+        groupmark = groupmark,
         footerskip = 0,
         limit = limit,
         comment = comment,
@@ -131,32 +138,37 @@ function read_delim(file;
         normalizenames = false,
         ntasks = effective_ntasks > 1
     )
-    # Filter options to remove any set to `nothing`
-  #  clean_options = Dict{Symbol,Any}(filter(p -> !isnothing(p[2]), read_options))
 
-    # Read the file into a DataFrame
-    if startswith(file, "http://") || startswith(file, "https://")
-        # Fetch the content from the URL
-        response = HTTP.get(file)
-        
-        # Ensure the request was successful
-        if response.status != 200
-            error("Failed to fetch the delim file: HTTP status code ", response.status)
+    # Initialize an empty DataFrame
+    final_df = DataFrame()
+
+    # Loop over files
+    for file in file_list
+        if startswith(file, "http://") || startswith(file, "https://")
+            # Fetch the content from the URL
+            response = HTTP.get(file)
+            if response.status != 200
+                error("Failed to fetch the delim file: HTTP status code ", response.status)
+            end
+            # Read the CSV data
+            df = CSV.File(IOBuffer(response.body); read_options...) |> DataFrame
+        else
+            # Read from a local file
+            df = CSV.File(file; read_options...) |> DataFrame
         end
 
-        # Read the CSV data from the fetched content using cleaned options
-        df = CSV.File(IOBuffer(response.body); read_options...) |> DataFrame
-    else
-        # Read from a local file using cleaned options
-        df = CSV.File(file; read_options...) |> DataFrame
+        # Concatenate the read DataFrame to the final DataFrame
+        final_df = isempty(final_df) ? df : vcat(final_df, df, cols=:union)
     end
-    return df
+
+    return final_df
 end
+
 
 """
 $docstring_read_tsv
 """
-function read_tsv(file;
+function read_tsv(files;
                   delim='\t',
                   col_names=true,
                   skip=0,
@@ -165,19 +177,22 @@ function read_tsv(file;
                   comment=nothing,
                   missingstring="",
                   escape_double=true,
-                  ntasks::Int = Threads.nthreads(),  # Default ntasks value
-                  num_threads::Union{Int, Nothing}=nothing) # Optional num_threads
-                 
-    # Use num_threads if provided, otherwise stick with ntasks
+                  ntasks::Int = Threads.nthreads(),
+                  num_threads::Union{Int, Nothing}=nothing)
+
+    # Normalize input to always be a vector of files
+    file_list = (typeof(files) <: AbstractString) ? [files] : files
+
+    # Use num_threads if provided, otherwise use ntasks
     effective_ntasks = isnothing(num_threads) ? ntasks : num_threads
-    
-    # Convert n_max from Inf to Nothing for compatibility with CSV.File's limit argument
+
+    # Convert n_max from Inf to Nothing for compatibility
     limit = isinf(n_max) ? nothing : Int(n_max)
 
-    # Calculate skipto and header correctly
+    # Calculate skipto and header
     skipto = skip + (col_names === true ? 1 : 0)
 
-    # Prepare arguments for CSV.read, including the effective number of tasks to use
+    # Prepare CSV reading options
     read_options = (
         delim = delim,
         header = col_names === true ? 1 : 0,
@@ -192,30 +207,37 @@ function read_tsv(file;
         normalizenames = false,
         ntasks = effective_ntasks > 1
     )
-    # Read the TSV file into a DataFrame
-    if startswith(file, "http://") || startswith(file, "https://")
-        # Fetch the content from the URL
-        response = HTTP.get(file)
-        
-        # Ensure the request was successful
-        if response.status != 200
-            error("Failed to fetch the TSV file: HTTP status code ", response.status)
+
+    # Initialize an empty DataFrame
+    final_df = DataFrame()
+
+    # Loop over files
+    for file in file_list
+        if startswith(file, "http://") || startswith(file, "https://")
+            # Fetch the content from the URL
+            response = HTTP.get(file)
+            if response.status != 200
+                error("Failed to fetch the TSV file: HTTP status code ", response.status)
+            end
+            # Read the CSV data
+            df = CSV.File(IOBuffer(response.body); read_options...) |> DataFrame
+        else
+            # Read from a local file
+            df = CSV.File(file; read_options...) |> DataFrame
         end
 
-        # Read the CSV data from the fetched content using cleaned options
-        df = CSV.File(IOBuffer(response.body); read_options...) |> DataFrame
-    else
-        # Read from a local file using cleaned options
-        df = CSV.File(file; read_options...) |> DataFrame
+        # Concatenate the read DataFrame to the final DataFrame
+        final_df = isempty(final_df) ? df : vcat(final_df, df, cols=:union)
     end
-    return df
+
+    return final_df
 end
 
 
 #"""
 #$docstring_read_csv2
 #"""
-function read_csv2(file;
+function read_csv2(files;
                   delim=';',
                   decimal = ',',
                   col_names=true,
@@ -226,19 +248,22 @@ function read_csv2(file;
                   comment=nothing,
                   missingstring="",
                   escape_double=true,
-                  ntasks::Int = Threads.nthreads(),  # Default ntasks value
-                  num_threads::Union{Int, Nothing}=nothing) # Optional num_threads
+                  ntasks::Int = Threads.nthreads(),
+                  num_threads::Union{Int, Nothing}=nothing)
 
-    # Use num_threads if provided, otherwise stick with ntasks
+    # Normalize input to always be a vector of files
+    file_list = (typeof(files) <: AbstractString) ? [files] : files
+
+    # Use num_threads if provided, otherwise use ntasks
     effective_ntasks = isnothing(num_threads) ? ntasks : num_threads
-    
-    # Convert n_max from Inf to Nothing for compatibility with CSV.File's limit argument
+
+    # Convert n_max from Inf to Nothing for compatibility
     limit = isinf(n_max) ? nothing : Int(n_max)
 
-    # Calculate skipto and header correctly
+    # Calculate skipto and header
     skipto = skip + (col_names === true ? 1 : 0)
 
-    # Prepare arguments for CSV.read, including the effective number of tasks to use
+    # Prepare CSV reading options
     read_options = (
         delim = delim,
         decimal = decimal,
@@ -256,28 +281,29 @@ function read_csv2(file;
         ntasks = effective_ntasks > 1
     )
 
+    # Initialize an empty DataFrame
+    final_df = DataFrame()
 
-    # Filter options to remove any set to `nothing`
-   # clean_options = Dict{Symbol,Any}(filter(p -> !isnothing(p[2]), read_options))
-
-    # Check if the file is a URL and read accordingly
-    if startswith(file, "http://") || startswith(file, "https://")
-        # Fetch the content from the URL
-        response = HTTP.get(file)
-        
-        # Ensure the request was successful
-        if response.status != 200
-            error("Failed to fetch the CSV file: HTTP status code ", response.status)
+    # Loop over files
+    for file in file_list
+        if startswith(file, "http://") || startswith(file, "https://")
+            # Fetch the content from the URL
+            response = HTTP.get(file)
+            if response.status != 200
+                error("Failed to fetch the CSV file: HTTP status code ", response.status)
+            end
+            # Read the CSV data
+            df = CSV.File(IOBuffer(response.body); read_options...) |> DataFrame
+        else
+            # Read from a local file
+            df = CSV.File(file; read_options...) |> DataFrame
         end
 
-        # Read the CSV data from the fetched content using cleaned options
-        df = CSV.File(IOBuffer(response.body); read_options...) |> DataFrame
-    else
-        # Read from a local file using cleaned options
-        df = CSV.File(file; read_options...) |> DataFrame
+        # Concatenate the read DataFrame to the final DataFrame
+        final_df = isempty(final_df) ? df : vcat(final_df, df, cols=:union)
     end
 
-    return df
+    return final_df
 end
 
 
