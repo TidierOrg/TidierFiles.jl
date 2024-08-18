@@ -38,7 +38,7 @@ function write_file(data::DataFrame,path::String, args...; kwargs...)
     ext = lowercase(splitext(path)[2])
     if ext == ".xlsx"
         sheet_name = get(kwargs, :sheet_name, "Sheet1")
-        return write_xlsx((sheet_name => data,); path=path, overwrite=get(kwargs, :overwrite, false))
+        return write_xlsx((sheet_name => data); path=path, overwrite=get(kwargs, :overwrite, false))
     elseif ext == ".csv"
         return write_csv(data, path, args...; kwargs...)
     elseif ext == ".tsv"
@@ -66,5 +66,14 @@ function write_file(x::Tuple{Vararg{Pair{String, DataFrame}}}; path::String, ove
         return write_xlsx(x; path=path, overwrite=overwrite)
     else
         error("Unsupported file format for multiple DataFrames: $ext")
+    end
+end
+
+function write_file(x::Pair{String, DataFrame}; path::String, overwrite::Bool=false)
+    ext = lowercase(splitext(path)[2])
+    if ext == ".xlsx"
+        return write_xlsx((x,); path=path, overwrite=overwrite)
+    else
+        error("Unsupported file format for a single DataFrame: $ext")
     end
 end
