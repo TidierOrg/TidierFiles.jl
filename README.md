@@ -24,6 +24,10 @@ Currently supported file types:
 - `read_dta` and `write_dta` (.dta) 
 - `read_arrow` and `write_arrow`
 - `read_parquet` and `write_parquet`
+- `read_rdata` (.rdata and .rds)
+
+Agnostic read and write functions that detect the type and dispatch the appropriate function. 
+- `read_file` and `write_file` 
 
 # Examples
 

@@ -24,3 +24,11 @@
 # - `x`: The data to write. Can be a single `Pair{String, DataFrame}` for writing one sheet, or a `Tuple` of such pairs for writing multiple sheets. The `String` in each pair specifies the sheet name, and the `DataFrame` is the data to write to that sheet.
 # - `path`: The path to the output Excel file.
 # - `overwrite`: Whether to overwrite an existing file. Default is `false`.
+
+# ## Writing to a specific sheet
+# The example below demonstrates how to write to specific sheets in a file.
+# THe string in the Dict is the sheet name, it can be new or preexisting. The second component is the dataframe to be written to that sheet.
+
+# ```julia
+# write_xlsx(("REPORT_A" => df, "REPORT_C" => df2); path = "/Users/danielrizk/Downloads/xlsxtest2.xlsx", overwrite = true)
+# ```
