@@ -27,8 +27,8 @@
 
 # ## Writing to a specific sheet
 # The example below demonstrates how to write to specific sheets in a file.
-# THe string in the Dict is the sheet name, it can be new or preexisting. The second component is the dataframe to be written to that sheet.
-
+# The string in the `Dict` is the sheet name, it can be new or preexisting. The second component is the dataframe to be written to that sheet.
+# In this example, two sheets, "REPORT_A" and "REPORT_C" are being written to with `df` and `df2` respectively.
 # ```julia
 # write_xlsx(("REPORT_A" => df, "REPORT_C" => df2); path = "/Users/danielrizk/Downloads/xlsxtest2.xlsx", overwrite = true)
 # ```
