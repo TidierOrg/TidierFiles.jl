@@ -6,16 +6,16 @@ const docstring_read_csv  =
 Reads a CSV file or URL into a DataFrame, with options to specify delimiter, column names, and other CSV parsing options.
 
 # Arguments
-`file`: Path or vector of paths to the CSV file or a URL to a CSV file.
-`delim`: The character delimiting fields in the file. Default is ','.
-`col_names`: Indicates if the first row of the CSV is used as column names. Can be true, false, or an array of strings. Default is true.
-`skip`: Number of initial lines to skip before reading data. Default is 0.
-`n_max`: Maximum number of rows to read. Default is Inf (read all rows).
--`col_select`: Optional vector of symbols or strings to select which columns to load.
-`comment`: Character that starts a comment line. Lines beginning with this character are ignored. Default is nothing (no comment lines).
-`missingstring`: String that represents missing values in the CSV. Default is "", can be set to a vector of multiple items.
-`escape_double`: Indicates whether to interpret two consecutive quote characters as a single quote in the data. Default is true.
-`num_threads`: specifies the number of concurrent tasks or threads to use for processing, allowing for parallel execution. Defaults to 1
+- `file`: Path or vector of paths to the CSV file or a URL to a CSV file.
+- `delim`: The character delimiting fields in the file. Default is ','.
+- `col_names`: Indicates if the first row of the CSV is used as column names. Can be true, false, or an array of strings. Default is true.
+- `skip`: Number of initial lines to skip before reading data. Default is 0.
+- `n_max`: Maximum number of rows to read. Default is Inf (read all rows).
+- `col_select`: Optional vector of symbols or strings to select which columns to load.
+- `comment`: Character that starts a comment line. Lines beginning with this character are ignored. Default is nothing (no comment lines).
+- `missingstring`: String that represents missing values in the CSV. Default is "", can be set to a vector of multiple items.
+- `escape_double`: Indicates whether to interpret two consecutive quote characters as a single quote in the data. Default is true.
+- `num_threads`: specifies the number of concurrent tasks or threads to use for processing, allowing for parallel execution. Defaults to 1
 # Examples
 ```jldoctest
 julia> df = DataFrame(ID = 1:5, Name = ["Alice", "Bob", "Charlie", "David", "Eva"], Score = [88, 92, 77, 85, 95]);
@@ -41,16 +41,16 @@ const docstring_read_tsv  =
 Reads a TSV file or URL into a DataFrame, with options to specify delimiter, column names, and other CSV parsing options.
 
 # Arguments
-`file`: Path or vector of paths to the TSV file or a URL to a TSV file.
-`delim`: The character delimiting fields in the file. Default is ','.
-`col_names`: Indicates if the first row of the CSV is used as column names. Can be true, false, or an array of strings. Default is true.
-`skip`: Number of initial lines to skip before reading data. Default is 0.
-`n_max`: Maximum number of rows to read. Default is Inf (read all rows).
--`col_select`: Optional vector of symbols or strings to select which columns to load.
-`comment`: Character that starts a comment line. Lines beginning with this character are ignored. Default is nothing (no comment lines).
-`missingstring`: String that represents missing values in the CSV. Default is "", can be set to a vector of multiple items.
-`escape_double`: Indicates whether to interpret two consecutive quote characters as a single quote in the data. Default is true.
-`num_threads`: specifies the number of concurrent tasks or threads to use for processing, allowing for parallel execution. Default is the number of available threads.
+- `file`: Path or vector of paths to the TSV file or a URL to a TSV file.
+- `delim`: The character delimiting fields in the file. Default is ','.
+- `col_names`: Indicates if the first row of the CSV is used as column names. Can be true, false, or an array of strings. Default is true.
+- `skip`: Number of initial lines to skip before reading data. Default is 0.
+- `n_max`: Maximum number of rows to read. Default is Inf (read all rows).
+- `col_select`: Optional vector of symbols or strings to select which columns to load.
+- `comment`: Character that starts a comment line. Lines beginning with this character are ignored. Default is nothing (no comment lines).
+- `missingstring`: String that represents missing values in the CSV. Default is "", can be set to a vector of multiple items.
+- `escape_double`: Indicates whether to interpret two consecutive quote characters as a single quote in the data. Default is true.
+- `num_threads`: specifies the number of concurrent tasks or threads to use for processing, allowing for parallel execution. Default is the number of available threads.
 
 # Examples
 ```jldoctest
@@ -77,17 +77,17 @@ const docstring_read_delim =
 Reads a delimited file or URL into a DataFrame, with options to specify delimiter, column names, and other CSV parsing options.
 
 # Arguments
-`file`: Path or vector of paths to the CSV file or a URL to a CSV file.
-`delim`: The character delimiting fields in the file. Default is ','.
-`col_names`: Indicates if the first row of the CSV is used as column names. Can be true, false, or an array of strings. Default is true.
-`skip`: Number of initial lines to skip before reading data. Default is 0.
-`n_max`: Maximum number of rows to read. Default is Inf (read all rows).
--`col_select`: Optional vector of symbols or strings to select which columns to load.
-`comment`: Character that starts a comment line. Lines beginning with this character are ignored. Default is nothing (no comment lines).
-`missingstring`: String that represents missing values in the CSV. Default is "", can be set to a vector of multiple items.
-`escape_double`: Indicates whether to interpret two consecutive quote characters as a single quote in the data. Default is true.
-`col_types`: An optional specification of column types, can be a single type applied to all columns, or a collection of types with one for each column. Default is nothing (types are inferred).
-`num_threads`: specifies the number of concurrent tasks or threads to use for processing, allowing for parallel execution. Default is the number of available threads.
+- `file`: Path or vector of paths to the CSV file or a URL to a CSV file.
+- `delim`: The character delimiting fields in the file. Default is ','.
+- `col_names`: Indicates if the first row of the CSV is used as column names. Can be true, false, or an array of strings. Default is true.
+- `skip`: Number of initial lines to skip before reading data. Default is 0.
+- `n_max`: Maximum number of rows to read. Default is Inf (read all rows).
+- `col_select`: Optional vector of symbols or strings to select which columns to load.
+- `comment`: Character that starts a comment line. Lines beginning with this character are ignored. Default is nothing (no comment lines).
+- `missingstring`: String that represents missing values in the CSV. Default is "", can be set to a vector of multiple items.
+- `escape_double`: Indicates whether to interpret two consecutive quote characters as a single quote in the data. Default is true.
+- `col_types`: An optional specification of column types, can be a single type applied to all columns, or a collection of types with one for each column. Default is nothing (types are inferred).
+- `num_threads`: specifies the number of concurrent tasks or threads to use for processing, allowing for parallel execution. Default is the number of available threads.
 
 # Examples
 ```jldoctest
@@ -227,14 +227,14 @@ const docstring_read_table =
 Read a table from a file where columns are separated by any amount of whitespace, processing it into a DataFrame.
 
 # Arguments
--`file`: The path to the file to read.
--`col_names`=true: Indicates whether the first non-skipped line should be treated as column names. If false, columns are named automatically.
--`skip`: Number of lines at the beginning of the file to skip before processing starts.
--`n_max`: The maximum number of lines to read from the file, after skipping. Inf means read all lines.
--`col_select`: Optional vector of symbols or strings to select which columns to load.
--`comment`: A character or string indicating the start of a comment. Lines starting with this character are ignored.
--`missingstring`: The string that represents missing values in the table.
--`kwargs`: Additional keyword arguments passed to CSV.File.
+- `file`: The path to the file to read.
+- `col_names`=true: Indicates whether the first non-skipped line should be treated as column names. If false, columns are named automatically.
+- `skip`: Number of lines at the beginning of the file to skip before processing starts.
+- `n_max`: The maximum number of lines to read from the file, after skipping. Inf means read all lines.
+- `col_select`: Optional vector of symbols or strings to select which columns to load.
+- `comment`: A character or string indicating the start of a comment. Lines starting with this character are ignored.
+- `missingstring`: The string that represents missing values in the table.
+- `kwargs`: Additional keyword arguments passed to CSV.File.
 # Examples
 ```jldoctest 
 julia> df = DataFrame(ID = 1:5, Name = ["Alice", "Bob", "Charlie", "David", "Eva"], Score = [88, 92, 77, 85, 95]);
@@ -259,14 +259,14 @@ const docstring_write_table =
 Write a DataFrame to a file, allowing for customization of the delimiter and other options.
 
 # Arguments
--`x`: The DataFrame to write to a file.
--`file`: The path to the file where the DataFrame will be written.
+- `x`: The DataFrame to write to a file.
+- `file`: The path to the file where the DataFrame will be written.
 -delim: Character to use as the field delimiter. The default is tab ('\t'), making it a TSV (tab-separated values) file by default, but can be changed to accommodate other formats.
--`missingstring`: The string to represent missing data in the output file.
--`append`: Whether to append to the file if it already exists. If false, the file will be overwritten.
--`col_names`: Whether to write column names as the first line of the file. If appending to an existing file with append = true, column names will not be written regardless of this parameter's value.
--`eol`: The end-of-line character to use in the file. Defaults to "\n".
--`num_threads`: Number of threads to use for writing the file. Uses the number of available Julia threads by default.
+- `missingstring`: The string to represent missing data in the output file.
+- `append`: Whether to append to the file if it already exists. If false, the file will be overwritten.
+- `col_names`: Whether to write column names as the first line of the file. If appending to an existing file with append = true, column names will not be written regardless of this parameter's value.
+- `eol`: The end-of-line character to use in the file. Defaults to "\n".
+- `num_threads`: Number of threads to use for writing the file. Uses the number of available Julia threads by default.
 
 # Examples
 ```jldoctest 
@@ -282,16 +282,16 @@ const docstring_read_xlsx =
 Read data from an Excel file into a DataFrame.
 
 # Arguments
--`path`: The path to the Excel file to be read.
--`sheet`: Specifies the sheet to be read. Can be either the name of the sheet as a string or its index as an integer. If nothing, the first sheet is read.
--`range`: Specifies a specific range of cells to be read from the sheet. If nothing, the entire sheet is read.
--`col_names`: Indicates whether the first row of the specified range should be treated as column names. If false, columns will be named automatically.
--`col_types`: Allows specifying column types explicitly. Can be a single type applied to all columns, a list or a dictionary mapping column names or indices to types. If nothing, types will be inferred.
--`missingstring`: The value or vector that represents missing values in the Excel file.
--`trim_ws`: Whether to trim leading and trailing whitespace from cells in the Excel file.
--`skip`: Number of rows to skip at the beginning of the sheet or range before reading data.
--`n_max`: The maximum number of rows to read from the sheet or range, after skipping. Inf means read all available rows.
--`guess_max`: The maximum number of rows to scan for type guessing and column names detection. Only relevant if col_types is nothing or col_names is true. If nothing, a default heuristic is used.
+- `path`: The path to the Excel file to be read.
+- `sheet`: Specifies the sheet to be read. Can be either the name of the sheet as a string or its index as an integer. If nothing, the first sheet is read.
+- `range`: Specifies a specific range of cells to be read from the sheet. If nothing, the entire sheet is read.
+- `col_names`: Indicates whether the first row of the specified range should be treated as column names. If false, columns will be named automatically.
+- `col_types`: Allows specifying column types explicitly. Can be a single type applied to all columns, a list or a dictionary mapping column names or indices to types. If nothing, types will be inferred.
+- `missingstring`: The value or vector that represents missing values in the Excel file.
+- `trim_ws`: Whether to trim leading and trailing whitespace from cells in the Excel file.
+- `skip`: Number of rows to skip at the beginning of the sheet or range before reading data.
+- `n_max`: The maximum number of rows to read from the sheet or range, after skipping. Inf means read all available rows.
+- `guess_max`: The maximum number of rows to scan for type guessing and column names detection. Only relevant if col_types is nothing or col_names is true. If nothing, a default heuristic is used.
 
 # Examples
 ```jldoctest
@@ -317,12 +317,12 @@ julia> read_xlsx("xlsxtest.xlsx", sheet = "REPORT_A", skip = 1, n_max = 4, missi
 const docstring_write_xlsx =
 """
     write_xlsx(x; path, overwrite)
-Write a DataFrame, or multiple DataFrames, to an Excel file.
+Write a DataFrame, or multiple DataFrames, to an Excel file. Specific sheets on can be specified for each dataframe.
 
 # Arguments
--`x`: The data to write. Can be a single Pair{String, DataFrame} for writing one sheet, or a Tuple of such pairs for writing multiple sheets. The String in each pair specifies the sheet name, and the DataFrame is the data to write to that sheet.
--`path`: The path to the Excel file where the data will be written.
--`overwrite`: Defaults to false. Whether to overwrite an existing file. If false, an error is thrown when attempting to write to an existing file.
+- `x`: The data to write. Can be a single Pair{String, DataFrame} for writing one sheet, or a Tuple of such pairs for writing multiple sheets. The String in each pair specifies the sheet name, and the DataFrame is the data to write to that sheet.
+- `path`: The path to the Excel file where the data will be written.
+- `overwrite`: Defaults to false. Whether to overwrite an existing file. If false, an error is thrown when attempting to write to an existing file.
 
 # Examples
 ```jldoctest 
@@ -343,11 +343,11 @@ const docstring_read_dta  =
 Read data from a Stata (.dta) file into a DataFrame, supporting both local and remote sources.
 
 # Arguments
--`filepath`: The path to the .dta file or a URL pointing to such a file. If a URL is provided, the file will be downloaded and then read.
+- `filepath`: The path to the .dta file or a URL pointing to such a file. If a URL is provided, the file will be downloaded and then read.
 `encoding`: Optional; specifies the encoding of the input file. If not provided, defaults to the package's or function's default.
 `col_select`: Optional; allows specifying a subset of columns to read. This can be a vector of column names or indices. If nothing, all columns are read.
-skip=0: Number of rows at the beginning of the file to skip before reading.
-n_max=Inf: Maximum number of rows to read from the file, after skipping. If Inf, read all available rows.
+- `skip=0`: Number of rows at the beginning of the file to skip before reading.
+- `n_max=Inf`: Maximum number of rows to read from the file, after skipping. If Inf, read all available rows.
 `num_threads`: specifies the number of concurrent tasks or threads to use for processing, allowing for parallel execution. Defaults to 1
 
 # Examples
@@ -372,11 +372,11 @@ const docstring_read_sas =
 Read data from a SAS (.sas7bdat and .xpt) file into a DataFrame, supporting both local and remote sources.
 
 # Arguments
--`filepath`: The path to the .dta file or a URL pointing to such a file. If a URL is provided, the file will be downloaded and then read.
+- `filepath`: The path to the .dta file or a URL pointing to such a file. If a URL is provided, the file will be downloaded and then read.
 `encoding`: Optional; specifies the encoding of the input file. If not provided, defaults to the package's or function's default.
 `col_select`: Optional; allows specifying a subset of columns to read. This can be a vector of column names or indices. If nothing, all columns are read.
-skip=0: Number of rows at the beginning of the file to skip before reading.
-n_max=Inf: Maximum number of rows to read from the file, after skipping. If Inf, read all available rows.
+- `skip=0`: Number of rows at the beginning of the file to skip before reading.
+- `n_max=Inf`: Maximum number of rows to read from the file, after skipping. If Inf, read all available rows.
 `num_threads`: specifies the number of concurrent tasks or threads to use for processing, allowing for parallel execution. Defaults to 1
 
 # Examples
@@ -410,12 +410,12 @@ const docstring_read_sav =
 Read data from a SPSS (.sav and .por) file into a DataFrame, supporting both local and remote sources.
 
 # Arguments
--`filepath`: The path to the .sav or .por file or a URL pointing to such a file. If a URL is provided, the file will be downloaded and then read.
-`encoding`: Optional; specifies the encoding of the input file. If not provided, defaults to the package's or function's default.
-`col_select`: Optional; allows specifying a subset of columns to read. This can be a vector of column names or indices. If nothing, all columns are read.
-skip=0: Number of rows at the beginning of the file to skip before reading.
-n_max=Inf: Maximum number of rows to read from the file, after skipping. If Inf, read all available rows.
-`num_threads`: specifies the number of concurrent tasks or threads to use for processing, allowing for parallel execution. Defaults to 1
+- `filepath`: The path to the .sav or .por file or a URL pointing to such a file. If a URL is provided, the file will be downloaded and then read.
+- `encoding`: Optional; specifies the encoding of the input file. If not provided, defaults to the package's or function's default.
+- `col_select`: Optional; allows specifying a subset of columns to read. This can be a vector of column names or indices. If nothing, all columns are read.
+- `skip=0`: Number of rows at the beginning of the file to skip before reading.
+- `n_max=Inf``: Maximum number of rows to read from the file, after skipping. If Inf, read all available rows.
+- `num_threads`: specifies the number of concurrent tasks or threads to use for processing, allowing for parallel execution. Defaults to 1
 
 # Examples
 ```jldoctest
@@ -448,9 +448,9 @@ const docstring_write_sav =
     write_sav(df, path)
 Write a DataFrame to a SPSS (.sav or .por) file.
 
-Arguments
--`df`: The DataFrame to be written to a file.
--`path`: String as path where the .dta file will be created. If a file at this path already exists, it will be overwritten.
+# Arguments
+- `df`: The DataFrame to be written to a file.
+- `path`: String as path where the .dta file will be created. If a file at this path already exists, it will be overwritten.
 
 # Examples
 ```jldoctest 
@@ -478,9 +478,9 @@ const docstring_write_sas =
     write_sas(df, path)
 Write a DataFrame to a SAS (.sas7bdat or .xpt) file.
 
-Arguments
--`df`: The DataFrame to be written to a file.
--`path`: String as path where the .dta file will be created. If a file at this path already exists, it will be overwritten.
+# Arguments
+- `df`: The DataFrame to be written to a file.
+- `path`: String as path where the .dta file will be created. If a file at this path already exists, it will be overwritten.
 
 # Examples
 ```jldoctest 
@@ -509,9 +509,9 @@ const docstring_write_dta =
     write_dta(df, path)
 Write a DataFrame to a Stata (.dta) file.
 
-Arguments
--`df`: The DataFrame to be written to a file.
--`path`: String as path where the .dta file will be created. If a file at this path already exists, it will be overwritten.
+# Arguments
+- `df`: The DataFrame to be written to a file.
+- `path`: String as path where the .dta file will be created. If a file at this path already exists, it will be overwritten.
 
 # Examples
 ```jldoctest 
@@ -531,9 +531,9 @@ const docstring_write_arrow =
 """
     write_arrow(df, path)
 Write a DataFrame to an Arrow (.arrow) file.
-Arguments
--`df`: The DataFrame to be written to a file.
--`path`: String as path where the .dta file will be created. If a file at this path already exists, it will be overwritten.
+# Arguments
+- `df`: The DataFrame to be written to a file.
+- `path`: String as path where the .dta file will be created. If a file at this path already exists, it will be overwritten.
 # Examples
 ```jldoctest 
 julia> df = DataFrame(AA=["Arr", "ow"], AB=[10.1, 10.2]);
@@ -546,12 +546,12 @@ const docstring_read_arrow =
 """
     read_arrow(df, path)
 Read an Arrow file (.arrow) to a DataFrame.
-Arguments
--`df`: The DataFrame to be written to a file.
--`path`: String as path where the .dta file will be created. If a file at this path already exists, it will be overwritten.
-`skip`: Number of initial lines to skip before reading data. Default is 0.
-`n_max`: Maximum number of rows to read. Default is Inf (read all rows).
--`col_select`: Optional vector of symbols or strings to select which columns to load.
+# Arguments
+- `df`: The DataFrame to be written to a file.
+- `path`: String as path where the .dta file will be created. If a file at this path already exists, it will be overwritten.
+- `skip`: Number of initial lines to skip before reading data. Default is 0.
+- `n_max`: Maximum number of rows to read. Default is Inf (read all rows).
+- `col_select`: Optional vector of symbols or strings to select which columns to load.
 # Examples
 ```jldoctest 
 julia> df = DataFrame(AA=["Arr", "ow"], AB=[10.1, 10.2]);
@@ -572,9 +572,9 @@ const docstring_write_parquet =
 """
     write_parquet(df, )
 Write a DataFrame to an Parquet (.parquet) file.
-Arguments
--`df`: The DataFrame to be written to a file.
--`path`: String as path where the .dta file will be created. If a file at this path already exists, it will be overwritten.
+# Arguments
+- `df`: The DataFrame to be written to a file.
+- `path`: String as path where the .dta file will be created. If a file at this path already exists, it will be overwritten.
 
 # Examples
 ```jldoctest 
@@ -588,12 +588,12 @@ const docstring_read_parquet =
 """
     read_parquet(path)
 Read a Paquet File (.parquet) to a DataFrame.
-Arguments
--`path`: Path or vector of paths or URLs to parquet file to be read 
-`col_names`: Indicates if the first row of the CSV is used as column names. Can be true, false, or an array of strings. Default is true.
-`skip`: Number of initial lines to skip before reading data. Default is 0.
-`n_max`: Maximum number of rows to read. Default is Inf (read all rows).
--`col_select`: Optional vector of symbols or strings to select which columns to load.
+# Arguments
+- `path`: Path or vector of paths or URLs to parquet file to be read 
+- `col_names`: Indicates if the first row of the CSV is used as column names. Can be true, false, or an array of strings. Default is true.
+- `skip`: Number of initial lines to skip before reading data. Default is 0.
+- `n_max`: Maximum number of rows to read. Default is Inf (read all rows).
+- `col_select`: Optional vector of symbols or strings to select which columns to load.
 
 # Examples
 ```jldoctest 
@@ -611,3 +611,67 @@ julia> read_parquet("test.parquet")
 ```
 """
 
+const docstring_read_file =
+"""
+    read_files(path; args)
+Generic file reader that automatically detects type and dispatches the appropriate read function. 
+
+# Arguments
+- `path` : a string with the file path to read
+- `args` : additional arguments supported for that specific file type are given as they normally would be 
+# Examples
+```jldoctest 
+julia> df = DataFrame(ID = 1:5, Name = ["Alice", "Bob", "Charlie", "David", "Eva"], Score = [88, 92, 77, 85, 95]);
+
+julia> write_parquet(df, "test.parquet");
+
+julia> read_file("test.parquet")
+5×3 DataFrame
+ Row │ ID     Name     Score 
+     │ Int64  String   Int64 
+─────┼───────────────────────
+   1 │     1  Alice       88
+   2 │     2  Bob         92
+   3 │     3  Charlie     77
+   4 │     4  David       85
+   5 │     5  Eva         95
+```
+"""
+
+const docstring_write_file =
+"""
+    write_files(df, path; args)
+Generic file writer that automatically detects type and dispatches the appropriate read function. 
+
+# Arguments
+- `df` : Data frame to be exported
+- `path` : a string with the file path to for the location of resulting file
+- `args` : additional arguments supported for that specific file type are given as they normally would be 
+
+# Examples
+```jldoctest 
+julia> df = DataFrame(ID = 1:5, Name = ["Alice", "Bob", "Charlie", "David", "Eva"], Score = [88, 92, 77, 85, 95]);
+
+julia> write_file(df, "test.parquet");
+
+julia> read_file("test.parquet")
+5×3 DataFrame
+ Row │ ID     Name     Score 
+     │ Int64  String   Int64 
+─────┼───────────────────────
+   1 │     1  Alice       88
+   2 │     2  Bob         92
+   3 │     3  Charlie     77
+   4 │     4  David       85
+   5 │     5  Eva         95
+```
+"""
+
+const docstring_read_rdata =
+"""
+    read_rdata(path)
+Read `.rdata` and `.rds` files as DataFrame. `.rdata` files will result in a `Dict`. Dataframes can then be selected with `result["name"]`
+
+# Arguments
+- `path`: A string with the file location. This does not yet support reading from URLs. 
+"""
