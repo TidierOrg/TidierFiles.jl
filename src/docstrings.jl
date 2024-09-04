@@ -686,7 +686,5 @@ List all files in a directory that match a given pattern.
 - `pattern`: A string pattern to filter the files. Defaults to an empty string, matching all files. ie `.csv` will only return files ending in .csv
 
 # Examples
-```jldoctest 
-# list_files("/path/to/folder/", ".csv")
-```
+- `list_files("/path/to/folder/", ".csv")`
 """
