@@ -675,3 +675,18 @@ Read `.rdata` and `.rds` files as DataFrame. `.rdata` files will result in a `Di
 # Arguments
 - `path`: A string with the file location. This does not yet support reading from URLs. 
 """
+
+const docstring_list_files =
+"""
+    list_files(path = "", pattern = "")
+List all files in a directory that match a given pattern.
+
+# Arguments
+- `path`: The directory path to list files from. Defaults to an empty string.
+- `pattern`: A string pattern to filter the files. Defaults to an empty string, matching all files. ie `.csv` will only return files ending in .csv
+
+# Examples
+```jldoctest 
+# julia> list_files("/path/to/folder/", ".csv")
+```
+"""
