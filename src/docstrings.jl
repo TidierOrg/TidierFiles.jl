@@ -687,6 +687,6 @@ List all files in a directory that match a given pattern.
 
 # Examples
 ```jldoctest 
-# julia> list_files("/path/to/folder/", ".csv")
+# list_files("/path/to/folder/", ".csv")
 ```
 """
