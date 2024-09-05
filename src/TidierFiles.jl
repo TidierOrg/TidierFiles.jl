@@ -455,8 +455,12 @@ function list_files(path = "", pattern = "")
     files = map(walkdir(path)) do (root, dirs, files)
         joinpath.(root, files)
     end
-    files = reduce(vcat, files)
-    files = filter(x -> occursin(pattern, x), files)
+    if isempty(files)
+        error("No files ending with $pattern located at $path")
+    else
+        files = reduce(vcat, files)
+        files = filter(x -> occursin(pattern, x), files)
+    end
     return files
 end
 
