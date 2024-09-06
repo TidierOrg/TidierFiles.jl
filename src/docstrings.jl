@@ -305,12 +305,12 @@ julia> write_xlsx(("REPORT_A" => df, "REPORT_B" => df2); path="xlsxtest.xlsx", o
 
 julia> read_xlsx("xlsxtest.xlsx", sheet = "REPORT_A", skip = 1, n_max = 4, missingstring = [2])
 3×3 DataFrame
- Row │ integers  strings               floats  
-     │ Any       String                Float64 
-─────┼─────────────────────────────────────────
-   1 │ missing   Package makes            20.3
-   2 │ 3         File reading/writing     30.4
-   3 │ 4         even smoother            40.5
+ Row │ integers  strings               floats   
+     │ Int64?    String?               Float64? 
+─────┼──────────────────────────────────────────
+   1 │  missing  Package makes             20.3
+   2 │        3  File reading/writing      30.4
+   3 │        4  even smoother             40.5
 ```
 """
 
@@ -473,6 +473,7 @@ julia> write_sav(df, "test.por")
    2 │    por      10.2
 ```
 """
+
 const docstring_write_sas =
 """
     write_sas(df, path)
