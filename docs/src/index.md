@@ -26,6 +26,8 @@ Currently supported file types:
 Agnostic read and write functions that detect the type and dispatch the appropriate function. 
 - `read_file` and `write_file` 
 
+`list_files` to list files in a directory.
+
 # Examples
 
 Here is an example of how to write and read a CSV file.

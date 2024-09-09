@@ -305,12 +305,12 @@ julia> write_xlsx(("REPORT_A" => df, "REPORT_B" => df2); path="xlsxtest.xlsx", o
 
 julia> read_xlsx("xlsxtest.xlsx", sheet = "REPORT_A", skip = 1, n_max = 4, missingstring = [2])
 3×3 DataFrame
- Row │ integers  strings               floats  
-     │ Any       String                Float64 
-─────┼─────────────────────────────────────────
-   1 │ missing   Package makes            20.3
-   2 │ 3         File reading/writing     30.4
-   3 │ 4         even smoother            40.5
+ Row │ integers  strings               floats   
+     │ Int64?    String?               Float64? 
+─────┼──────────────────────────────────────────
+   1 │  missing  Package makes             20.3
+   2 │        3  File reading/writing      30.4
+   3 │        4  even smoother             40.5
 ```
 """
 
@@ -473,6 +473,7 @@ julia> write_sav(df, "test.por")
    2 │    por      10.2
 ```
 """
+
 const docstring_write_sas =
 """
     write_sas(df, path)
@@ -674,4 +675,17 @@ Read `.rdata` and `.rds` files as DataFrame. `.rdata` files will result in a `Di
 
 # Arguments
 - `path`: A string with the file location. This does not yet support reading from URLs. 
+"""
+
+const docstring_list_files =
+"""
+    list_files(path = "", pattern = "")
+List all files in a directory that match a given pattern.
+
+# Arguments
+- `path`: The directory path to list files from. Defaults to an empty string.
+- `pattern`: A string pattern to filter the files. Defaults to an empty string, matching all files. ie `.csv` will only return files ending in .csv
+
+# Examples
+- `list_files("/path/to/folder/", ".csv")`
 """

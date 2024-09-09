@@ -15,8 +15,8 @@ using RData
 
 export read_csv, write_csv, read_tsv, write_tsv, read_table, write_table, read_delim, read_xlsx, write_xlsx, 
  read_fwf, write_fwf, fwf_empty, fwf_positions, fwf_positions, read_sav, read_sas, read_dta, write_sav, write_sas, 
- write_dta, read_arrow, write_arrow, read_parquet, write_parquet, read_csv2, read_file, write_file, read_rdata
- 
+ write_dta, read_arrow, write_arrow, read_parquet, write_parquet, read_csv2, read_file, write_file, read_rdata, list_files
+
 
 include("docstrings.jl")
 include("fwf.jl")
@@ -447,5 +447,22 @@ function write_table(
 end
 
 include("gen_fxn.jl")
+
+"""
+$docstring_list_files
+"""
+function list_files(path = "", pattern = "")
+    files = map(walkdir(path)) do (root, dirs, files)
+        joinpath.(root, files)
+    end
+    if isempty(files)
+        error("No files ending with $pattern located at $path")
+    else
+        files = reduce(vcat, files)
+        files = filter(x -> occursin(pattern, x), files)
+    end
+    return files
+end
+
 
 end
