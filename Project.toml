@@ -1,7 +1,7 @@
 name = "TidierFiles"
 uuid = "8ae5e7a9-bdd3-4c93-9cc3-9df4d5d947db"
 authors = ["Daniel Rizk <rizk.daniel.12@gmail.com> and contributors"]
-version = "0.1.5"
+version = "0.1.6"
 
 [deps]
 Arrow = "69666777-d1a9-59fb-9406-91d4454c9d45"

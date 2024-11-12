@@ -64,7 +64,7 @@ read_csv("testing.csv", missingstring=["40.5", "10.2"])
 
 The file reading functions include the following keyword arguments:
 - `path`
-- `missingstring`
+- `missing_value`
 - `col_names`
 - `col_select`
 - `num_threads`

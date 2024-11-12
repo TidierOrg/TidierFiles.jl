@@ -1,19 +1,21 @@
 const docstring_read_csv  =
 """
     read_csv(file; delim=',',col_names=true, skip=0, n_max=Inf, 
-        comment=nothing, missingstring="", col_select, escape_double=true, col_types=nothing, num_threads = 1)
+        comment=nothing, missing_value="", col_select, escape_double=true, col_types=nothing, num_threads = 1)
 
 Reads a CSV file or URL into a DataFrame, with options to specify delimiter, column names, and other CSV parsing options.
 
 # Arguments
 - `file`: Path or vector of paths to the CSV file or a URL to a CSV file.
 - `delim`: The character delimiting fields in the file. Default is ','.
+- `decimal`: Character argument for what character decimal should be. Default is `.`
 - `col_names`: Indicates if the first row of the CSV is used as column names. Can be true, false, or an array of strings. Default is true.
 - `skip`: Number of initial lines to skip before reading data. Default is 0.
 - `n_max`: Maximum number of rows to read. Default is Inf (read all rows).
 - `col_select`: Optional vector of symbols or strings to select which columns to load.
+- `col_types`: Optional Dict to allow for column type specification
 - `comment`: Character that starts a comment line. Lines beginning with this character are ignored. Default is nothing (no comment lines).
-- `missingstring`: String that represents missing values in the CSV. Default is "", can be set to a vector of multiple items.
+- `missing_value`: String that represents missing values in the CSV. Default is "", can be set to a vector of multiple items.
 - `escape_double`: Indicates whether to interpret two consecutive quote characters as a single quote in the data. Default is true.
 - `num_threads`: specifies the number of concurrent tasks or threads to use for processing, allowing for parallel execution. Defaults to 1
 # Examples
@@ -22,33 +24,44 @@ julia> df = DataFrame(ID = 1:5, Name = ["Alice", "Bob", "Charlie", "David", "Eva
 
 julia> write_csv(df, "csvtest.csv");
 
-julia> read_csv("csvtest.csv", skip = 2, n_max = 3, missingstring = ["95", "Charlie"])
+julia> read_csv("csvtest.csv", skip = 2, n_max = 3, missing_value = ["95", "Charlie"])
 3×3 DataFrame
- Row │ ID     Name     Score   
-     │ Int64  String7  Int64?  
+ Row │ ID     Name      Score   
+     │ Int64  String7?  Int64?  
+─────┼──────────────────────────
+   1 │     3  missing        77
+   2 │     4  David          85
+   3 │     5  Eva       missing 
+
+julia> read_csv("csvtest.csv", skip = 2, n_max = 3, col_types = Dict(:ID => Float64))
+3×3 DataFrame
+ Row │ ID       Name     Score 
+     │ Float64  String7  Int64 
 ─────┼─────────────────────────
-   1 │     3  missing       77
-   2 │     4  David         85
-   3 │     5  Eva      missing 
+   1 │     3.0  Charlie     77
+   2 │     4.0  David       85
+   3 │     5.0  Eva         95
 ```
 """
 
 const docstring_read_tsv  =
 """
     read_tsv(file; delim='\t',col_names=true, skip=0, n_max=Inf, 
-        comment=nothing, missingstring="", col_select, escape_double=true, col_types=nothing)
+        comment=nothing, missing_value="", col_select, escape_double=true, col_types=nothing)
 
 Reads a TSV file or URL into a DataFrame, with options to specify delimiter, column names, and other CSV parsing options.
 
 # Arguments
 - `file`: Path or vector of paths to the TSV file or a URL to a TSV file.
 - `delim`: The character delimiting fields in the file. Default is ','.
+- `decimal`: Character argument for what character decimal should be. Default is `.`
 - `col_names`: Indicates if the first row of the CSV is used as column names. Can be true, false, or an array of strings. Default is true.
 - `skip`: Number of initial lines to skip before reading data. Default is 0.
 - `n_max`: Maximum number of rows to read. Default is Inf (read all rows).
 - `col_select`: Optional vector of symbols or strings to select which columns to load.
 - `comment`: Character that starts a comment line. Lines beginning with this character are ignored. Default is nothing (no comment lines).
-- `missingstring`: String that represents missing values in the CSV. Default is "", can be set to a vector of multiple items.
+- `col_types`: Optional Dict to allow for column type specification
+- `missing_value`: String that represents missing values in the CSV. Default is "", can be set to a vector of multiple items.
 - `escape_double`: Indicates whether to interpret two consecutive quote characters as a single quote in the data. Default is true.
 - `num_threads`: specifies the number of concurrent tasks or threads to use for processing, allowing for parallel execution. Default is the number of available threads.
 
@@ -58,33 +71,35 @@ julia> df = DataFrame(ID = 1:5, Name = ["Alice", "Bob", "Charlie", "David", "Eva
 
 julia> write_tsv(df, "tsvtest.tsv");
 
-julia> read_tsv("tsvtest.tsv", skip = 2, n_max = 3, missingstring = ["Charlie"])
+julia> read_tsv("tsvtest.tsv", skip = 2, n_max = 3, missing_value = ["Charlie"])
 3×3 DataFrame
- Row │ ID     Name     Score 
-     │ Int64  String7  Int64 
-─────┼───────────────────────
-   1 │     3  missing     77
-   2 │     4  David       85
-   3 │     5  Eva         95
+ Row │ ID     Name      Score 
+     │ Int64  String7?  Int64 
+─────┼────────────────────────
+   1 │     3  missing      77
+   2 │     4  David        85
+   3 │     5  Eva          95
 ```
 """
 
 const docstring_read_delim = 
 """
     read_delim(file; delim='\t',col_names=true, skip=0, n_max=Inf, 
-        comment=nothing, missingstring="", col_select, escape_double=true, col_types=nothing)
+        comment=nothing, missing_value="", col_select, escape_double=true, col_types=nothing)
 
 Reads a delimited file or URL into a DataFrame, with options to specify delimiter, column names, and other CSV parsing options.
 
 # Arguments
 - `file`: Path or vector of paths to the CSV file or a URL to a CSV file.
 - `delim`: The character delimiting fields in the file. Default is ','.
+- `decimal`: Character argument for what character decimal should be. Default is `.`
 - `col_names`: Indicates if the first row of the CSV is used as column names. Can be true, false, or an array of strings. Default is true.
 - `skip`: Number of initial lines to skip before reading data. Default is 0.
 - `n_max`: Maximum number of rows to read. Default is Inf (read all rows).
 - `col_select`: Optional vector of symbols or strings to select which columns to load.
 - `comment`: Character that starts a comment line. Lines beginning with this character are ignored. Default is nothing (no comment lines).
-- `missingstring`: String that represents missing values in the CSV. Default is "", can be set to a vector of multiple items.
+- `col_types`: Optional Dict to allow for column type specification
+- `missing_value`: String that represents missing values in the CSV. Default is "", can be set to a vector of multiple items.
 - `escape_double`: Indicates whether to interpret two consecutive quote characters as a single quote in the data. Default is true.
 - `col_types`: An optional specification of column types, can be a single type applied to all columns, or a collection of types with one for each column. Default is nothing (types are inferred).
 - `num_threads`: specifies the number of concurrent tasks or threads to use for processing, allowing for parallel execution. Default is the number of available threads.
@@ -178,13 +193,13 @@ julia> fwf_empty(path, num_lines=4, col_names = ["Name", "Age", "ID", "Position"
 
 const docstring_write_csv  =
 """
-    write_csv(DataFrame, filepath; na = "", append = false, col_names = true, missingstring, eol = "\n", num_threads = Threads.nthreads())
+    write_csv(DataFrame, filepath; na = "", append = false, col_names = true, missing_value, eol = "\n", num_threads = Threads.nthreads())
 Write a DataFrame to a CSV (comma-separated values) file.
 
 # Arguments
 - `x`: The DataFrame to write to the CSV file.
 - `file`: The path to the output CSV file.
-- `missingstring`: = "": The string to represent missing values in the output file. Default is an empty string.
+- `missing_value`: = "": The string to represent missing values in the output file. Default is an empty string.
 - `append`: Whether to append to the file if it already exists. Default is false.
 - `col_names`: = true: Whether to write column names as the first line of the file. Default is true.
 - `eol`: = "\n": The end-of-line character to use in the output file. Default is the newline character.
@@ -200,13 +215,13 @@ julia> write_csv(df, "csvtest.csv");
 
 const docstring_write_tsv  =
 """
-    write_tsv(DataFrame, filepath; na = "", append = false, col_names = true, missingstring, eol = "\n", num_threads = Threads.nthreads())
+    write_tsv(DataFrame, filepath; na = "", append = false, col_names = true, missing_value, eol = "\n", num_threads = Threads.nthreads())
 Write a DataFrame to a TSV (tab-separated values) file.
 
 # Arguments
 - `x`: The DataFrame to write to the TSV file.
 - `file`: The path to the output TSV file.
-- `missingstring`: = "": The string to represent missing values in the output file. Default is an empty string.
+- `missing_value`: = "": The string to represent missing values in the output file. Default is an empty string.
 - `append`: Whether to append to the file if it already exists. Default is false.
 - `col_names`: = true: Whether to write column names as the first line of the file. Default is true.
 - `eol`: = "\n": The end-of-line character to use in the output file. Default is the newline character.
@@ -222,7 +237,7 @@ julia> write_tsv(df, "tsvtest.tsv");
 
 const docstring_read_table =
 """
-    read_table(file; col_names=true, skip=0, n_max=Inf, comment=nothing, col_select, missingstring="", kwargs...)
+    read_table(file; col_names=true, skip=0, n_max=Inf, comment=nothing, col_select, missing_value="", kwargs...)
 
 Read a table from a file where columns are separated by any amount of whitespace, processing it into a DataFrame.
 
@@ -233,7 +248,7 @@ Read a table from a file where columns are separated by any amount of whitespace
 - `n_max`: The maximum number of lines to read from the file, after skipping. Inf means read all lines.
 - `col_select`: Optional vector of symbols or strings to select which columns to load.
 - `comment`: A character or string indicating the start of a comment. Lines starting with this character are ignored.
-- `missingstring`: The string that represents missing values in the table.
+- `missing_value`: The string that represents missing values in the table.
 - `kwargs`: Additional keyword arguments passed to CSV.File.
 # Examples
 ```jldoctest 
@@ -262,7 +277,7 @@ Write a DataFrame to a file, allowing for customization of the delimiter and oth
 - `x`: The DataFrame to write to a file.
 - `file`: The path to the file where the DataFrame will be written.
 -delim: Character to use as the field delimiter. The default is tab ('\t'), making it a TSV (tab-separated values) file by default, but can be changed to accommodate other formats.
-- `missingstring`: The string to represent missing data in the output file.
+- `missing_value`: The string to represent missing data in the output file.
 - `append`: Whether to append to the file if it already exists. If false, the file will be overwritten.
 - `col_names`: Whether to write column names as the first line of the file. If appending to an existing file with append = true, column names will not be written regardless of this parameter's value.
 - `eol`: The end-of-line character to use in the file. Defaults to "\n".
@@ -278,7 +293,7 @@ julia> write_table(df, "tabletest.txt");
 
 const docstring_read_xlsx =
 """
-    read_xlsx(path; sheet, range, col_names, col_types, missingstring, trim_ws, skip, n_max, guess_max)
+    read_xlsx(path; sheet, range, col_names, col_types, missing_value, trim_ws, skip, n_max, guess_max)
 Read data from an Excel file into a DataFrame.
 
 # Arguments
@@ -287,7 +302,7 @@ Read data from an Excel file into a DataFrame.
 - `range`: Specifies a specific range of cells to be read from the sheet. If nothing, the entire sheet is read.
 - `col_names`: Indicates whether the first row of the specified range should be treated as column names. If false, columns will be named automatically.
 - `col_types`: Allows specifying column types explicitly. Can be a single type applied to all columns, a list or a dictionary mapping column names or indices to types. If nothing, types will be inferred.
-- `missingstring`: The value or vector that represents missing values in the Excel file.
+- `missing_value`: The value or vector that represents missing values in the Excel file.
 - `trim_ws`: Whether to trim leading and trailing whitespace from cells in the Excel file.
 - `skip`: Number of rows to skip at the beginning of the sheet or range before reading data.
 - `n_max`: The maximum number of rows to read from the sheet or range, after skipping. Inf means read all available rows.
@@ -303,7 +318,7 @@ julia> df2 = DataFrame(AA=["aa", "bb"], AB=[10.1, 10.2]);
 
 julia> write_xlsx(("REPORT_A" => df, "REPORT_B" => df2); path="xlsxtest.xlsx", overwrite = true);
 
-julia> read_xlsx("xlsxtest.xlsx", sheet = "REPORT_A", skip = 1, n_max = 4, missingstring = [2])
+julia> read_xlsx("xlsxtest.xlsx", sheet = "REPORT_A", skip = 1, n_max = 4, missing_value = [2])
 3×3 DataFrame
  Row │ integers  strings               floats   
      │ Int64?    String?               Float64? 
