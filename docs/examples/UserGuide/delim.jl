@@ -29,7 +29,7 @@ read_csv("https://raw.githubusercontent.com/TidierOrg/TidierFiles.jl/main/testin
 # - `escape_double`: Interpret two consecutive quote characters as a single quote. Default is `true`.
 # - `col_types`: Optional specification of column types using a Dict. Default is `nothing` (types are inferred).
 # - `num_threads`: Number of threads to use for parallel execution. Default is 1 for `read_csv` and the number of available threads for `read_tsv` and `read_delim`.
-
+# - `kwarg`: any CSV.jl argument can be passed to any of the above functions with correct syntax, and it will be supported. 
 # The functions return a DataFrame containing the parsed data from the file.
 
 # ## `write_csv` and `write_tsv`
