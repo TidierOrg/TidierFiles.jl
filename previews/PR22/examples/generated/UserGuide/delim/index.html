@@ -607,6 +607,7 @@
 <li><code>escape_double</code>: Interpret two consecutive quote characters as a single quote. Default is <code>true</code>.</li>
 <li><code>col_types</code>: Optional specification of column types using a Dict. Default is <code>nothing</code> (types are inferred).</li>
 <li><code>num_threads</code>: Number of threads to use for parallel execution. Default is 1 for <code>read_csv</code> and the number of available threads for <code>read_tsv</code> and <code>read_delim</code>.</li>
+<li><code>kwarg</code>: any CSV.jl argument can be passed to any of the above functions with correct syntax, and it will be supported.</li>
 </ul>
 <p>The functions return a DataFrame containing the parsed data from the file.</p>
 <p><a id="write_csv-and-write_tsv"></a></p>
