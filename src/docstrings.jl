@@ -101,7 +101,6 @@ Reads a delimited file or URL into a DataFrame, with options to specify delimite
 - `col_types`: Optional Dict to allow for column type specification
 - `missing_value`: String that represents missing values in the CSV. Default is "", can be set to a vector of multiple items.
 - `escape_double`: Indicates whether to interpret two consecutive quote characters as a single quote in the data. Default is true.
-- `col_types`: An optional specification of column types, can be a single type applied to all columns, or a collection of types with one for each column. Default is nothing (types are inferred).
 - `num_threads`: specifies the number of concurrent tasks or threads to use for processing, allowing for parallel execution. Default is the number of available threads.
 
 # Examples
@@ -302,7 +301,7 @@ Read data from an Excel file into a DataFrame.
 - `range`: Specifies a specific range of cells to be read from the sheet. If nothing, the entire sheet is read.
 - `col_names`: Indicates whether the first row of the specified range should be treated as column names. If false, columns will be named automatically.
 - `col_types`: Allows specifying column types explicitly. Can be a single type applied to all columns, a list or a dictionary mapping column names or indices to types. If nothing, types will be inferred.
-- `missing_value`: The value or vector that represents missing values in the Excel file.
+- `missing_value`: The value or vector that represents missing values in the Excel file. Unlike CSV.jl based functions, everything does not need to be written as a string
 - `trim_ws`: Whether to trim leading and trailing whitespace from cells in the Excel file.
 - `skip`: Number of rows to skip at the beginning of the sheet or range before reading data.
 - `n_max`: The maximum number of rows to read from the sheet or range, after skipping. Inf means read all available rows.
