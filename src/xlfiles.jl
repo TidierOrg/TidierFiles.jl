@@ -46,7 +46,7 @@ function read_xlsx(
     sheet = nothing,
     range = nothing,
     col_names = true,
-    missingstring = "",
+    missing_value = "",
     trim_ws = true,
     skip = 0,
     n_max = Inf
@@ -87,8 +87,8 @@ function read_xlsx(
     end
 
     # Replace missing strings with `missing` if applicable
-    if !isempty(missingstring)
-        for missing_value in missingstring
+    if !isempty(missing_value)
+        for missing_value in missing_value
             for col in names(data)
                 data[!, col] = replace(data[!, col], missing_value => missing)
             end

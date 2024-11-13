@@ -31,15 +31,18 @@ $docstring_read_csv
 """
 function read_csv(files;
                   delim=',',
+                  decimal='.',
                   col_names=true,
                   skip=0,
                   n_max=Inf,
                   col_select=nothing,
                   comment=nothing,
-                  missingstring="",
+                  missing_value="",
                   escape_double=true,
                   ntasks::Int = Threads.nthreads(),
-                  num_threads::Union{Int, Nothing}=nothing)
+                  num_threads::Union{Int, Nothing}=nothing, 
+                  col_types = nothing,
+                  kwargs...)  # Catch any other keyword arguments
 
     # Normalize input to always be a vector of files
     file_list = (typeof(files) <: AbstractString) ? [files] : files
@@ -53,21 +56,24 @@ function read_csv(files;
     # Calculate skipto and header
     skipto = skip + (col_names === true ? 1 : 0)
 
-    # Prepare CSV reading options
-    read_options = (
-        delim = delim,
-        header = col_names === true ? 1 : 0,
-        skipto = skipto + 1,
-        footerskip = 0,
-        select = col_select,
-        limit = limit,
-        comment = comment,
-        missingstring = missingstring,
-        escapechar = escape_double ? '"' : '\\',
-        quotechar = '"',
-        normalizenames = false,
-        ntasks = effective_ntasks > 1
+    read_options = Dict(
+        :delim => delim,
+        :decimal => decimal,
+        :header => col_names === true ? 1 : 0,
+        :skipto => skipto + 1,
+        :footerskip => 0,
+        :select => col_select,
+        :limit => limit,
+        :comment => comment,
+        :missingstring => missing_value,
+        :escapechar => escape_double ? '"' : '\\',
+        :quotechar => '"',
+        :ntasks => effective_ntasks > 1, 
+        :types => col_types
     )
+
+    # Merge additional keyword arguments into the read_options dictionary
+    merge!(read_options, kwargs)
 
     # Initialize an empty DataFrame
     final_df = DataFrame()
@@ -94,22 +100,24 @@ function read_csv(files;
     return final_df
 end
 
+
 """
 $docstring_read_delim
 """
 function read_delim(files;
-                    delim='\t',
-                    decimal='.',
-                    col_names=true,
-                    skip=0,
-                    n_max=Inf,
-                    groupmark=nothing,
-                    col_select=nothing,
-                    comment=nothing,
-                    missingstring="",
-                    escape_double=true,
-                    ntasks::Int = Threads.nthreads(),
-                    num_threads::Union{Int, Nothing}=nothing)
+                  delim=',',
+                  decimal='.',
+                  col_names=true,
+                  skip=0,
+                  n_max=Inf,
+                  col_select=nothing,
+                  comment=nothing,
+                  missing_value="",
+                  escape_double=true,
+                  ntasks::Int = Threads.nthreads(),
+                  num_threads::Union{Int, Nothing}=nothing, 
+                  col_types = nothing,
+                  kwargs...) 
 
     # Normalize input to always be a vector of files
     file_list = (typeof(files) <: AbstractString) ? [files] : files
@@ -124,22 +132,23 @@ function read_delim(files;
     skipto = skip + (col_names === true ? 1 : 0)
 
     # Prepare CSV reading options
-    read_options = (
-        delim = delim,
-        decimal = decimal,
-        header = col_names === true ? 1 : 0,
-        skipto = skipto + 1,
-        select = col_select,
-        groupmark = groupmark,
-        footerskip = 0,
-        limit = limit,
-        comment = comment,
-        missingstring = missingstring,
-        escapechar = escape_double ? '"' : '\\',
-        quotechar = '"',
-        normalizenames = false,
-        ntasks = effective_ntasks > 1
+    read_options = Dict(
+        :delim => delim,
+        :decimal => decimal,
+        :header => col_names === true ? 1 : 0,
+        :skipto => skipto + 1,
+        :select => col_select,
+        :footerskip => 0,
+        :limit => limit,
+        :comment => comment,
+        :missingstring => missing_value,
+        :escapechar => escape_double ? '"' : '\\',
+        :quotechar => '"',
+        :normalizenames => false,
+        :ntasks => effective_ntasks > 1,
+        :types => col_types
     )
+    merge!(read_options, kwargs)
 
     # Initialize an empty DataFrame
     final_df = DataFrame()
@@ -172,15 +181,19 @@ $docstring_read_tsv
 """
 function read_tsv(files;
                   delim='\t',
+                  decimal='.',
                   col_names=true,
                   skip=0,
                   n_max=Inf,
                   col_select=nothing,
                   comment=nothing,
-                  missingstring="",
+                  missing_value="",
                   escape_double=true,
                   ntasks::Int = Threads.nthreads(),
-                  num_threads::Union{Int, Nothing}=nothing)
+                  num_threads::Union{Int, Nothing}=nothing,
+                  col_types = nothing,
+                  groupmark=nothing,
+                  kwargs...)
 
     # Normalize input to always be a vector of files
     file_list = (typeof(files) <: AbstractString) ? [files] : files
@@ -194,21 +207,26 @@ function read_tsv(files;
     # Calculate skipto and header
     skipto = skip + (col_names === true ? 1 : 0)
 
-    # Prepare CSV reading options
-    read_options = (
-        delim = delim,
-        header = col_names === true ? 1 : 0,
-        skipto = skipto + 1,
-        footerskip = 0,
-        limit = limit,
-        select = col_select,
-        comment = comment,
-        missingstring = missingstring,
-        escapechar = escape_double ? '"' : '\\',
-        quotechar = '"',
-        normalizenames = false,
-        ntasks = effective_ntasks > 1
+    read_options = Dict(
+        :delim => delim,
+        :decimal => decimal,
+        :header => col_names === true ? 1 : 0,
+        :skipto => skipto + 1,
+        :select => col_select,
+        :groupmark => groupmark,
+        :footerskip => 0,
+        :limit => limit,
+        :comment => comment,
+        :missingstring => missing_value,
+        :escapechar => escape_double ? '"' : '\\',
+        :quotechar => '"',
+        :normalizenames => false,
+        :ntasks => effective_ntasks > 1,
+        :types => col_types
     )
+
+    # Merge additional keyword arguments into the read_options dictionary
+    merge!(read_options, kwargs)
 
     # Initialize an empty DataFrame
     final_df = DataFrame()
@@ -248,10 +266,13 @@ function read_csv2(files;
                   n_max=Inf,
                   col_select=nothing,
                   comment=nothing,
-                  missingstring="",
+                  missing_value="",
                   escape_double=true,
                   ntasks::Int = Threads.nthreads(),
-                  num_threads::Union{Int, Nothing}=nothing)
+                  num_threads::Union{Int, Nothing}=nothing,
+                  col_types = nothing,
+                  kwargs...
+                  )
 
     # Normalize input to always be a vector of files
     file_list = (typeof(files) <: AbstractString) ? [files] : files
@@ -266,22 +287,25 @@ function read_csv2(files;
     skipto = skip + (col_names === true ? 1 : 0)
 
     # Prepare CSV reading options
-    read_options = (
-        delim = delim,
-        decimal = decimal,
-        header = col_names === true ? 1 : 0,
-        groupmark = groupmark,
-        skipto = skipto + 1,
-        footerskip = 0,
-        select = col_select,
-        limit = limit,
-        comment = comment,
-        missingstring = missingstring,
-        escapechar = escape_double ? '"' : '\\',
-        quotechar = '"',
-        normalizenames = false,
-        ntasks = effective_ntasks > 1
+    read_options = Dict(
+        :delim => delim,
+        :decimal => decimal,
+        :header => col_names === true ? 1 : 0,
+        :skipto => skipto + 1,
+        :select => col_select,
+        :groupmark => groupmark,
+        :footerskip => 0,
+        :limit => limit,
+        :comment => comment,
+        :missingstring => missing_value,
+        :escapechar => escape_double ? '"' : '\\',
+        :quotechar => '"',
+        :normalizenames => false,
+        :ntasks => effective_ntasks > 1,
+        :types => col_types
     )
+    
+    merge!(read_options, kwargs)
 
     # Initialize an empty DataFrame
     final_df = DataFrame()
@@ -324,7 +348,7 @@ function read_table(file;
         n_max=Inf, 
         comment=nothing, 
         col_select=nothing,
-        missingstring="",
+        missing_value="",
         kwargs...)
     # Open the file and preprocess the lines
     processed_lines, header = open(file, "r") do io
@@ -367,7 +391,7 @@ function read_table(file;
     df = CSV.File(IOBuffer(join(processed_lines, "\n")); 
                   delim=' ', 
                   header=header_option,  # Pass correct header
-                  missingstring=missingstring,
+                  missingstring=missing_value,
                   select=col_select,
                   kwargs...) |> DataFrame
 
@@ -380,7 +404,7 @@ $docstring_write_csv
 function write_csv(
     x::DataFrame,
     file::String;
-    missingstring::String = "NA",
+    missing_value::String = "NA",
     append::Bool = false,
     col_names::Bool = true,
     eol::String = "\n",
@@ -392,7 +416,7 @@ function write_csv(
         x,
         append = append,
         header = col_names && !append,
-        missingstring = missingstring,
+        missingstring = missing_value,
         newline = eol,
         threaded = num_threads > 1    )
 end
@@ -403,7 +427,7 @@ $docstring_write_tsv
 function write_tsv(
     x::DataFrame,
     file::String;
-    missingstring::String = "",
+    missing_value::String = "",
     append::Bool = false,
     col_names::Bool = true,
     eol::String = "\n",
@@ -416,7 +440,7 @@ function write_tsv(
         delim = '\t',  # Use tab as the delimiter for TSV
         append = append,
         header = col_names && !append,
-        missingstring = missingstring,
+        missingstring = missing_value,
         newline = eol,
         threaded = num_threads > 1)
 end
@@ -428,7 +452,7 @@ function write_table(
     x::DataFrame,
     file::String;
     delim::Char = '\t',  # Default to TSV, but allow flexibility
-    missingstring::String = "",
+    missing_value::String = "",
     append::Bool = false,
     col_names::Bool = true,
     eol::String = "\n",
@@ -441,7 +465,7 @@ function write_table(
         delim = delim,  # Flexible delimiter based on argument
         append = append,
         header = col_names && !append,
-        missingstring = missingstring,
+        missingstring = missing_value,
         newline = eol,
         threaded = num_threads > 1)
 end

@@ -45,7 +45,7 @@ df = DataFrame(
 
 write_csv(df, "testing.csv" , col_names = true)
 
-read_csv("testing.csv", missingstring=["40.5", "10.2"])
+read_csv("testing.csv", missing_value=["40.5", "10.2"])
 ```
 
 ```
@@ -61,7 +61,7 @@ read_csv("testing.csv", missingstring=["40.5", "10.2"])
 
 The file reading functions include the following keyword arguments:
 - `path`
-- `missingstring`
+- `missing_value`
 - `col_names`
 - `col_select`
 - `num_threads`
@@ -72,7 +72,7 @@ The file reading functions include the following keyword arguments:
 The path can be a file available either locally or on the web.
 
 ```julia
-read_csv("https://raw.githubusercontent.com/TidierOrg/TidierFiles.jl/main/testing_files/csvtest.csv", skip = 2, n_max = 3, col_select = ["ID", "Score"], missingstring = ["4"])
+read_csv("https://raw.githubusercontent.com/TidierOrg/TidierFiles.jl/main/testing_files/csvtest.csv", skip = 2, n_max = 3, col_select = ["ID", "Score"], missing_value = ["4"])
 ```
 ```
 3×2 DataFrame
