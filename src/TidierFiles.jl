@@ -404,7 +404,7 @@ $docstring_write_csv
 function write_csv(
     x::DataFrame,
     file::String;
-    missing_value::String = "NA",
+    missing_value::String = "",
     append::Bool = false,
     col_names::Bool = true,
     eol::String = "\n",
