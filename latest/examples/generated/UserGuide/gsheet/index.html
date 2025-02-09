@@ -13,10 +13,10 @@
       
       
       
-        <link rel="prev" href="../Arrow/">
+        <link rel="prev" href="../r_files/">
       
       
-        <link rel="next" href="../r_files/">
+        <link rel="next" href="../../../../reference/">
       
       
       <link rel="icon" href="../../../../assets/images/favicon.png">
@@ -24,7 +24,7 @@
     
     
       
-        <title>Parquet Files - TidierFiles.jl</title>
+        <title>Google Sheets - TidierFiles.jl</title>
       
     
     
@@ -80,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#read_parquet" class="md-skip">
+        <a href="#secrets" class="md-skip">
           Skip to content
         </a>
       
@@ -115,7 +115,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Parquet Files
+              Google Sheets
             
           </span>
         </div>
@@ -372,29 +372,10 @@
       
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    Parquet Files
-    
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../parquet/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -404,42 +385,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#read_parquet" class="md-nav__link">
-    <span class="md-ellipsis">
-      read_parquet
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#write_parquet" class="md-nav__link">
-    <span class="md-ellipsis">
-      write_parquet
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -469,10 +414,29 @@
       
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../gsheet/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Google Sheets
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -482,6 +446,60 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#secrets" class="md-nav__link">
+    <span class="md-ellipsis">
+      Secrets
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#authorization" class="md-nav__link">
+    <span class="md-ellipsis">
+      Authorization
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reading" class="md-nav__link">
+    <span class="md-ellipsis">
+      Reading
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#read-a-particular-sheet" class="md-nav__link">
+    <span class="md-ellipsis">
+      Read a particular sheet
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -532,18 +550,36 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#read_parquet" class="md-nav__link">
+  <a href="#secrets" class="md-nav__link">
     <span class="md-ellipsis">
-      read_parquet
+      Secrets
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#write_parquet" class="md-nav__link">
+  <a href="#authorization" class="md-nav__link">
     <span class="md-ellipsis">
-      write_parquet
+      Authorization
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reading" class="md-nav__link">
+    <span class="md-ellipsis">
+      Reading
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#read-a-particular-sheet" class="md-nav__link">
+    <span class="md-ellipsis">
+      Read a particular sheet
     </span>
   </a>
   
@@ -565,31 +601,51 @@
 
 
 
-  <h1>Parquet Files</h1>
+  <h1>Google Sheets</h1>
 
-<div><p>Parquet file reading and writing is powered by Parquet2.jl</p>
-<p><a id="read_parquet"></a></p>
-<p><a id="read_parquet-1"></a></p>
-<h2 id="read_parquet"><code>read_parquet</code><a class="headerlink" href="#read_parquet" title="Permanent link">¤</a></h2>
-<p><code>read_parquet(path; col_names=true, skip=0, n_max=Inf, col_select=nothing)</code></p>
-<p>This function reads a Parquet (.parquet) file into a DataFrame. The arguments are:</p>
-<ul>
-<li><code>path</code>: The path or vector of paths or URLs to the .parquet file.</li>
-<li><code>col_names</code>: Indicates if the first row of the file is used as column names. Default is <code>true</code>.</li>
-<li><code>skip</code>: Number of initial rows to skip before reading data. Default is 0.</li>
-<li><code>n_max</code>: Maximum number of rows to read. Default is <code>Inf</code> (read all rows).</li>
-<li><code>col_select</code>: Optional vector of symbols or strings to select which columns to load. Default is <code>nothing</code> (load all columns).</li>
-</ul>
-<p><a id="write_parquet"></a></p>
-<p><a id="write_parquet-1"></a></p>
-<h2 id="write_parquet"><code>write_parquet</code><a class="headerlink" href="#write_parquet" title="Permanent link">¤</a></h2>
-<p><code>write_parquet(df, path)</code></p>
-<p>This function writes a DataFrame to a Parquet (.parquet) file. The arguments are:</p>
-<ul>
-<li><code>df</code>: The DataFrame to be written to a file.</li>
-<li><code>path</code>: The path where the .parquet file will be created. If a file at this path already exists, it will be overwritten.</li>
-<li>Additional arguments for writing parquet files are not outlined here, but should be available through the same interface of <code>Parquet2.writefile</code>. Refer to <a href="https://expandingman.gitlab.io/Parquet2.jl/#Writing-Data">documentation</a> at their page for further explanation.</li>
-</ul>
+<div><p>The <code>read_gsheet</code> function allows enables TidierFiles to read Google Sheets in as DataFrames. <code>read_gsheet</code> supports various arguements in line with other TidierFiles readers.</p>
+<p><a id="Secrets"></a></p>
+<p><a id="Secrets-1"></a></p>
+<h2 id="secrets">Secrets<a class="headerlink" href="#secrets" title="Permanent link">¤</a></h2>
+<p>At this time, to use <code>read_gsheet</code> the user will need to have a client ID and and client secret. To get these, go to the Google Cloud Console -&gt; APIs and Services -&gt; Credentials (in sidebar) -&gt; Create Credentials (at the top) -&gt; OAuth Client ID (choose for desktop) -&gt; save that client id and client secret. In the future, we hope to remove this need, so that authorization can happen more simply.</p>
+<p><a id="Authorization"></a></p>
+<p><a id="Authorization-1"></a></p>
+<h2 id="authorization">Authorization<a class="headerlink" href="#authorization" title="Permanent link">¤</a></h2>
+<p>The browser will ask you to allow access, after clicking allow, the browser will intruct you to close the browser window. The connection is stored globally for the functions to access.</p>
+<div class="highlight"><pre><span></span><code>client_id = "527478*******3dh26e.apps.googleusercontent.com"
+client_secret = "GO******j9yG"
+connect_gsheet(client_id, client_secret)
+</code></pre></div>
+<p><a id="Reading"></a></p>
+<p><a id="Reading-1"></a></p>
+<h2 id="reading">Reading<a class="headerlink" href="#reading" title="Permanent link">¤</a></h2>
+<p>File paths can either be be full links, or spreadsheet ids The sheet name defaults to <code>Sheet1</code> but can be changed as shown below.</p>
+<div class="highlight"><pre><span></span><code>spreadsheet_id = "1QbFtedQs56oIO1bjQKSwdpcWsMpo3r_04ZIrdg9_fFM"
+read_file(spreadsheet_id)
+4×4 DataFrame
+ Row │ this       is       test     sheet
+     │ Float64?   String?  String?  String?
+─────┼──────────────────────────────────────
+   1 │       3.0  missing  missing  missing
+   2 │ missing    COLUMNS  missing  missing
+   3 │ missing    missing  ARE      missing
+   4 │ missing    missing  missing  STRINGS
+</code></pre></div>
+<p><a id="Read-a-particular-sheet"></a></p>
+<p><a id="Read-a-particular-sheet-1"></a></p>
+<h2 id="read-a-particular-sheet">Read a particular sheet<a class="headerlink" href="#read-a-particular-sheet" title="Permanent link">¤</a></h2>
+<div class="highlight"><pre><span></span><code>public_sheet = "https://docs.google.com/spreadsheets/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/edit?gid=0#gid=0"
+read_gsheet(public_sheet, sheet="Class Data", col_names=true, n_max=5)
+5×6 DataFrame
+ Row │ Student Name  Gender  Class Level   Home State  Major    Extracurricular Activity
+     │ String        String  String        String      String   String
+─────┼───────────────────────────────────────────────────────────────────────────────────
+   1 │ Alexandra     Female  4. Senior     CA          English  Drama Club
+   2 │ Andrew        Male    1. Freshman   SD          Math     Lacrosse
+   3 │ Anna          Female  1. Freshman   NC          English  Basketball
+   4 │ Becky         Female  2. Sophomore  SD          Art      Baseball
+   5 │ Benjamin      Male    4. Senior     WI          English  Basketball
+</code></pre></div>
 <hr>
 <p><em>This page was generated using <a href="https://github.com/fredrikekre/Literate.jl">Literate.jl</a>.</em></p></div>
 
@@ -627,7 +683,7 @@
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../Arrow/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Arrow Files">
+          <a href="../r_files/" class="md-footer__link md-footer__link--prev" aria-label="Previous: R Data Files">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -637,20 +693,20 @@
                 Previous
               </span>
               <div class="md-ellipsis">
-                Arrow Files
+                R Data Files
               </div>
             </div>
           </a>
         
         
           
-          <a href="../r_files/" class="md-footer__link md-footer__link--next" aria-label="Next: R Data Files">
+          <a href="../../../../reference/" class="md-footer__link md-footer__link--next" aria-label="Next: Reference">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                R Data Files
+                Reference
               </div>
             </div>
             <div class="md-footer__button md-icon">
