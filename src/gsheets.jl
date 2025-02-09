@@ -90,14 +90,25 @@ function connect_gsheet(client_id::String, client_secret::String; redirect_uri::
     return GSHEET_AUTH[]
 end
 
+function parse_value(value::String, missing_value::String)
+    if isempty(value)
+        return missing
+    elseif tryparse(Float64, value) !== nothing
+        return parse(Float64, value)
+    else
+        return value
+    end
+end
+
 """
 $docstring_read_gsheet
 """
-function read_gsheet(spreadsheet_id::String; 
+function read_gsheet(spreadsheet_id::String;
                      sheet::String="Sheet1", 
                      range::String="", 
                      col_names::Bool=true, 
-                     skip::Int=0, n_max::Int=Inf, 
+                     skip::Int=0, 
+                     n_max::Int=10000, 
                      col_select=nothing, 
                      missing_value::String="")
 
@@ -136,16 +147,6 @@ function read_gsheet(spreadsheet_id::String;
     max_length = maximum(length(row) for row in rows)
   
     padded_rows = [vcat(row, fill(missing_value, max_length - length(row))) for row in rows]
-  
-    function parse_value(value::String, missing_value::String)
-        if isempty(value)
-            return missing
-        elseif tryparse(Float64, value) !== nothing
-            return parse(Float64, value)
-        else
-            return value
-        end
-    end
   
     parsed_rows = [[parse_value(cell, missing_value) for cell in row] for row in padded_rows]
   
