@@ -76,7 +76,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#arguemnts" class="md-skip">
+        <a href="#secrets" class="md-skip">
           Skip to content
         </a>
       
@@ -452,27 +452,36 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#arguemnts" class="md-nav__link">
+  <a href="#secrets" class="md-nav__link">
     <span class="md-ellipsis">
-      Arguemnts
+      Secrets
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#allow-then-close-the-browser-window" class="md-nav__link">
+  <a href="#use" class="md-nav__link">
     <span class="md-ellipsis">
-      Allow then close the browser window
+      Use
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#output" class="md-nav__link">
+  <a href="#the-browser-will-ask-you-to-allow-access-after-clicking-allow-the-browser-will-intruct-you-to-close-the-browser-window-the-connection-is-stored-globally-for-the-functions-to-access" class="md-nav__link">
     <span class="md-ellipsis">
-      Output:
+      The browser will ask you to allow access, after clicking allow, the browser will intruct you to close the browser window. The connection is stored globally for the functions to access.
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#full-google-sheet-links-are-also-supported" class="md-nav__link">
+    <span class="md-ellipsis">
+      Full google sheet links are also supported.
     </span>
   </a>
   
@@ -648,19 +657,23 @@
 
 
 <div><p>The read_gsheet function allows you to read data from a Google Sheet into a DataFrame. This function supports various parameters to customize the data retrieval process. Below are the details of the parameters and examples of how to use the function.</p>
-<p><a id="Arguemnts"></a></p>
-<p><a id="Arguemnts-1"></a></p>
-<h2 id="arguemnts">Arguemnts<a class="headerlink" href="#arguemnts" title="Permanent link">¤</a></h2>
-<p>auth: Authentication object obtained from connect<em>gsheet function using client</em>id and client<em>secret. spreadsheet</em>id: The unique identifier of the Google Sheet. range (optional): The range of cells to read from the sheet (e.g., "A1:D10"). col<em>names (optional): Boolean indicating whether the first row should be used as column names. Default is true. skip (optional): Number of rows to skip before starting to read data. Default is 0. n</em>max (optional): Maximum number of rows to read. Default is 1000. col<em>select (optional): List of column names or indices to select specific columns. missing</em>value (optional): Value to represent missing data. sheet (optional): Name of the sheet to read from if the spreadsheet contains multiple sheets. Examples Basic Usage client<em>id = "527478</em><strong><em>*</em><em>3dh26e.apps.googleusercontent.com" client</em>secret = "GO</strong>****j9yG"</p>
-<p>auth = connect<em>gsheet(client</em>id, client_secret)</p>
-<p><a id="Allow-then-close-the-browser-window"></a></p>
-<p><a id="Allow-then-close-the-browser-window-1"></a></p>
-<h1 id="allow-then-close-the-browser-window">Allow then close the browser window<a class="headerlink" href="#allow-then-close-the-browser-window" title="Permanent link">¤</a></h1>
+<p><a id="Secrets"></a></p>
+<p><a id="Secrets-1"></a></p>
+<h2 id="secrets">Secrets<a class="headerlink" href="#secrets" title="Permanent link">¤</a></h2>
+<p>At this time, to use <code>read_gsheet</code> the user will need to have a client ID and and client secret. To get these, go to the Google Cloud Console -&gt; APIs and Services -&gt; Credentials (in sidebar) -&gt; Create Credentials (at the top) -&gt; OAuth Client ID (choose for desktop) -&gt; save that client id and client secret. In the future, we hope to remove this need, so that authorization can happen more simply.</p>
+<p><a id="Use"></a></p>
+<p><a id="Use-1"></a></p>
+<h2 id="use">Use<a class="headerlink" href="#use" title="Permanent link">¤</a></h2>
+<p>client<em>id = "527478</em><strong><em>*</em><em>3dh26e.apps.googleusercontent.com" client</em>secret = "GO</strong>****j9yG"</p>
+<p>connect<em>gsheet(client</em>id, client_secret)</p>
+<p><a id="The-browser-will-ask-you-to-allow-access,-after-clicking-allow,-the-browser-will-intruct-you-to-close-the-browser-window.-The-connection-is-stored-globally-for-the-functions-to-access."></a></p>
+<p><a id="The-browser-will-ask-you-to-allow-access,-after-clicking-allow,-the-browser-will-intruct-you-to-close-the-browser-window.-The-connection-is-stored-globally-for-the-functions-to-access.-1"></a></p>
+<h1 id="the-browser-will-ask-you-to-allow-access-after-clicking-allow-the-browser-will-intruct-you-to-close-the-browser-window-the-connection-is-stored-globally-for-the-functions-to-access">The browser will ask you to allow access, after clicking allow, the browser will intruct you to close the browser window. The connection is stored globally for the functions to access.<a class="headerlink" href="#the-browser-will-ask-you-to-allow-access-after-clicking-allow-the-browser-will-intruct-you-to-close-the-browser-window-the-connection-is-stored-globally-for-the-functions-to-access" title="Permanent link">¤</a></h1>
 <p>spreadsheet<em>id = "1QbFtedQs56oIO1bjQKSwdpcWsMpo3r</em>04ZIrdg9_fFM"</p>
-<p>df = read<em>gsheet(auth, spreadsheet</em>id, col<em>names=true, n</em>max=5)</p>
-<p><a id="Output:"></a></p>
-<p><a id="Output:-1"></a></p>
-<h1 id="output">Output:<a class="headerlink" href="#output" title="Permanent link">¤</a></h1>
+<p><a id="Full-google-sheet-links-are-also-supported."></a></p>
+<p><a id="Full-google-sheet-links-are-also-supported.-1"></a></p>
+<h1 id="full-google-sheet-links-are-also-supported">Full google sheet links are also supported.<a class="headerlink" href="#full-google-sheet-links-are-also-supported" title="Permanent link">¤</a></h1>
+<p>df = read<em>gsheet(spreadsheet</em>id, col<em>names=true, n</em>max=5)</p>
 <p><a id="4-DataFrame"></a></p>
 <p><a id="4-DataFrame-1"></a></p>
 <h1 id="44-dataframe">4×4 DataFrame<a class="headerlink" href="#44-dataframe" title="Permanent link">¤</a></h1>
@@ -685,8 +698,8 @@
 <p><a id="missing-missing-missing-strings"></a></p>
 <p><a id="missing-missing-missing-strings-1"></a></p>
 <h1 id="4-missing-missing-missing-strings">4 │ missing    missing  missing  strings<a class="headerlink" href="#4-missing-missing-missing-strings" title="Permanent link">¤</a></h1>
-<p>Reading from a Public Google Sheet</p>
-<p>public<em>id = "1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms" read</em>gsheet(auth, public<em>id, sheet="Class Data", col</em>names=true, n_max=5)</p>
+<p>Reading from a Public Google Sheet at this time still requires authorization to be complete.</p>
+<p>public<em>sheet = "https://docs.google.com/spreadsheets/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/edit?gid=0#gid=0" read</em>gsheet(public<em>sheet, sheet="Class Data", col</em>names=true, n_max=5)</p>
 <p><a id="6-DataFrame"></a></p>
 <p><a id="6-DataFrame-1"></a></p>
 <h1 id="56-dataframe">5×6 DataFrame<a class="headerlink" href="#56-dataframe" title="Permanent link">¤</a></h1>
