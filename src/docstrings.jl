@@ -721,9 +721,8 @@ This will contain the `client_id` and `client_secret`
 - An instance of `GSheetAuth` containing the client ID, client secret, redirect URI, and access token.
 
 # Example
-```
-connect_gsheet("your_client_id", "your_client_secret")
-read_gsheet("file_url_or_id")
+```julia
+julia> connect_gsheet("your_client_id", "your_client_secret")
 ```
 """
 
@@ -733,7 +732,8 @@ const docstring_read_gsheet =
                  sheet::String="Sheet1", 
                  range::String="", 
                  col_names::Bool=true, 
-                 skip::Int=0, n_max::Int=Inf, 
+                 skip::Int=0, 
+                 n_max::Int=1000, 
                  col_select=nothing, 
                  missing_value::String="")
 
@@ -750,6 +750,20 @@ Read data from a Google Sheet into a DataFrame.
 - `missing_value::String`: Value to represent missing data. Defaults to an empty string.
 
 # Examples
-```
+```julia
+julia> connect_gsheet("your_client_id", "your_client_secret")
+
+julia> public_sheet = "https://docs.google.com/spreadsheets/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/edit?gid=0#gid=0";
+
+julia> read_gsheet(public_sheet, sheet="Class Data", n_max=5)
+5×6 DataFrame
+ Row │ Student Name  Gender  Class Level   Home State  Major    Extracurricular Activity 
+     │ String        String  String        String      String   String                   
+─────┼───────────────────────────────────────────────────────────────────────────────────
+   1 │ Alexandra     Female  4. Senior     CA          English  Drama Club
+   2 │ Andrew        Male    1. Freshman   SD          Math     Lacrosse
+   3 │ Anna          Female  1. Freshman   NC          English  Basketball
+   4 │ Becky         Female  2. Sophomore  SD          Art      Baseball
+   5 │ Benjamin      Male    4. Senior     WI          English  Basketball
 ```
 """
