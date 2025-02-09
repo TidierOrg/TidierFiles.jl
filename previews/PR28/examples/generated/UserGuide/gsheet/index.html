@@ -13,6 +13,10 @@
       
       
       
+        <link rel="prev" href="../r_files/">
+      
+      
+        <link rel="next" href="../../../../reference/">
       
       
       <link rel="icon" href="../../../../assets/images/favicon.png">
@@ -20,7 +24,7 @@
     
     
       
-        <title>Gsheet - TidierFiles.jl</title>
+        <title>Google Sheets - TidierFiles.jl</title>
       
     
     
@@ -111,7 +115,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Gsheet
+              Google Sheets
             
           </span>
         </div>
@@ -410,6 +414,100 @@
       
   
   
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Google Sheets
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Google Sheets
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#secrets" class="md-nav__link">
+    <span class="md-ellipsis">
+      Secrets
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#authorization" class="md-nav__link">
+    <span class="md-ellipsis">
+      Authorization
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reading" class="md-nav__link">
+    <span class="md-ellipsis">
+      Reading
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#read-a-particular-sheet" class="md-nav__link">
+    <span class="md-ellipsis">
+      Read a particular sheet
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
   
   
     <li class="md-nav__item">
@@ -461,180 +559,27 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#use" class="md-nav__link">
+  <a href="#authorization" class="md-nav__link">
     <span class="md-ellipsis">
-      Use
+      Authorization
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#the-browser-will-ask-you-to-allow-access-after-clicking-allow-the-browser-will-intruct-you-to-close-the-browser-window-the-connection-is-stored-globally-for-the-functions-to-access" class="md-nav__link">
+  <a href="#reading" class="md-nav__link">
     <span class="md-ellipsis">
-      The browser will ask you to allow access, after clicking allow, the browser will intruct you to close the browser window. The connection is stored globally for the functions to access.
+      Reading
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#full-google-sheet-links-are-also-supported" class="md-nav__link">
+  <a href="#read-a-particular-sheet" class="md-nav__link">
     <span class="md-ellipsis">
-      Full google sheet links are also supported.
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#44-dataframe" class="md-nav__link">
-    <span class="md-ellipsis">
-      4×4 DataFrame
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#row-this-is-test-sheet" class="md-nav__link">
-    <span class="md-ellipsis">
-      Row │ this is test sheet
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#float64-string-string-string" class="md-nav__link">
-    <span class="md-ellipsis">
-      │ Float64? String? String? String?
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      ─────┼──────────────────────────────────────
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#1-30-missing-missing-missing" class="md-nav__link">
-    <span class="md-ellipsis">
-      1 │ 3.0 missing missing missing
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#2-missing-columns-missing-missing" class="md-nav__link">
-    <span class="md-ellipsis">
-      2 │ missing columns missing missing
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#3-missing-missing-are-missing" class="md-nav__link">
-    <span class="md-ellipsis">
-      3 │ missing missing are missing
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#4-missing-missing-missing-strings" class="md-nav__link">
-    <span class="md-ellipsis">
-      4 │ missing missing missing strings
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#56-dataframe" class="md-nav__link">
-    <span class="md-ellipsis">
-      5×6 DataFrame
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#row-student-name-gender-class-level-home-state-major-extracurricular-activity" class="md-nav__link">
-    <span class="md-ellipsis">
-      Row │ Student Name Gender Class Level Home State Major Extracurricular Activity
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#string-string-string-string-string-string" class="md-nav__link">
-    <span class="md-ellipsis">
-      │ String String String String String String
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      ─────┼───────────────────────────────────────────────────────────────────────────────────
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#1-alexandra-female-4-senior-ca-english-drama-club" class="md-nav__link">
-    <span class="md-ellipsis">
-      1 │ Alexandra Female 4. Senior CA English Drama Club
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#2-andrew-male-1-freshman-sd-math-lacrosse" class="md-nav__link">
-    <span class="md-ellipsis">
-      2 │ Andrew Male 1. Freshman SD Math Lacrosse
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#3-anna-female-1-freshman-nc-english-basketball" class="md-nav__link">
-    <span class="md-ellipsis">
-      3 │ Anna Female 1. Freshman NC English Basketball
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#4-becky-female-2-sophomore-sd-art-baseball" class="md-nav__link">
-    <span class="md-ellipsis">
-      4 │ Becky Female 2. Sophomore SD Art Baseball
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#5-benjamin-male-4-senior-wi-english-basketball" class="md-nav__link">
-    <span class="md-ellipsis">
-      5 │ Benjamin Male 4. Senior WI English Basketball
+      Read a particular sheet
     </span>
   </a>
   
@@ -656,77 +601,51 @@
 
 
 
-<div><p>The read_gsheet function allows you to read data from a Google Sheet into a DataFrame. This function supports various parameters to customize the data retrieval process. Below are the details of the parameters and examples of how to use the function.</p>
+  <h1>Google Sheets</h1>
+
+<div><p>The <code>read_gsheet</code> function allows enables TidierFiles to read Google Sheets in as DataFrames. <code>read_gsheet</code> supports various arguements in line with other TidierFiles readers.</p>
 <p><a id="Secrets"></a></p>
 <p><a id="Secrets-1"></a></p>
 <h2 id="secrets">Secrets<a class="headerlink" href="#secrets" title="Permanent link">¤</a></h2>
 <p>At this time, to use <code>read_gsheet</code> the user will need to have a client ID and and client secret. To get these, go to the Google Cloud Console -&gt; APIs and Services -&gt; Credentials (in sidebar) -&gt; Create Credentials (at the top) -&gt; OAuth Client ID (choose for desktop) -&gt; save that client id and client secret. In the future, we hope to remove this need, so that authorization can happen more simply.</p>
-<p><a id="Use"></a></p>
-<p><a id="Use-1"></a></p>
-<h2 id="use">Use<a class="headerlink" href="#use" title="Permanent link">¤</a></h2>
-<p>client<em>id = "527478</em><strong><em>*</em><em>3dh26e.apps.googleusercontent.com" client</em>secret = "GO</strong>****j9yG"</p>
-<p>connect<em>gsheet(client</em>id, client_secret)</p>
-<p><a id="The-browser-will-ask-you-to-allow-access,-after-clicking-allow,-the-browser-will-intruct-you-to-close-the-browser-window.-The-connection-is-stored-globally-for-the-functions-to-access."></a></p>
-<p><a id="The-browser-will-ask-you-to-allow-access,-after-clicking-allow,-the-browser-will-intruct-you-to-close-the-browser-window.-The-connection-is-stored-globally-for-the-functions-to-access.-1"></a></p>
-<h1 id="the-browser-will-ask-you-to-allow-access-after-clicking-allow-the-browser-will-intruct-you-to-close-the-browser-window-the-connection-is-stored-globally-for-the-functions-to-access">The browser will ask you to allow access, after clicking allow, the browser will intruct you to close the browser window. The connection is stored globally for the functions to access.<a class="headerlink" href="#the-browser-will-ask-you-to-allow-access-after-clicking-allow-the-browser-will-intruct-you-to-close-the-browser-window-the-connection-is-stored-globally-for-the-functions-to-access" title="Permanent link">¤</a></h1>
-<p>spreadsheet<em>id = "1QbFtedQs56oIO1bjQKSwdpcWsMpo3r</em>04ZIrdg9_fFM"</p>
-<p><a id="Full-google-sheet-links-are-also-supported."></a></p>
-<p><a id="Full-google-sheet-links-are-also-supported.-1"></a></p>
-<h1 id="full-google-sheet-links-are-also-supported">Full google sheet links are also supported.<a class="headerlink" href="#full-google-sheet-links-are-also-supported" title="Permanent link">¤</a></h1>
-<p>df = read<em>gsheet(spreadsheet</em>id, col<em>names=true, n</em>max=5)</p>
-<p><a id="4-DataFrame"></a></p>
-<p><a id="4-DataFrame-1"></a></p>
-<h1 id="44-dataframe">4×4 DataFrame<a class="headerlink" href="#44-dataframe" title="Permanent link">¤</a></h1>
-<p><a id="Row-this-is-test-sheet"></a></p>
-<p><a id="Row-this-is-test-sheet-1"></a></p>
-<h1 id="row-this-is-test-sheet">Row │ this       is       test     sheet<a class="headerlink" href="#row-this-is-test-sheet" title="Permanent link">¤</a></h1>
-<p><a id="Float64?-String?-String?-String?"></a></p>
-<p><a id="Float64?-String?-String?-String?-1"></a></p>
-<h1 id="float64-string-string-string">│ Float64?   String?  String?  String?<a class="headerlink" href="#float64-string-string-string" title="Permanent link">¤</a></h1>
-<p><a id=""></a></p>
-<p><a id="-1"></a></p>
-<h1 id="_1">─────┼──────────────────────────────────────<a class="headerlink" href="#_1" title="Permanent link">¤</a></h1>
-<p><a id="3.0-missing-missing-missing"></a></p>
-<p><a id="3.0-missing-missing-missing-1"></a></p>
-<h1 id="1-30-missing-missing-missing">1 │       3.0  missing  missing  missing<a class="headerlink" href="#1-30-missing-missing-missing" title="Permanent link">¤</a></h1>
-<p><a id="missing-columns-missing-missing"></a></p>
-<p><a id="missing-columns-missing-missing-1"></a></p>
-<h1 id="2-missing-columns-missing-missing">2 │ missing    columns  missing  missing<a class="headerlink" href="#2-missing-columns-missing-missing" title="Permanent link">¤</a></h1>
-<p><a id="missing-missing-are-missing"></a></p>
-<p><a id="missing-missing-are-missing-1"></a></p>
-<h1 id="3-missing-missing-are-missing">3 │ missing    missing  are      missing<a class="headerlink" href="#3-missing-missing-are-missing" title="Permanent link">¤</a></h1>
-<p><a id="missing-missing-missing-strings"></a></p>
-<p><a id="missing-missing-missing-strings-1"></a></p>
-<h1 id="4-missing-missing-missing-strings">4 │ missing    missing  missing  strings<a class="headerlink" href="#4-missing-missing-missing-strings" title="Permanent link">¤</a></h1>
-<p>Reading from a Public Google Sheet at this time still requires authorization to be complete.</p>
-<p>public<em>sheet = "https://docs.google.com/spreadsheets/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/edit?gid=0#gid=0" read</em>gsheet(public<em>sheet, sheet="Class Data", col</em>names=true, n_max=5)</p>
-<p><a id="6-DataFrame"></a></p>
-<p><a id="6-DataFrame-1"></a></p>
-<h1 id="56-dataframe">5×6 DataFrame<a class="headerlink" href="#56-dataframe" title="Permanent link">¤</a></h1>
-<p><a id="Row-Student-Name-Gender-Class-Level-Home-State-Major-Extracurricular-Activity"></a></p>
-<p><a id="Row-Student-Name-Gender-Class-Level-Home-State-Major-Extracurricular-Activity-1"></a></p>
-<h1 id="row-student-name-gender-class-level-home-state-major-extracurricular-activity">Row │ Student Name  Gender  Class Level   Home State  Major    Extracurricular Activity<a class="headerlink" href="#row-student-name-gender-class-level-home-state-major-extracurricular-activity" title="Permanent link">¤</a></h1>
-<p><a id="String-String-String-String-String-String"></a></p>
-<p><a id="String-String-String-String-String-String-1"></a></p>
-<h1 id="string-string-string-string-string-string">│ String        String  String        String      String   String<a class="headerlink" href="#string-string-string-string-string-string" title="Permanent link">¤</a></h1>
-<p><a id="-2"></a></p>
-<h1 id="_2">─────┼───────────────────────────────────────────────────────────────────────────────────<a class="headerlink" href="#_2" title="Permanent link">¤</a></h1>
-<p><a id="Alexandra-Female-4.-Senior-CA-English-Drama-Club"></a></p>
-<p><a id="Alexandra-Female-4.-Senior-CA-English-Drama-Club-1"></a></p>
-<h1 id="1-alexandra-female-4-senior-ca-english-drama-club">1 │ Alexandra     Female  4. Senior     CA          English  Drama Club<a class="headerlink" href="#1-alexandra-female-4-senior-ca-english-drama-club" title="Permanent link">¤</a></h1>
-<p><a id="Andrew-Male-1.-Freshman-SD-Math-Lacrosse"></a></p>
-<p><a id="Andrew-Male-1.-Freshman-SD-Math-Lacrosse-1"></a></p>
-<h1 id="2-andrew-male-1-freshman-sd-math-lacrosse">2 │ Andrew        Male    1. Freshman   SD          Math     Lacrosse<a class="headerlink" href="#2-andrew-male-1-freshman-sd-math-lacrosse" title="Permanent link">¤</a></h1>
-<p><a id="Anna-Female-1.-Freshman-NC-English-Basketball"></a></p>
-<p><a id="Anna-Female-1.-Freshman-NC-English-Basketball-1"></a></p>
-<h1 id="3-anna-female-1-freshman-nc-english-basketball">3 │ Anna          Female  1. Freshman   NC          English  Basketball<a class="headerlink" href="#3-anna-female-1-freshman-nc-english-basketball" title="Permanent link">¤</a></h1>
-<p><a id="Becky-Female-2.-Sophomore-SD-Art-Baseball"></a></p>
-<p><a id="Becky-Female-2.-Sophomore-SD-Art-Baseball-1"></a></p>
-<h1 id="4-becky-female-2-sophomore-sd-art-baseball">4 │ Becky         Female  2. Sophomore  SD          Art      Baseball<a class="headerlink" href="#4-becky-female-2-sophomore-sd-art-baseball" title="Permanent link">¤</a></h1>
-<p><a id="Benjamin-Male-4.-Senior-WI-English-Basketball"></a></p>
-<p><a id="Benjamin-Male-4.-Senior-WI-English-Basketball-1"></a></p>
-<h1 id="5-benjamin-male-4-senior-wi-english-basketball">5 │ Benjamin      Male    4. Senior     WI          English  Basketball<a class="headerlink" href="#5-benjamin-male-4-senior-wi-english-basketball" title="Permanent link">¤</a></h1>
-<p>Notes Ensure that the Google Sheet is shared publicly or that the appropriate permissions are granted for the client<em>id and client</em>secret to access the sheet. The connect<em>gsheet function must be called first to obtain the auth object required for authentication. The function handles missing values and allows for customization of the data retrieval process through various parameters. This documentation provides a basic overview and examples of how to use the read</em>gsheet function. For more advanced usage, refer to the detailed parameter descriptions and customize the function calls as needed.</p>
+<p><a id="Authorization"></a></p>
+<p><a id="Authorization-1"></a></p>
+<h2 id="authorization">Authorization<a class="headerlink" href="#authorization" title="Permanent link">¤</a></h2>
+<p>The browser will ask you to allow access, after clicking allow, the browser will intruct you to close the browser window. The connection is stored globally for the functions to access.</p>
+<div class="highlight"><pre><span></span><code>client_id = "527478*******3dh26e.apps.googleusercontent.com"
+client_secret = "GO******j9yG"
+connect_gsheet(client_id, client_secret)
+</code></pre></div>
+<p><a id="Reading"></a></p>
+<p><a id="Reading-1"></a></p>
+<h2 id="reading">Reading<a class="headerlink" href="#reading" title="Permanent link">¤</a></h2>
+<p>File paths can either be be full links, or spreadsheet ids The sheet name defaults to <code>Sheet1</code> but can be changed as shown below.</p>
+<div class="highlight"><pre><span></span><code>spreadsheet_id = "1QbFtedQs56oIO1bjQKSwdpcWsMpo3r_04ZIrdg9_fFM"
+read_file(spreadsheet_id)
+4×4 DataFrame
+ Row │ this       is       test     sheet
+     │ Float64?   String?  String?  String?
+─────┼──────────────────────────────────────
+   1 │       3.0  missing  missing  missing
+   2 │ missing    COLUMNS  missing  missing
+   3 │ missing    missing  ARE      missing
+   4 │ missing    missing  missing  STRINGS
+</code></pre></div>
+<p><a id="Read-a-particular-sheet"></a></p>
+<p><a id="Read-a-particular-sheet-1"></a></p>
+<h2 id="read-a-particular-sheet">Read a particular sheet<a class="headerlink" href="#read-a-particular-sheet" title="Permanent link">¤</a></h2>
+<div class="highlight"><pre><span></span><code>public_sheet = "https://docs.google.com/spreadsheets/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/edit?gid=0#gid=0"
+read_gsheet(public_sheet, sheet="Class Data", col_names=true, n_max=5)
+5×6 DataFrame
+ Row │ Student Name  Gender  Class Level   Home State  Major    Extracurricular Activity
+     │ String        String  String        String      String   String
+─────┼───────────────────────────────────────────────────────────────────────────────────
+   1 │ Alexandra     Female  4. Senior     CA          English  Drama Club
+   2 │ Andrew        Male    1. Freshman   SD          Math     Lacrosse
+   3 │ Anna          Female  1. Freshman   NC          English  Basketball
+   4 │ Becky         Female  2. Sophomore  SD          Art      Baseball
+   5 │ Benjamin      Male    4. Senior     WI          English  Basketball
+</code></pre></div>
 <hr>
 <p><em>This page was generated using <a href="https://github.com/fredrikekre/Literate.jl">Literate.jl</a>.</em></p></div>
 
@@ -759,6 +678,44 @@
       
         <footer class="md-footer">
   
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../r_files/" class="md-footer__link md-footer__link--prev" aria-label="Previous: R Data Files">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                R Data Files
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../../../../reference/" class="md-footer__link md-footer__link--next" aria-label="Next: Reference">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Reference
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
     
   
   <div class="md-footer-meta md-typeset">
