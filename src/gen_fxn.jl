@@ -3,7 +3,9 @@ $docstring_read_file
 """
 function read_file(filepath::String, args...; kwargs...)
     ext = lowercase(splitext(filepath)[2])
-    if ext == ".csv"
+    if ext == "" || occursin(filepath, "docs.google.com")
+        return read_gsheet(filepath, args...; kwargs...)
+    elseif ext == ".csv"
         return read_csv(filepath, args...; kwargs...)
     elseif ext == ".tsv"
         return read_tsv(filepath, args...; kwargs...)

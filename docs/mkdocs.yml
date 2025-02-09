@@ -122,4 +122,5 @@ nav:
   - "Arrow Files": "examples/generated/UserGuide/Arrow.md"
   - "Parquet Files": "examples/generated/UserGuide/parquet.md"
   - "R Data Files": "examples/generated/UserGuide/r_files.md"
+  - "Google Sheets": "examples/generated/UserGuide/gsheet.md"
   - "Reference" : "reference.md"
