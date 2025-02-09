@@ -49,7 +49,7 @@ function get_authorization_code(port::Int, auth_url::String)
     Content-Type: text/html\r
     \r
     <html><body><h1>Authorization complete</h1>
-    You can close this window.</body></html>
+    You can now read Google Sheets from TidierFiles. Feel free to close this window.</body></html>
     """
     write(sock, response)
     close(sock)

@@ -1,26 +1,20 @@
 # The read_gsheet function allows you to read data from a Google Sheet into a DataFrame. This function supports various parameters to customize the data retrieval process. Below are the details of the parameters and examples of how to use the function.
-# ## Arguemnts
-# auth: Authentication object obtained from connect_gsheet function using client_id and client_secret.
-# spreadsheet_id: The unique identifier of the Google Sheet.
-# range (optional): The range of cells to read from the sheet (e.g., "A1:D10").
-# col_names (optional): Boolean indicating whether the first row should be used as column names. Default is true.
-# skip (optional): Number of rows to skip before starting to read data. Default is 0.
-# n_max (optional): Maximum number of rows to read. Default is 1000.
-# col_select (optional): List of column names or indices to select specific columns.
-# missing_value (optional): Value to represent missing data.
-# sheet (optional): Name of the sheet to read from if the spreadsheet contains multiple sheets.
-# Examples
-# Basic Usage
+
+# ## Secrets   
+# At this time, to use `read_gsheet` the user will need to have a client ID and and client secret. 
+# To get these, go to the Google Cloud Console -> APIs and Services -> Credentials (in sidebar) -> Create Credentials (at the top) -> OAuth Client ID (choose for desktop) -> save that client id and client secret.
+# In the future, we hope to remove this need, so that authorization can happen more simply.
+
+# ## Use
 # client_id = "527478*******3dh26e.apps.googleusercontent.com"
 # client_secret = "GO******j9yG"
 # 
-# auth = connect_gsheet(client_id, client_secret)
-# # Allow then close the browser window
+# connect_gsheet(client_id, client_secret)
+# # The browser will ask you to allow access, after clicking allow, the browser will intruct you to close the browser window. The connection is stored globally for the functions to access.
 # 
 # spreadsheet_id = "1QbFtedQs56oIO1bjQKSwdpcWsMpo3r_04ZIrdg9_fFM"
-# 
-# df = read_gsheet(auth, spreadsheet_id, col_names=true, n_max=5)
-# # Output:
+# # Full google sheet links are also supported.
+# df = read_gsheet(spreadsheet_id, col_names=true, n_max=5)
 # # 4×4 DataFrame
 # #  Row │ this       is       test     sheet
 # #      │ Float64?   String?  String?  String?
@@ -29,10 +23,10 @@
 # #    2 │ missing    columns  missing  missing
 # #    3 │ missing    missing  are      missing
 # #    4 │ missing    missing  missing  strings
-# Reading from a Public Google Sheet
+# Reading from a Public Google Sheet at this time still requires authorization to be complete.
 # 
-# public_id = "1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms"
-# read_gsheet(auth, public_id, sheet="Class Data", col_names=true, n_max=5)
+# public_sheet = "https://docs.google.com/spreadsheets/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/edit?gid=0#gid=0"
+# read_gsheet(public_sheet, sheet="Class Data", col_names=true, n_max=5)
 # # 5×6 DataFrame
 # #  Row │ Student Name  Gender  Class Level   Home State  Major    Extracurricular Activity
 # #      │ String        String  String        String      String   String
