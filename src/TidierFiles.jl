@@ -19,7 +19,7 @@ using Sockets
 export read_csv, write_csv, read_tsv, write_tsv, read_table, write_table, read_delim, read_xlsx, write_xlsx, 
  read_fwf, write_fwf, fwf_empty, fwf_positions, fwf_positions, read_sav, read_sas, read_dta, write_sav, write_sas, 
  write_dta, read_arrow, write_arrow, read_parquet, write_parquet, read_csv2, read_file, write_file, read_rdata, list_files,
- read_gsheet, connect_gsheet
+ read_gsheet, connect_gsheet, write_gsheet
 
 
 include("docstrings.jl")
