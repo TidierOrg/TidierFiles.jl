@@ -1,0 +1,1508 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="TidierFiles.jl">
+      
+      
+        <meta name="author" content="Lazaro Alonso and Karandeep Singh">
+      
+      
+      
+        <link rel="prev" href="../examples/generated/UserGuide/gsheet/">
+      
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.3">
+    
+    
+      
+        <title>Reference - TidierFiles.jl</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.d7758b05.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Lato";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/custom.css">
+    
+      <link rel="stylesheet" href="../assets/Documenter.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="white" data-md-color-accent="light-blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#index" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="TidierFiles.jl" class="md-header__button md-logo" aria-label="TidierFiles.jl" data-md-component="logo">
+      
+  <img src="../assets/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            TidierFiles.jl
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Reference
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="white" data-md-color-accent="light-blue"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="light-blue"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        
+<a href="https://github.com/TidierOrg/TidierFiles.jl" title="source.link.title" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    TidierFiles.jl
+  </div>
+</a>
+
+
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="TidierFiles.jl" class="md-nav__button md-logo" aria-label="TidierFiles.jl" data-md-component="logo">
+      
+  <img src="../assets/logo.png" alt="logo">
+
+    </a>
+    TidierFiles.jl
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/TidierOrg/TidierFiles.jl" title="source.link.title" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    TidierFiles.jl
+  </div>
+</a>
+
+
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/generated/UserGuide/delim/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Delimited Files
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/generated/UserGuide/xl/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Excel Files
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/generated/UserGuide/stats/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Stats Files
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/generated/UserGuide/Arrow/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Arrow Files
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/generated/UserGuide/parquet/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Parquet Files
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/generated/UserGuide/r_files/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    R Data Files
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/generated/UserGuide/gsheet/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Google Sheets
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Reference
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Reference
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#index" class="md-nav__link">
+    <span class="md-ellipsis">
+      Index
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reference-exported-functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Reference - Exported functions
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reference-internal-functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Reference - Internal functions
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#index" class="md-nav__link">
+    <span class="md-ellipsis">
+      Index
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reference-exported-functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Reference - Exported functions
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reference-internal-functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Reference - Internal functions
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+  <h1>Reference</h1>
+
+<div><p><a id="Index"></a></p>
+<p><a id="Index-1"></a></p>
+<h2 id="index">Index<a class="headerlink" href="#index" title="Permanent link">¤</a></h2>
+<ul>
+<li><a href="./#TidierFiles.connect_gsheet-Tuple{String,%20String}"><code>TidierFiles.connect_gsheet</code></a></li>
+<li><a href="./#TidierFiles.fwf_empty-Tuple{String}"><code>TidierFiles.fwf_empty</code></a></li>
+<li><a href="./#TidierFiles.list_files"><code>TidierFiles.list_files</code></a></li>
+<li><a href="./#TidierFiles.read_arrow-Tuple{Any}"><code>TidierFiles.read_arrow</code></a></li>
+<li><a href="./#TidierFiles.read_csv-Tuple{Any}"><code>TidierFiles.read_csv</code></a></li>
+<li><a href="./#TidierFiles.read_delim-Tuple{Any}"><code>TidierFiles.read_delim</code></a></li>
+<li><a href="./#TidierFiles.read_dta-Tuple{Any}"><code>TidierFiles.read_dta</code></a></li>
+<li><a href="./#TidierFiles.read_file-Tuple{String,%20Vararg{Any}}"><code>TidierFiles.read_file</code></a></li>
+<li><a href="./#TidierFiles.read_fwf-Tuple{String,%20Tuple{Vector{Int64},%20Union{Nothing,%20Vector{String}}}}"><code>TidierFiles.read_fwf</code></a></li>
+<li><a href="./#TidierFiles.read_gsheet-Tuple{String}"><code>TidierFiles.read_gsheet</code></a></li>
+<li><a href="./#TidierFiles.read_parquet-Tuple{Any}"><code>TidierFiles.read_parquet</code></a></li>
+<li><a href="./#TidierFiles.read_rdata-Tuple{String}"><code>TidierFiles.read_rdata</code></a></li>
+<li><a href="./#TidierFiles.read_sas-Tuple{Any}"><code>TidierFiles.read_sas</code></a></li>
+<li><a href="./#TidierFiles.read_sav-Tuple{Any}"><code>TidierFiles.read_sav</code></a></li>
+<li><a href="./#TidierFiles.read_table-Tuple{Any}"><code>TidierFiles.read_table</code></a></li>
+<li><a href="./#TidierFiles.read_tsv-Tuple{Any}"><code>TidierFiles.read_tsv</code></a></li>
+<li><a href="./#TidierFiles.read_xlsx-Tuple{Any}"><code>TidierFiles.read_xlsx</code></a></li>
+<li><a href="./#TidierFiles.write_arrow-Tuple{Any,%20String}"><code>TidierFiles.write_arrow</code></a></li>
+<li><a href="./#TidierFiles.write_csv-Tuple{DataFrame,%20String}"><code>TidierFiles.write_csv</code></a></li>
+<li><a href="./#TidierFiles.write_dta-Tuple{DataFrame,%20String}"><code>TidierFiles.write_dta</code></a></li>
+<li><a href="./#TidierFiles.write_file-Tuple{DataFrame,%20String,%20Vararg{Any}}"><code>TidierFiles.write_file</code></a></li>
+<li><a href="./#TidierFiles.write_gsheet-Tuple{DataFrame,%20String}"><code>TidierFiles.write_gsheet</code></a></li>
+<li><a href="./#TidierFiles.write_parquet-Tuple{Any,%20String}"><code>TidierFiles.write_parquet</code></a></li>
+<li><a href="./#TidierFiles.write_sas-Tuple{DataFrame,%20String}"><code>TidierFiles.write_sas</code></a></li>
+<li><a href="./#TidierFiles.write_sav-Tuple{DataFrame,%20String}"><code>TidierFiles.write_sav</code></a></li>
+<li><a href="./#TidierFiles.write_table-Tuple{DataFrame,%20String}"><code>TidierFiles.write_table</code></a></li>
+<li><a href="./#TidierFiles.write_tsv-Tuple{DataFrame,%20String}"><code>TidierFiles.write_tsv</code></a></li>
+<li><a href="./#TidierFiles.write_xlsx-Tuple{Any}"><code>TidierFiles.write_xlsx</code></a></li>
+</ul>
+<p><a id="Reference-Exported-functions"></a></p>
+<p><a id="Reference-Exported-functions-1"></a></p>
+<h2 id="reference-exported-functions">Reference - Exported functions<a class="headerlink" href="#reference-exported-functions" title="Permanent link">¤</a></h2>
+<p><a id="TidierFiles.connect_gsheet-Tuple{String, String}" href="#TidierFiles.connect_gsheet-Tuple{String,%20String}">#</a>
+<strong><code>TidierFiles.connect_gsheet</code></strong> — <em>Method</em>.</p>
+<div class="highlight"><pre><span></span><code><span class="n">connect_gsheet</span><span class="p">(</span><span class="n">client_id</span><span class="o">::</span><span class="kt">String</span><span class="p">,</span><span class="w"> </span><span class="n">client_secret</span><span class="o">::</span><span class="kt">String</span><span class="p">;</span><span class="w"> </span><span class="n">redirect_uri</span><span class="o">::</span><span class="kt">String</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"http://localhost:8081"</span><span class="p">)</span>
+</code></pre></div>
+<p>Connects to Google Sheets API by obtaining an access token using OAuth 2.0 authorization flow. To obtain the credentials, go to the Google Cloud Console -&gt; APIs and Services -&gt; Credentials -&gt; Create Credentials -&gt; Create OAuth Client ID -&gt; Desktop App.  This will contain the <code>client_id</code> and <code>client_secret</code></p>
+<p><strong>Arguments</strong></p>
+<ul>
+<li><code>client_id::String</code>: The client ID obtained from the Google Cloud Console.</li>
+<li><code>client_secret::String</code>: The client secret obtained from the Google Cloud Console.</li>
+<li><code>redirect_uri::String</code>: The URI to which the authorization server will redirect the user after granting access. Defaults to "http://localhost:8081".</li>
+</ul>
+<p><strong>Returns</strong></p>
+<ul>
+<li>An instance of <code>GSheetAuth</code> containing the client ID, client secret, redirect URI, and access token.</li>
+</ul>
+<p><strong>Example</strong></p>
+<div class="highlight"><pre><span></span><code><span class="n">julia</span><span class="o">&gt;</span><span class="w"> </span><span class="n">connect_gsheet</span><span class="p">(</span><span class="s">"your_client_id"</span><span class="p">,</span><span class="w"> </span><span class="s">"your_client_secret"</span><span class="p">)</span>
+</code></pre></div>
+<p><a target="_blank" href="https://github.com/TidierOrg/TidierFiles.jl/blob/a2a14e14915611bb3331bb170cae5ee71b8c1cdc/src/gsheets.jl#L73-L92" class="documenter-source">source</a><br></p>
+<p><a id="TidierFiles.fwf_empty-Tuple{String}" href="#TidierFiles.fwf_empty-Tuple{String}">#</a>
+<strong><code>TidierFiles.fwf_empty</code></strong> — <em>Method</em>.</p>
+<div class="highlight"><pre><span></span><code><span class="n">fwf_empty</span><span class="p">(</span><span class="n">filepath</span><span class="o">::</span><span class="kt">String</span><span class="p">;</span><span class="w"> </span><span class="n">num_lines</span><span class="o">::</span><span class="kt">Int</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="n">col_names</span><span class="o">=</span><span class="nb">nothing</span><span class="p">)</span>
+</code></pre></div>
+<p>Analyze a fixed-width format (FWF) file to automatically determine column widths and provide column names.</p>
+<p><strong>Arguments</strong></p>
+<ul>
+<li><code>filepath</code>::String: Path to the FWF file to analyze.</li>
+</ul>
+<p>num_lines::Int=4: Number of lines to sample from the beginning of the file for analysis. Default is 4.</p>
+<ul>
+<li><code>col_names</code>: Optional; a vector of strings specifying column names. If not provided, column names are generated as Column<em>1, Column</em>2, etc.</li>
+</ul>
+<p><strong>Returns</strong></p>
+<ul>
+<li>A tuple containing two elements:</li>
+<li>A vector of integers representing the detected column widths.</li>
+<li>A vector of strings representing the column names.</li>
+</ul>
+<p><strong>Examples</strong></p>
+<div class="highlight"><pre><span></span><code><span class="gp">julia&gt;</span><span class="w"> </span><span class="n">fwf_data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>
+<span class="w">       </span><span class="s">"John Smith   35    12345  Software Engineer   120,000 </span><span class="se">\n</span><span class="s">Jane Doe     29     2345  Marketing Manager   95,000  </span><span class="se">\n</span><span class="s">Alice Jones  42   123456  CEO                 250,000 </span><span class="se">\n</span><span class="s">Bob Brown    31    12345  Product Manager     110,000 </span><span class="se">\n</span><span class="s">Charlie Day  28      345  Sales Associate     70,000  </span><span class="se">\n</span><span class="s">Diane Poe    35    23456  Data Scientist      130,000 </span><span class="se">\n</span><span class="s">Eve Stone    40   123456  Chief Financial Off 200,000 </span><span class="se">\n</span><span class="s">Frank Moore  33     1234  Graphic Designer    80,000  </span><span class="se">\n</span><span class="s">Grace Lee    27   123456  Software Developer  115,000 </span><span class="se">\n</span><span class="s">Hank Zuse    45    12345  System Analyst      120,000 "</span><span class="p">;</span>
+
+<span class="gp">julia&gt;</span><span class="w"> </span><span class="n">open</span><span class="p">(</span><span class="s">"fwftest.txt"</span><span class="p">,</span><span class="w"> </span><span class="s">"w"</span><span class="p">)</span><span class="w"> </span><span class="k">do</span><span class="w"> </span><span class="n">file</span>
+<span class="w">         </span><span class="n">write</span><span class="p">(</span><span class="n">file</span><span class="p">,</span><span class="w"> </span><span class="n">fwf_data</span><span class="p">)</span>
+<span class="w">       </span><span class="k">end</span><span class="p">;</span>
+
+<span class="gp">julia&gt;</span><span class="w"> </span><span class="n">path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"fwftest.txt"</span><span class="p">;</span>
+
+<span class="gp">julia&gt;</span><span class="w"> </span><span class="n">fwf_empty</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+<span class="go">([13, 5, 8, 20, 8], ["Column_1", "Column_2", "Column_3", "Column_4", "Column_5"])</span>
+
+<span class="gp">julia&gt;</span><span class="w"> </span><span class="n">fwf_empty</span><span class="p">(</span><span class="n">path</span><span class="p">,</span><span class="w"> </span><span class="n">num_lines</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="n">col_names</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s">"Name"</span><span class="p">,</span><span class="w"> </span><span class="s">"Age"</span><span class="p">,</span><span class="w"> </span><span class="s">"ID"</span><span class="p">,</span><span class="w"> </span><span class="s">"Position"</span><span class="p">,</span><span class="w"> </span><span class="s">"Salary"</span><span class="p">])</span>
+<span class="go">([13, 5, 8, 20, 8], ["Name", "Age", "ID", "Position", "Salary"])</span>
+</code></pre></div>
+<p><a target="_blank" href="https://github.com/TidierOrg/TidierFiles.jl/blob/a2a14e14915611bb3331bb170cae5ee71b8c1cdc/src/fwf.jl#L62-L92" class="documenter-source">source</a><br></p>
+<p><a id="TidierFiles.list_files" href="#TidierFiles.list_files">#</a>
+<strong><code>TidierFiles.list_files</code></strong> — <em>Function</em>.</p>
+<div class="highlight"><pre><span></span><code><span class="n">list_files</span><span class="p">(</span><span class="n">path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">""</span><span class="p">,</span><span class="w"> </span><span class="n">pattern</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">""</span><span class="p">)</span>
+</code></pre></div>
+<p>List all files in a directory that match a given pattern.</p>
+<p><strong>Arguments</strong></p>
+<ul>
+<li><code>path</code>: The directory path to list files from. Defaults to an empty string.</li>
+<li><code>pattern</code>: A string pattern to filter the files. Defaults to an empty string, matching all files. ie <code>.csv</code> will only return files ending in .csv</li>
+</ul>
+<p><strong>Examples</strong></p>
+<ul>
+<li><code>list_files("/path/to/folder/", ".csv")</code></li>
+</ul>
+<p><a target="_blank" href="https://github.com/TidierOrg/TidierFiles.jl/blob/a2a14e14915611bb3331bb170cae5ee71b8c1cdc/src/TidierFiles.jl#L480-L490" class="documenter-source">source</a><br></p>
+<p><a id="TidierFiles.read_arrow-Tuple{Any}" href="#TidierFiles.read_arrow-Tuple{Any}">#</a>
+<strong><code>TidierFiles.read_arrow</code></strong> — <em>Method</em>.</p>
+<div class="highlight"><pre><span></span><code><span class="n">read_arrow</span><span class="p">(</span><span class="n">df</span><span class="p">,</span><span class="w"> </span><span class="n">path</span><span class="p">)</span>
+</code></pre></div>
+<p>Read an Arrow file (.arrow) to a DataFrame.</p>
+<p><strong>Arguments</strong></p>
+<ul>
+<li><code>df</code>: The DataFrame to be written to a file.</li>
+<li><code>path</code>: String as path where the .dta file will be created. If a file at this path already exists, it will be overwritten.</li>
+<li><code>skip</code>: Number of initial lines to skip before reading data. Default is 0.</li>
+<li><code>n_max</code>: Maximum number of rows to read. Default is Inf (read all rows).</li>
+<li><code>col_select</code>: Optional vector of symbols or strings to select which columns to load.</li>
+</ul>
+<p><strong>Examples</strong></p>
+<div class="highlight"><pre><span></span><code><span class="gp">julia&gt;</span><span class="w"> </span><span class="n">df</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DataFrame</span><span class="p">(</span><span class="n">AA</span><span class="o">=</span><span class="p">[</span><span class="s">"Arr"</span><span class="p">,</span><span class="w"> </span><span class="s">"ow"</span><span class="p">],</span><span class="w"> </span><span class="n">AB</span><span class="o">=</span><span class="p">[</span><span class="mf">10.1</span><span class="p">,</span><span class="w"> </span><span class="mf">10.2</span><span class="p">]);</span>
+
+<span class="gp">julia&gt;</span><span class="w"> </span><span class="n">write_arrow</span><span class="p">(</span><span class="n">df</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="s">"test.arrow"</span><span class="p">);</span>
+
+<span class="gp">julia&gt;</span><span class="w"> </span><span class="n">read_arrow</span><span class="p">(</span><span class="s">"test.arrow"</span><span class="p">)</span>
+<span class="go">2×2 DataFrame</span>
+<span class="go"> Row │ AA      AB      </span>
+<span class="go">     │ String  Float64 </span>
+<span class="go">─────┼─────────────────</span>
+<span class="go">   1 │ Arr        10.1</span>
+<span class="go">   2 │ ow         10.2</span>
+</code></pre></div>
+<p><a target="_blank" href="https://github.com/TidierOrg/TidierFiles.jl/blob/a2a14e14915611bb3331bb170cae5ee71b8c1cdc/src/arrow_files.jl#L1-L24" class="documenter-source">source</a><br></p>
+<p><a id="TidierFiles.read_csv-Tuple{Any}" href="#TidierFiles.read_csv-Tuple{Any}">#</a>
+<strong><code>TidierFiles.read_csv</code></strong> — <em>Method</em>.</p>
+<div class="highlight"><pre><span></span><code><span class="n">read_csv</span><span class="p">(</span><span class="n">file</span><span class="p">;</span><span class="w"> </span><span class="n">delim</span><span class="o">=</span><span class="sc">','</span><span class="p">,</span><span class="n">col_names</span><span class="o">=</span><span class="nb">true</span><span class="p">,</span><span class="w"> </span><span class="n">skip</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">n_max</span><span class="o">=</span><span class="nb">Inf</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="n">comment</span><span class="o">=</span><span class="nb">nothing</span><span class="p">,</span><span class="w"> </span><span class="n">missing_value</span><span class="o">=</span><span class="s">""</span><span class="p">,</span><span class="w"> </span><span class="n">col_select</span><span class="p">,</span><span class="w"> </span><span class="n">escape_double</span><span class="o">=</span><span class="nb">true</span><span class="p">,</span><span class="w"> </span><span class="n">col_types</span><span class="o">=</span><span class="nb">nothing</span><span class="p">,</span><span class="w"> </span><span class="n">num_threads</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span>
+</code></pre></div>
+<p>Reads a CSV file or URL into a DataFrame, with options to specify delimiter, column names, and other CSV parsing options.</p>
+<p><strong>Arguments</strong></p>
+<ul>
+<li><code>file</code>: Path or vector of paths to the CSV file or a URL to a CSV file.</li>
+<li><code>delim</code>: The character delimiting fields in the file. Default is ','.</li>
+<li><code>decimal</code>: Character argument for what character decimal should be. Default is <code>.</code></li>
+<li><code>col_names</code>: Indicates if the first row of the CSV is used as column names. Can be true, false, or an array of strings. Default is true.</li>
+<li><code>skip</code>: Number of initial lines to skip before reading data. Default is 0.</li>
+<li><code>n_max</code>: Maximum number of rows to read. Default is Inf (read all rows).</li>
+<li><code>col_select</code>: Optional vector of symbols or strings to select which columns to load.</li>
+<li><code>col_types</code>: Optional Dict to allow for column type specification</li>
+<li><code>comment</code>: Character that starts a comment line. Lines beginning with this character are ignored. Default is nothing (no comment lines).</li>
+<li><code>missing_value</code>: String that represents missing values in the CSV. Default is "", can be set to a vector of multiple items.</li>
+<li><code>escape_double</code>: Indicates whether to interpret two consecutive quote characters as a single quote in the data. Default is true.</li>
+<li><code>num_threads</code>: specifies the number of concurrent tasks or threads to use for processing, allowing for parallel execution. Defaults to 1</li>
+</ul>
+<p><strong>Examples</strong></p>
+<div class="highlight"><pre><span></span><code><span class="gp">julia&gt;</span><span class="w"> </span><span class="n">df</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DataFrame</span><span class="p">(</span><span class="n">ID</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="o">:</span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="n">Name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s">"Alice"</span><span class="p">,</span><span class="w"> </span><span class="s">"Bob"</span><span class="p">,</span><span class="w"> </span><span class="s">"Charlie"</span><span class="p">,</span><span class="w"> </span><span class="s">"David"</span><span class="p">,</span><span class="w"> </span><span class="s">"Eva"</span><span class="p">],</span><span class="w"> </span><span class="n">Score</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mi">88</span><span class="p">,</span><span class="w"> </span><span class="mi">92</span><span class="p">,</span><span class="w"> </span><span class="mi">77</span><span class="p">,</span><span class="w"> </span><span class="mi">85</span><span class="p">,</span><span class="w"> </span><span class="mi">95</span><span class="p">]);</span>
+
+<span class="gp">julia&gt;</span><span class="w"> </span><span class="n">write_csv</span><span class="p">(</span><span class="n">df</span><span class="p">,</span><span class="w"> </span><span class="s">"csvtest.csv"</span><span class="p">);</span>
+
+<span class="gp">julia&gt;</span><span class="w"> </span><span class="n">read_csv</span><span class="p">(</span><span class="s">"csvtest.csv"</span><span class="p">,</span><span class="w"> </span><span class="n">skip</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="n">n_max</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="n">missing_value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s">"95"</span><span class="p">,</span><span class="w"> </span><span class="s">"Charlie"</span><span class="p">])</span>
+<span class="go">3×3 DataFrame</span>
+<span class="go"> Row │ ID     Name      Score   </span>
+<span class="go">     │ Int64  String7?  Int64?  </span>
+<span class="go">─────┼──────────────────────────</span>
+<span class="go">   1 │     3  missing        77</span>
+<span class="go">   2 │     4  David          85</span>
+<span class="go">   3 │     5  Eva       missing </span>
+
+<span class="gp">julia&gt;</span><span class="w"> </span><span class="n">read_csv</span><span class="p">(</span><span class="s">"csvtest.csv"</span><span class="p">,</span><span class="w"> </span><span class="n">skip</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="n">n_max</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="n">col_types</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">Dict</span><span class="p">(</span><span class="ss">:ID</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="kt">Float64</span><span class="p">))</span>
+<span class="go">3×3 DataFrame</span>
+<span class="go"> Row │ ID       Name     Score </span>
+<span class="go">     │ Float64  String7  Int64 </span>
+<span class="go">─────┼─────────────────────────</span>
+<span class="go">   1 │     3.0  Charlie     77</span>
+<span class="go">   2 │     4.0  David       85</span>
+<span class="go">   3 │     5.0  Eva         95</span>
+</code></pre></div>
+<p><a target="_blank" href="https://github.com/TidierOrg/TidierFiles.jl/blob/a2a14e14915611bb3331bb170cae5ee71b8c1cdc/src/TidierFiles.jl#L34-L77" class="documenter-source">source</a><br></p>
+<p><a id="TidierFiles.read_delim-Tuple{Any}" href="#TidierFiles.read_delim-Tuple{Any}">#</a>
+<strong><code>TidierFiles.read_delim</code></strong> — <em>Method</em>.</p>
+<div class="highlight"><pre><span></span><code><span class="n">read_delim</span><span class="p">(</span><span class="n">file</span><span class="p">;</span><span class="w"> </span><span class="n">delim</span><span class="o">=</span><span class="err">'</span><span class="w">    </span><span class="err">'</span><span class="p">,</span><span class="n">col_names</span><span class="o">=</span><span class="nb">true</span><span class="p">,</span><span class="w"> </span><span class="n">skip</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">n_max</span><span class="o">=</span><span class="nb">Inf</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="n">comment</span><span class="o">=</span><span class="nb">nothing</span><span class="p">,</span><span class="w"> </span><span class="n">missing_value</span><span class="o">=</span><span class="s">""</span><span class="p">,</span><span class="w"> </span><span class="n">col_select</span><span class="p">,</span><span class="w"> </span><span class="n">escape_double</span><span class="o">=</span><span class="nb">true</span><span class="p">,</span><span class="w"> </span><span class="n">col_types</span><span class="o">=</span><span class="nb">nothing</span><span class="p">)</span>
+</code></pre></div>
+<p>Reads a delimited file or URL into a DataFrame, with options to specify delimiter, column names, and other CSV parsing options.</p>
+<p><strong>Arguments</strong></p>
+<ul>
+<li><code>file</code>: Path or vector of paths to the CSV file or a URL to a CSV file.</li>
+<li><code>delim</code>: The character delimiting fields in the file. Default is ','.</li>
+<li><code>decimal</code>: Character argument for what character decimal should be. Default is <code>.</code></li>
+<li><code>col_names</code>: Indicates if the first row of the CSV is used as column names. Can be true, false, or an array of strings. Default is true.</li>
+<li><code>skip</code>: Number of initial lines to skip before reading data. Default is 0.</li>
+<li><code>n_max</code>: Maximum number of rows to read. Default is Inf (read all rows).</li>
+<li><code>col_select</code>: Optional vector of symbols or strings to select which columns to load.</li>
+<li><code>comment</code>: Character that starts a comment line. Lines beginning with this character are ignored. Default is nothing (no comment lines).</li>
+<li><code>col_types</code>: Optional Dict to allow for column type specification</li>
+<li><code>missing_value</code>: String that represents missing values in the CSV. Default is "", can be set to a vector of multiple items.</li>
+<li><code>escape_double</code>: Indicates whether to interpret two consecutive quote characters as a single quote in the data. Default is true.</li>
+<li><code>num_threads</code>: specifies the number of concurrent tasks or threads to use for processing, allowing for parallel execution. Default is the number of available threads.</li>
+</ul>
+<p><strong>Examples</strong></p>
+<div class="highlight"><pre><span></span><code><span class="gp">julia&gt;</span><span class="w"> </span><span class="n">df</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DataFrame</span><span class="p">(</span><span class="n">ID</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="o">:</span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="n">Name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s">"Alice"</span><span class="p">,</span><span class="w"> </span><span class="s">"Bob"</span><span class="p">,</span><span class="w"> </span><span class="s">"Charlie"</span><span class="p">,</span><span class="w"> </span><span class="s">"David"</span><span class="p">,</span><span class="w"> </span><span class="s">"Eva"</span><span class="p">],</span><span class="w"> </span><span class="n">Score</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mi">88</span><span class="p">,</span><span class="w"> </span><span class="mi">92</span><span class="p">,</span><span class="w"> </span><span class="mi">77</span><span class="p">,</span><span class="w"> </span><span class="mi">85</span><span class="p">,</span><span class="w"> </span><span class="mi">95</span><span class="p">]);</span>
+
+<span class="gp">julia&gt;</span><span class="w"> </span><span class="n">write_csv</span><span class="p">(</span><span class="n">df</span><span class="p">,</span><span class="w"> </span><span class="s">"csvtest.csv"</span><span class="p">);</span>
+
+<span class="gp">julia&gt;</span><span class="w"> </span><span class="n">read_delim</span><span class="p">(</span><span class="s">"csvtest.csv"</span><span class="p">,</span><span class="w"> </span><span class="n">delim</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">","</span><span class="p">,</span><span class="w"> </span><span class="n">col_names</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">,</span><span class="w"> </span><span class="n">num_threads</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">4</span><span class="p">)</span><span class="w"> </span><span class="c"># col_names are false here for the purpose of demonstration</span>
+<span class="go">6×3 DataFrame</span>
+<span class="go"> Row │ Column1  Column2  Column3 </span>
+<span class="go">     │ String3  String7  String7 </span>
+<span class="go">─────┼───────────────────────────</span>
+<span class="go">   1 │ ID       Name     Score</span>
+<span class="go">   2 │ 1        Alice    88</span>
+<span class="go">   3 │ 2        Bob      92</span>
+<span class="go">   4 │ 3        Charlie  77</span>
+<span class="go">   5 │ 4        David    85</span>
+<span class="go">   6 │ 5        Eva      95</span>
+</code></pre></div>
+<p><a target="_blank" href="https://github.com/TidierOrg/TidierFiles.jl/blob/a2a14e14915611bb3331bb170cae5ee71b8c1cdc/src/TidierFiles.jl#L109-L147" class="documenter-source">source</a><br></p>
+<p><a id="TidierFiles.read_dta-Tuple{Any}" href="#TidierFiles.read_dta-Tuple{Any}">#</a>
+<strong><code>TidierFiles.read_dta</code></strong> — <em>Method</em>.</p>
+<div class="highlight"><pre><span></span><code><span class="k">function</span><span class="w"> </span><span class="n">read_dta</span><span class="p">(</span><span class="n">data_file</span><span class="p">;</span><span class="w">  </span><span class="n">encoding</span><span class="o">=</span><span class="nb">nothing</span><span class="p">,</span><span class="w"> </span><span class="n">col_select</span><span class="o">=</span><span class="nb">nothing</span><span class="p">,</span><span class="w"> </span><span class="n">skip</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">n_max</span><span class="o">=</span><span class="nb">Inf</span><span class="p">)</span>
+</code></pre></div>
+<p>Read data from a Stata (.dta) file into a DataFrame, supporting both local and remote sources.</p>
+<p><strong>Arguments</strong></p>
+<ul>
+<li><code>filepath</code>: The path to the .dta file or a URL pointing to such a file. If a URL is provided, the file will be downloaded and then read.</li>
+</ul>
+<p><code>encoding</code>: Optional; specifies the encoding of the input file. If not provided, defaults to the package's or function's default. <code>col_select</code>: Optional; allows specifying a subset of columns to read. This can be a vector of column names or indices. If nothing, all columns are read.</p>
+<ul>
+<li><code>skip=0</code>: Number of rows at the beginning of the file to skip before reading.</li>
+<li><code>n_max=Inf</code>: Maximum number of rows to read from the file, after skipping. If Inf, read all available rows.</li>
+</ul>
+<p><code>num_threads</code>: specifies the number of concurrent tasks or threads to use for processing, allowing for parallel execution. Defaults to 1</p>
+<p><strong>Examples</strong></p>
+<div class="highlight"><pre><span></span><code><span class="gp">julia&gt;</span><span class="w"> </span><span class="n">df</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DataFrame</span><span class="p">(</span><span class="n">AA</span><span class="o">=</span><span class="p">[</span><span class="s">"sav"</span><span class="p">,</span><span class="w"> </span><span class="s">"por"</span><span class="p">],</span><span class="w"> </span><span class="n">AB</span><span class="o">=</span><span class="p">[</span><span class="mf">10.1</span><span class="p">,</span><span class="w"> </span><span class="mf">10.2</span><span class="p">]);</span>
+
+<span class="gp">julia&gt;</span><span class="w"> </span><span class="n">write_dta</span><span class="p">(</span><span class="n">df</span><span class="p">,</span><span class="w"> </span><span class="s">"test.dta"</span><span class="p">);</span>
+
+<span class="gp">julia&gt;</span><span class="w"> </span><span class="n">read_dta</span><span class="p">(</span><span class="s">"test.dta"</span><span class="p">)</span>
+<span class="go">2×2 DataFrame</span>
+<span class="go"> Row │ AA       AB      </span>
+<span class="go">     │ String3  Float64 </span>
+<span class="go">─────┼──────────────────</span>
+<span class="go">   1 │ sav         10.1</span>
+<span class="go">   2 │ por         10.2</span>
+</code></pre></div>
+<p><a target="_blank" href="https://github.com/TidierOrg/TidierFiles.jl/blob/a2a14e14915611bb3331bb170cae5ee71b8c1cdc/src/statsfiles.jl#L91-L118" class="documenter-source">source</a><br></p>
+<p><a id="TidierFiles.read_file-Tuple{String, Vararg{Any}}" href="#TidierFiles.read_file-Tuple{String,%20Vararg{Any}}">#</a>
+<strong><code>TidierFiles.read_file</code></strong> — <em>Method</em>.</p>
+<div class="highlight"><pre><span></span><code><span class="n">read_files</span><span class="p">(</span><span class="n">path</span><span class="p">;</span><span class="w"> </span><span class="n">args</span><span class="p">)</span>
+</code></pre></div>
+<p>Generic file reader that automatically detects type and dispatches the appropriate read function. </p>
+<p><strong>Arguments</strong></p>
+<ul>
+<li><code>path</code> : a string with the file path to read</li>
+<li><code>args</code> : additional arguments supported for that specific file type are given as they normally would be</li>
+</ul>
+<p><strong>Examples</strong></p>
+<div class="highlight"><pre><span></span><code><span class="gp">julia&gt;</span><span class="w"> </span><span class="n">df</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DataFrame</span><span class="p">(</span><span class="n">ID</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="o">:</span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="n">Name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s">"Alice"</span><span class="p">,</span><span class="w"> </span><span class="s">"Bob"</span><span class="p">,</span><span class="w"> </span><span class="s">"Charlie"</span><span class="p">,</span><span class="w"> </span><span class="s">"David"</span><span class="p">,</span><span class="w"> </span><span class="s">"Eva"</span><span class="p">],</span><span class="w"> </span><span class="n">Score</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mi">88</span><span class="p">,</span><span class="w"> </span><span class="mi">92</span><span class="p">,</span><span class="w"> </span><span class="mi">77</span><span class="p">,</span><span class="w"> </span><span class="mi">85</span><span class="p">,</span><span class="w"> </span><span class="mi">95</span><span class="p">]);</span>
+
+<span class="gp">julia&gt;</span><span class="w"> </span><span class="n">write_parquet</span><span class="p">(</span><span class="n">df</span><span class="p">,</span><span class="w"> </span><span class="s">"test.parquet"</span><span class="p">);</span>
+
+<span class="gp">julia&gt;</span><span class="w"> </span><span class="n">read_file</span><span class="p">(</span><span class="s">"test.parquet"</span><span class="p">)</span>
+<span class="go">5×3 DataFrame</span>
+<span class="go"> Row │ ID     Name     Score </span>
+<span class="go">     │ Int64  String   Int64 </span>
+<span class="go">─────┼───────────────────────</span>
+<span class="go">   1 │     1  Alice       88</span>
+<span class="go">   2 │     2  Bob         92</span>
+<span class="go">   3 │     3  Charlie     77</span>
+<span class="go">   4 │     4  David       85</span>
+<span class="go">   5 │     5  Eva         95</span>
+</code></pre></div>
+<p><a target="_blank" href="https://github.com/TidierOrg/TidierFiles.jl/blob/a2a14e14915611bb3331bb170cae5ee71b8c1cdc/src/gen_fxn.jl#L1-L25" class="documenter-source">source</a><br></p>
+<p><a id="TidierFiles.read_fwf-Tuple{String, Tuple{Vector{Int64}, Union{Nothing, Vector{String}}}}" href="#TidierFiles.read_fwf-Tuple{String,%20Tuple{Vector{Int64},%20Union{Nothing,%20Vector{String}}}}">#</a>
+<strong><code>TidierFiles.read_fwf</code></strong> — <em>Method</em>.</p>
+<div class="highlight"><pre><span></span><code><span class="n">read_fwf</span><span class="p">(</span><span class="n">filepath</span><span class="o">::</span><span class="kt">String</span><span class="p">;</span><span class="w"> </span><span class="n">num_lines</span><span class="o">::</span><span class="kt">Int</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="n">col_names</span><span class="o">=</span><span class="nb">nothing</span><span class="p">)</span>
+</code></pre></div>
+<p>Read fixed-width format (FWF) files into a DataFrame.</p>
+<p><strong>Arguments</strong></p>
+<ul>
+<li><code>filepath</code>::String: Path to the FWF file to read.</li>
+<li><code>widths_colnames</code>::Tuple{Vector{Int}, Union{Nothing, Vector{String}}}: A tuple containing two elements:       - A vector of integers specifying the widths of each field.       - Optionally, a vector of strings specifying column names. If nothing, column names are generated as Column<em>1, Column</em>2, etc.</li>
+<li><code>skip_to</code>=0: Number of lines at the beginning of the file to skip before reading data.</li>
+<li><code>n_max</code>=nothing: Maximum number of lines to read from the file. If nothing, read all lines.</li>
+</ul>
+<p><strong>Examples</strong></p>
+<div class="highlight"><pre><span></span><code><span class="gp">julia&gt;</span><span class="w"> </span><span class="n">fwf_data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>
+<span class="w">       </span><span class="s">"John Smith   35    12345  Software Engineer   120,000 </span><span class="se">\n</span><span class="s">Jane Doe     29     2345  Marketing Manager   95,000  </span><span class="se">\n</span><span class="s">Alice Jones  42   123456  CEO                 250,000 </span><span class="se">\n</span><span class="s">Bob Brown    31    12345  Product Manager     110,000 </span><span class="se">\n</span><span class="s">Charlie Day  28      345  Sales Associate     70,000  </span><span class="se">\n</span><span class="s">Diane Poe    35    23456  Data Scientist      130,000 </span><span class="se">\n</span><span class="s">Eve Stone    40   123456  Chief Financial Off 200,000 </span><span class="se">\n</span><span class="s">Frank Moore  33     1234  Graphic Designer    80,000  </span><span class="se">\n</span><span class="s">Grace Lee    27   123456  Software Developer  115,000 </span><span class="se">\n</span><span class="s">Hank Zuse    45    12345  System Analyst      120,000 "</span><span class="p">;</span>
+
+<span class="gp">julia&gt;</span><span class="w"> </span><span class="n">open</span><span class="p">(</span><span class="s">"fwftest.txt"</span><span class="p">,</span><span class="w"> </span><span class="s">"w"</span><span class="p">)</span><span class="w"> </span><span class="k">do</span><span class="w"> </span><span class="n">file</span>
+<span class="w">         </span><span class="n">write</span><span class="p">(</span><span class="n">file</span><span class="p">,</span><span class="w"> </span><span class="n">fwf_data</span><span class="p">)</span>
+<span class="w">       </span><span class="k">end</span><span class="p">;</span>
+
+<span class="gp">julia&gt;</span><span class="w"> </span><span class="n">path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"fwftest.txt"</span><span class="p">;</span>
+
+<span class="gp">julia&gt;</span><span class="w"> </span><span class="n">read_fwf</span><span class="p">(</span><span class="n">path</span><span class="p">,</span><span class="w"> </span><span class="n">fwf_empty</span><span class="p">(</span><span class="n">path</span><span class="p">,</span><span class="w"> </span><span class="n">num_lines</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="n">col_names</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s">"Name"</span><span class="p">,</span><span class="w"> </span><span class="s">"Age"</span><span class="p">,</span><span class="w"> </span><span class="s">"ID"</span><span class="p">,</span><span class="w"> </span><span class="s">"Position"</span><span class="p">,</span><span class="w"> </span><span class="s">"Salary"</span><span class="p">]),</span><span class="w"> </span><span class="n">skip_to</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="n">n_max</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="go">3×5 DataFrame</span>
+<span class="go"> Row │ Name         Age     ID      Position         Salary  </span>
+<span class="go">     │ String       String  String  String           String  </span>
+<span class="go">─────┼───────────────────────────────────────────────────────</span>
+<span class="go">   1 │ Bob Brown    31      12345   Product Manager  110,000</span>
+<span class="go">   2 │ Charlie Day  28      345     Sales Associate  70,000</span>
+<span class="go">   3 │ Diane Poe    35      23456   Data Scientist   130,000</span>
+</code></pre></div>
+<p><a target="_blank" href="https://github.com/TidierOrg/TidierFiles.jl/blob/a2a14e14915611bb3331bb170cae5ee71b8c1cdc/src/fwf.jl#L11-L42" class="documenter-source">source</a><br></p>
+<p><a id="TidierFiles.read_gsheet-Tuple{String}" href="#TidierFiles.read_gsheet-Tuple{String}">#</a>
+<strong><code>TidierFiles.read_gsheet</code></strong> — <em>Method</em>.</p>
+<div class="highlight"><pre><span></span><code><span class="n">read_gsheet</span><span class="p">(</span><span class="n">spreadsheet_id</span><span class="o">::</span><span class="kt">String</span><span class="p">;</span><span class="w"> </span>
+<span class="w">             </span><span class="n">sheet</span><span class="o">::</span><span class="kt">String</span><span class="o">=</span><span class="s">"Sheet1"</span><span class="p">,</span><span class="w"> </span>
+<span class="w">             </span><span class="n">range</span><span class="o">::</span><span class="kt">String</span><span class="o">=</span><span class="s">""</span><span class="p">,</span><span class="w"> </span>
+<span class="w">             </span><span class="n">col_names</span><span class="o">::</span><span class="kt">Bool</span><span class="o">=</span><span class="nb">true</span><span class="p">,</span><span class="w"> </span>
+<span class="w">             </span><span class="n">skip</span><span class="o">::</span><span class="kt">Int</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span>
+<span class="w">             </span><span class="n">n_max</span><span class="o">::</span><span class="kt">Int</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span><span class="w"> </span>
+<span class="w">             </span><span class="n">col_select</span><span class="o">=</span><span class="nb">nothing</span><span class="p">,</span><span class="w"> </span>
+<span class="w">             </span><span class="n">missing_value</span><span class="o">::</span><span class="kt">String</span><span class="o">=</span><span class="s">""</span><span class="p">)</span>
+</code></pre></div>
+<p>Read data from a Google Sheet into a DataFrame.</p>
+<p><strong>Arguments</strong></p>
+<ul>
+<li><code>spreadsheet_id::String</code>: The unique identifier of the Google Sheet or the full URL.</li>
+<li><code>sheet::String</code>: The name of the sheet to read from. Defaults to "Sheet1".</li>
+<li><code>range::String</code>: The range of cells to read (e.g., "A1:D10"). Defaults to an empty string, which reads the entire sheet.</li>
+<li><code>col_names::Bool</code>: Indicates whether the first row should be used as column names. Defaults to true.</li>
+<li><code>skip::Int</code>: Number of rows to skip before starting to read data. Defaults to 0.</li>
+<li><code>n_max::Int</code>: Maximum number of rows to read after skipping. Defaults to Inf (read all available rows).</li>
+<li><code>col_select</code>: List of column names or indices to select specific columns. Defaults to nothing (all columns).</li>
+<li><code>missing_value::String</code>: Value to represent missing data. Defaults to an empty string.</li>
+</ul>
+<p><strong>Examples</strong></p>
+<div class="highlight"><pre><span></span><code><span class="n">julia</span><span class="o">&gt;</span><span class="w"> </span><span class="n">connect_gsheet</span><span class="p">(</span><span class="s">"your_client_id"</span><span class="p">,</span><span class="w"> </span><span class="s">"your_client_secret"</span><span class="p">)</span>
+
+<span class="n">julia</span><span class="o">&gt;</span><span class="w"> </span><span class="n">public_sheet</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"https://docs.google.com/spreadsheets/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/edit?gid=0#gid=0"</span><span class="p">;</span>
+
+<span class="n">julia</span><span class="o">&gt;</span><span class="w"> </span><span class="n">read_gsheet</span><span class="p">(</span><span class="n">public_sheet</span><span class="p">,</span><span class="w"> </span><span class="n">sheet</span><span class="o">=</span><span class="s">"Class Data"</span><span class="p">,</span><span class="w"> </span><span class="n">n_max</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="mi">5</span><span class="o">×</span><span class="mi">6</span><span class="w"> </span><span class="n">DataFrame</span>
+<span class="w"> </span><span class="n">Row</span><span class="w"> </span><span class="n">│</span><span class="w"> </span><span class="n">Student</span><span class="w"> </span><span class="n">Name</span><span class="w">  </span><span class="n">Gender</span><span class="w">  </span><span class="n">Class</span><span class="w"> </span><span class="n">Level</span><span class="w">   </span><span class="n">Home</span><span class="w"> </span><span class="n">State</span><span class="w">  </span><span class="n">Major</span><span class="w">    </span><span class="n">Extracurricular</span><span class="w"> </span><span class="n">Activity</span><span class="w"> </span>
+<span class="w">     </span><span class="n">│</span><span class="w"> </span><span class="kt">String</span><span class="w">        </span><span class="kt">String</span><span class="w">  </span><span class="kt">String</span><span class="w">        </span><span class="kt">String</span><span class="w">      </span><span class="kt">String</span><span class="w">   </span><span class="kt">String</span><span class="w">                   </span>
+<span class="n">─────┼───────────────────────────────────────────────────────────────────────────────────</span>
+<span class="w">   </span><span class="mi">1</span><span class="w"> </span><span class="n">│</span><span class="w"> </span><span class="n">Alexandra</span><span class="w">     </span><span class="n">Female</span><span class="w">  </span><span class="mf">4.</span><span class="w"> </span><span class="n">Senior</span><span class="w">     </span><span class="n">CA</span><span class="w">          </span><span class="n">English</span><span class="w">  </span><span class="n">Drama</span><span class="w"> </span><span class="n">Club</span>
+<span class="w">   </span><span class="mi">2</span><span class="w"> </span><span class="n">│</span><span class="w"> </span><span class="n">Andrew</span><span class="w">        </span><span class="n">Male</span><span class="w">    </span><span class="mf">1.</span><span class="w"> </span><span class="n">Freshman</span><span class="w">   </span><span class="n">SD</span><span class="w">          </span><span class="n">Math</span><span class="w">     </span><span class="n">Lacrosse</span>
+<span class="w">   </span><span class="mi">3</span><span class="w"> </span><span class="n">│</span><span class="w"> </span><span class="n">Anna</span><span class="w">          </span><span class="n">Female</span><span class="w">  </span><span class="mf">1.</span><span class="w"> </span><span class="n">Freshman</span><span class="w">   </span><span class="n">NC</span><span class="w">          </span><span class="n">English</span><span class="w">  </span><span class="n">Basketball</span>
+<span class="w">   </span><span class="mi">4</span><span class="w"> </span><span class="n">│</span><span class="w"> </span><span class="n">Becky</span><span class="w">         </span><span class="n">Female</span><span class="w">  </span><span class="mf">2.</span><span class="w"> </span><span class="n">Sophomore</span><span class="w">  </span><span class="n">SD</span><span class="w">          </span><span class="n">Art</span><span class="w">      </span><span class="n">Baseball</span>
+<span class="w">   </span><span class="mi">5</span><span class="w"> </span><span class="n">│</span><span class="w"> </span><span class="n">Benjamin</span><span class="w">      </span><span class="n">Male</span><span class="w">    </span><span class="mf">4.</span><span class="w"> </span><span class="n">Senior</span><span class="w">     </span><span class="n">WI</span><span class="w">          </span><span class="n">English</span><span class="w">  </span><span class="n">Basketball</span>
+</code></pre></div>
+<p><a target="_blank" href="https://github.com/TidierOrg/TidierFiles.jl/blob/a2a14e14915611bb3331bb170cae5ee71b8c1cdc/src/gsheets.jl#L103-L142" class="documenter-source">source</a><br></p>
+<p><a id="TidierFiles.read_parquet-Tuple{Any}" href="#TidierFiles.read_parquet-Tuple{Any}">#</a>
+<strong><code>TidierFiles.read_parquet</code></strong> — <em>Method</em>.</p>
+<div class="highlight"><pre><span></span><code><span class="n">read_parquet</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+</code></pre></div>
+<p>Read a Paquet File (.parquet) to a DataFrame.</p>
+<p><strong>Arguments</strong></p>
+<ul>
+<li><code>path</code>: Path or vector of paths or URLs to parquet file to be read</li>
+<li><code>col_names</code>: Indicates if the first row of the CSV is used as column names. Can be true, false, or an array of strings. Default is true.</li>
+<li><code>skip</code>: Number of initial lines to skip before reading data. Default is 0.</li>
+<li><code>n_max</code>: Maximum number of rows to read. Default is Inf (read all rows).</li>
+<li><code>col_select</code>: Optional vector of symbols or strings to select which columns to load.</li>
+</ul>
+<p><strong>Examples</strong></p>
+<div class="highlight"><pre><span></span><code><span class="gp">julia&gt;</span><span class="w"> </span><span class="n">df</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DataFrame</span><span class="p">(</span><span class="n">AA</span><span class="o">=</span><span class="p">[</span><span class="s">"Par"</span><span class="p">,</span><span class="w"> </span><span class="s">"quet"</span><span class="p">],</span><span class="w"> </span><span class="n">AB</span><span class="o">=</span><span class="p">[</span><span class="mf">10.1</span><span class="p">,</span><span class="w"> </span><span class="mf">10.2</span><span class="p">]);</span>
+
+<span class="gp">julia&gt;</span><span class="w"> </span><span class="n">write_parquet</span><span class="p">(</span><span class="n">df</span><span class="p">,</span><span class="w"> </span><span class="s">"test.parquet"</span><span class="p">);</span>
+
+<span class="gp">julia&gt;</span><span class="w"> </span><span class="n">read_parquet</span><span class="p">(</span><span class="s">"test.parquet"</span><span class="p">)</span>
+<span class="go">2×2 DataFrame</span>
+<span class="go"> Row │ AA      AB      </span>
+<span class="go">     │ String  Float64 </span>
+<span class="go">─────┼─────────────────</span>
+<span class="go">   1 │ Par        10.1</span>
+<span class="go">   2 │ quet       10.2</span>
+</code></pre></div>
+<p><a target="_blank" href="https://github.com/TidierOrg/TidierFiles.jl/blob/a2a14e14915611bb3331bb170cae5ee71b8c1cdc/src/parquet_files.jl#L1-L25" class="documenter-source">source</a><br></p>
+<p><a id="TidierFiles.read_rdata-Tuple{String}" href="#TidierFiles.read_rdata-Tuple{String}">#</a>
+<strong><code>TidierFiles.read_rdata</code></strong> — <em>Method</em>.</p>
+<div class="highlight"><pre><span></span><code><span class="n">read_rdata</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+</code></pre></div>
+<p>Read <code>.rdata</code> and <code>.rds</code> files as DataFrame. <code>.rdata</code> files will result in a <code>Dict</code>. Dataframes can then be selected with <code>result["name"]</code></p>
+<p><strong>Arguments</strong></p>
+<ul>
+<li><code>path</code>: A string with the file location. This does not yet support reading from URLs.</li>
+</ul>
+<p><a target="_blank" href="https://github.com/TidierOrg/TidierFiles.jl/blob/a2a14e14915611bb3331bb170cae5ee71b8c1cdc/src/r_data.jl#L1-L7" class="documenter-source">source</a><br></p>
+<p><a id="TidierFiles.read_sas-Tuple{Any}" href="#TidierFiles.read_sas-Tuple{Any}">#</a>
+<strong><code>TidierFiles.read_sas</code></strong> — <em>Method</em>.</p>
+<div class="highlight"><pre><span></span><code><span class="k">function</span><span class="w"> </span><span class="n">read_sas</span><span class="p">(</span><span class="n">data_file</span><span class="p">;</span><span class="w">  </span><span class="n">encoding</span><span class="o">=</span><span class="nb">nothing</span><span class="p">,</span><span class="w"> </span><span class="n">col_select</span><span class="o">=</span><span class="nb">nothing</span><span class="p">,</span><span class="w"> </span><span class="n">skip</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">n_max</span><span class="o">=</span><span class="nb">Inf</span><span class="p">,</span><span class="w"> </span><span class="n">num_threads</span><span class="p">)</span>
+</code></pre></div>
+<p>Read data from a SAS (.sas7bdat and .xpt) file into a DataFrame, supporting both local and remote sources.</p>
+<p><strong>Arguments</strong></p>
+<ul>
+<li><code>filepath</code>: The path to the .dta file or a URL pointing to such a file. If a URL is provided, the file will be downloaded and then read.</li>
+</ul>
+<p><code>encoding</code>: Optional; specifies the encoding of the input file. If not provided, defaults to the package's or function's default. <code>col_select</code>: Optional; allows specifying a subset of columns to read. This can be a vector of column names or indices. If nothing, all columns are read.</p>
+<ul>
+<li><code>skip=0</code>: Number of rows at the beginning of the file to skip before reading.</li>
+<li><code>n_max=Inf</code>: Maximum number of rows to read from the file, after skipping. If Inf, read all available rows.</li>
+</ul>
+<p><code>num_threads</code>: specifies the number of concurrent tasks or threads to use for processing, allowing for parallel execution. Defaults to 1</p>
+<p><strong>Examples</strong></p>
+<p>```jldoctest julia&gt; df = DataFrame(AA=["sav", "por"], AB=[10.1, 10.2]);</p>
+<p>julia&gt; write_sas(df, "test.sas7bdat");</p>
+<p>julia&gt; read_sas("test.sas7bdat") 2×2 DataFrame  Row │ AA       AB            │ String3  Float64  ─────┼──────────────────    1 │ sav         10.1    2 │ por         10.2</p>
+<p>julia&gt; write_sas(df, "test.xpt");</p>
+<p>julia&gt; read_sas("test.xpt") 2×2 DataFrame  Row │ AA       AB            │ String3  Float64  ─────┼──────────────────    1 │ sav         10.1    2 │ por         10.2</p>
+<p><a target="_blank" href="https://github.com/TidierOrg/TidierFiles.jl/blob/a2a14e14915611bb3331bb170cae5ee71b8c1cdc/src/statsfiles.jl#L1-L36" class="documenter-source">source</a><br></p>
+<p><a id="TidierFiles.read_sav-Tuple{Any}" href="#TidierFiles.read_sav-Tuple{Any}">#</a>
+<strong><code>TidierFiles.read_sav</code></strong> — <em>Method</em>.</p>
+<div class="highlight"><pre><span></span><code><span class="k">function</span><span class="w"> </span><span class="n">read_sav</span><span class="p">(</span><span class="n">data_file</span><span class="p">;</span><span class="w">  </span><span class="n">encoding</span><span class="o">=</span><span class="nb">nothing</span><span class="p">,</span><span class="w"> </span><span class="n">col_select</span><span class="o">=</span><span class="nb">nothing</span><span class="p">,</span><span class="w"> </span><span class="n">skip</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">n_max</span><span class="o">=</span><span class="nb">Inf</span><span class="p">)</span>
+</code></pre></div>
+<p>Read data from a SPSS (.sav and .por) file into a DataFrame, supporting both local and remote sources.</p>
+<p><strong>Arguments</strong></p>
+<ul>
+<li><code>filepath</code>: The path to the .sav or .por file or a URL pointing to such a file. If a URL is provided, the file will be downloaded and then read.</li>
+<li><code>encoding</code>: Optional; specifies the encoding of the input file. If not provided, defaults to the package's or function's default.</li>
+<li><code>col_select</code>: Optional; allows specifying a subset of columns to read. This can be a vector of column names or indices. If nothing, all columns are read.</li>
+<li><code>skip=0</code>: Number of rows at the beginning of the file to skip before reading.</li>
+<li>`n_max=Inf``: Maximum number of rows to read from the file, after skipping. If Inf, read all available rows.</li>
+<li><code>num_threads</code>: specifies the number of concurrent tasks or threads to use for processing, allowing for parallel execution. Defaults to 1</li>
+</ul>
+<p><strong>Examples</strong></p>
+<div class="highlight"><pre><span></span><code><span class="gp">julia&gt;</span><span class="w"> </span><span class="n">df</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DataFrame</span><span class="p">(</span><span class="n">AA</span><span class="o">=</span><span class="p">[</span><span class="s">"sav"</span><span class="p">,</span><span class="w"> </span><span class="s">"por"</span><span class="p">],</span><span class="w"> </span><span class="n">AB</span><span class="o">=</span><span class="p">[</span><span class="mf">10.1</span><span class="p">,</span><span class="w"> </span><span class="mf">10.2</span><span class="p">]);</span>
+
+<span class="gp">julia&gt;</span><span class="w"> </span><span class="n">write_sav</span><span class="p">(</span><span class="n">df</span><span class="p">,</span><span class="w"> </span><span class="s">"test.sav"</span><span class="p">);</span>
+
+<span class="gp">julia&gt;</span><span class="w"> </span><span class="n">read_sav</span><span class="p">(</span><span class="s">"test.sav"</span><span class="p">)</span>
+<span class="go">2×2 DataFrame</span>
+<span class="go"> Row │ AA      AB      </span>
+<span class="go">     │ String  Float64 </span>
+<span class="go">─────┼─────────────────</span>
+<span class="go">   1 │ sav        10.1</span>
+<span class="go">   2 │ por        10.2</span>
+
+<span class="gp">julia&gt;</span><span class="w"> </span><span class="n">write_sav</span><span class="p">(</span><span class="n">df</span><span class="p">,</span><span class="w"> </span><span class="s">"test.por"</span><span class="p">);</span>
+
+<span class="gp">julia&gt;</span><span class="w"> </span><span class="n">read_sav</span><span class="p">(</span><span class="s">"test.por"</span><span class="p">)</span>
+<span class="go">2×2 DataFrame</span>
+<span class="go"> Row │ AA      AB      </span>
+<span class="go">     │ String  Float64 </span>
+<span class="go">─────┼─────────────────</span>
+<span class="go">   1 │ sav        10.1</span>
+<span class="go">   2 │ por        10.2</span>
+</code></pre></div>
+<p><a target="_blank" href="https://github.com/TidierOrg/TidierFiles.jl/blob/a2a14e14915611bb3331bb170cae5ee71b8c1cdc/src/statsfiles.jl#L46-L82" class="documenter-source">source</a><br></p>
+<p><a id="TidierFiles.read_table-Tuple{Any}" href="#TidierFiles.read_table-Tuple{Any}">#</a>
+<strong><code>TidierFiles.read_table</code></strong> — <em>Method</em>.</p>
+<div class="highlight"><pre><span></span><code><span class="n">read_table</span><span class="p">(</span><span class="n">file</span><span class="p">;</span><span class="w"> </span><span class="n">col_names</span><span class="o">=</span><span class="nb">true</span><span class="p">,</span><span class="w"> </span><span class="n">skip</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">n_max</span><span class="o">=</span><span class="nb">Inf</span><span class="p">,</span><span class="w"> </span><span class="n">comment</span><span class="o">=</span><span class="nb">nothing</span><span class="p">,</span><span class="w"> </span><span class="n">col_select</span><span class="p">,</span><span class="w"> </span><span class="n">missing_value</span><span class="o">=</span><span class="s">""</span><span class="p">,</span><span class="w"> </span><span class="n">kwargs</span><span class="o">...</span><span class="p">)</span>
+</code></pre></div>
+<p>Read a table from a file where columns are separated by any amount of whitespace, processing it into a DataFrame.</p>
+<p><strong>Arguments</strong></p>
+<ul>
+<li><code>file</code>: The path to the file to read.</li>
+<li><code>col_names</code>=true: Indicates whether the first non-skipped line should be treated as column names. If false, columns are named automatically.</li>
+<li><code>skip</code>: Number of lines at the beginning of the file to skip before processing starts.</li>
+<li><code>n_max</code>: The maximum number of lines to read from the file, after skipping. Inf means read all lines.</li>
+<li><code>col_select</code>: Optional vector of symbols or strings to select which columns to load.</li>
+<li><code>comment</code>: A character or string indicating the start of a comment. Lines starting with this character are ignored.</li>
+<li><code>missing_value</code>: The string that represents missing values in the table.</li>
+<li><code>kwargs</code>: Additional keyword arguments passed to CSV.File.</li>
+</ul>
+<p><strong>Examples</strong></p>
+<div class="highlight"><pre><span></span><code><span class="gp">julia&gt;</span><span class="w"> </span><span class="n">df</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DataFrame</span><span class="p">(</span><span class="n">ID</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="o">:</span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="n">Name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s">"Alice"</span><span class="p">,</span><span class="w"> </span><span class="s">"Bob"</span><span class="p">,</span><span class="w"> </span><span class="s">"Charlie"</span><span class="p">,</span><span class="w"> </span><span class="s">"David"</span><span class="p">,</span><span class="w"> </span><span class="s">"Eva"</span><span class="p">],</span><span class="w"> </span><span class="n">Score</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mi">88</span><span class="p">,</span><span class="w"> </span><span class="mi">92</span><span class="p">,</span><span class="w"> </span><span class="mi">77</span><span class="p">,</span><span class="w"> </span><span class="mi">85</span><span class="p">,</span><span class="w"> </span><span class="mi">95</span><span class="p">]);</span>
+
+<span class="gp">julia&gt;</span><span class="w"> </span><span class="n">write_table</span><span class="p">(</span><span class="n">df</span><span class="p">,</span><span class="w"> </span><span class="s">"tabletest.txt"</span><span class="p">);</span>
+
+<span class="gp">julia&gt;</span><span class="w"> </span><span class="n">read_table</span><span class="p">(</span><span class="s">"tabletest.txt"</span><span class="p">,</span><span class="w"> </span><span class="n">skip</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="n">n_max</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="n">col_select</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s">"Name"</span><span class="p">])</span>
+<span class="go">3×1 DataFrame</span>
+<span class="go"> Row │ Name    </span>
+<span class="go">     │ String7 </span>
+<span class="go">─────┼─────────</span>
+<span class="go">   1 │ Charlie</span>
+<span class="go">   2 │ David</span>
+<span class="go">   3 │ Eva</span>
+</code></pre></div>
+<p><a target="_blank" href="https://github.com/TidierOrg/TidierFiles.jl/blob/a2a14e14915611bb3331bb170cae5ee71b8c1cdc/src/TidierFiles.jl#L347-L377" class="documenter-source">source</a><br></p>
+<p><a id="TidierFiles.read_tsv-Tuple{Any}" href="#TidierFiles.read_tsv-Tuple{Any}">#</a>
+<strong><code>TidierFiles.read_tsv</code></strong> — <em>Method</em>.</p>
+<div class="highlight"><pre><span></span><code><span class="n">read_tsv</span><span class="p">(</span><span class="n">file</span><span class="p">;</span><span class="w"> </span><span class="n">delim</span><span class="o">=</span><span class="err">'</span><span class="w">  </span><span class="err">'</span><span class="p">,</span><span class="n">col_names</span><span class="o">=</span><span class="nb">true</span><span class="p">,</span><span class="w"> </span><span class="n">skip</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">n_max</span><span class="o">=</span><span class="nb">Inf</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="n">comment</span><span class="o">=</span><span class="nb">nothing</span><span class="p">,</span><span class="w"> </span><span class="n">missing_value</span><span class="o">=</span><span class="s">""</span><span class="p">,</span><span class="w"> </span><span class="n">col_select</span><span class="p">,</span><span class="w"> </span><span class="n">escape_double</span><span class="o">=</span><span class="nb">true</span><span class="p">,</span><span class="w"> </span><span class="n">col_types</span><span class="o">=</span><span class="nb">nothing</span><span class="p">)</span>
+</code></pre></div>
+<p>Reads a TSV file or URL into a DataFrame, with options to specify delimiter, column names, and other CSV parsing options.</p>
+<p><strong>Arguments</strong></p>
+<ul>
+<li><code>file</code>: Path or vector of paths to the TSV file or a URL to a TSV file.</li>
+<li><code>delim</code>: The character delimiting fields in the file. Default is ','.</li>
+<li><code>decimal</code>: Character argument for what character decimal should be. Default is <code>.</code></li>
+<li><code>col_names</code>: Indicates if the first row of the CSV is used as column names. Can be true, false, or an array of strings. Default is true.</li>
+<li><code>skip</code>: Number of initial lines to skip before reading data. Default is 0.</li>
+<li><code>n_max</code>: Maximum number of rows to read. Default is Inf (read all rows).</li>
+<li><code>col_select</code>: Optional vector of symbols or strings to select which columns to load.</li>
+<li><code>comment</code>: Character that starts a comment line. Lines beginning with this character are ignored. Default is nothing (no comment lines).</li>
+<li><code>col_types</code>: Optional Dict to allow for column type specification</li>
+<li><code>missing_value</code>: String that represents missing values in the CSV. Default is "", can be set to a vector of multiple items.</li>
+<li><code>escape_double</code>: Indicates whether to interpret two consecutive quote characters as a single quote in the data. Default is true.</li>
+<li><code>num_threads</code>: specifies the number of concurrent tasks or threads to use for processing, allowing for parallel execution. Default is the number of available threads.</li>
+</ul>
+<p><strong>Examples</strong></p>
+<div class="highlight"><pre><span></span><code><span class="gp">julia&gt;</span><span class="w"> </span><span class="n">df</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DataFrame</span><span class="p">(</span><span class="n">ID</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="o">:</span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="n">Name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s">"Alice"</span><span class="p">,</span><span class="w"> </span><span class="s">"Bob"</span><span class="p">,</span><span class="w"> </span><span class="s">"Charlie"</span><span class="p">,</span><span class="w"> </span><span class="s">"David"</span><span class="p">,</span><span class="w"> </span><span class="s">"Eva"</span><span class="p">],</span><span class="w"> </span><span class="n">Score</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mi">88</span><span class="p">,</span><span class="w"> </span><span class="mi">92</span><span class="p">,</span><span class="w"> </span><span class="mi">77</span><span class="p">,</span><span class="w"> </span><span class="mi">85</span><span class="p">,</span><span class="w"> </span><span class="mi">95</span><span class="p">]);</span>
+
+<span class="gp">julia&gt;</span><span class="w"> </span><span class="n">write_tsv</span><span class="p">(</span><span class="n">df</span><span class="p">,</span><span class="w"> </span><span class="s">"tsvtest.tsv"</span><span class="p">);</span>
+
+<span class="gp">julia&gt;</span><span class="w"> </span><span class="n">read_tsv</span><span class="p">(</span><span class="s">"tsvtest.tsv"</span><span class="p">,</span><span class="w"> </span><span class="n">skip</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="n">n_max</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="n">missing_value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s">"Charlie"</span><span class="p">])</span>
+<span class="go">3×3 DataFrame</span>
+<span class="go"> Row │ ID     Name      Score </span>
+<span class="go">     │ Int64  String7?  Int64 </span>
+<span class="go">─────┼────────────────────────</span>
+<span class="go">   1 │     3  missing      77</span>
+<span class="go">   2 │     4  David        85</span>
+<span class="go">   3 │     5  Eva          95</span>
+</code></pre></div>
+<p><a target="_blank" href="https://github.com/TidierOrg/TidierFiles.jl/blob/a2a14e14915611bb3331bb170cae5ee71b8c1cdc/src/TidierFiles.jl#L184-L219" class="documenter-source">source</a><br></p>
+<p><a id="TidierFiles.read_xlsx-Tuple{Any}" href="#TidierFiles.read_xlsx-Tuple{Any}">#</a>
+<strong><code>TidierFiles.read_xlsx</code></strong> — <em>Method</em>.</p>
+<div class="highlight"><pre><span></span><code><span class="n">read_xlsx</span><span class="p">(</span><span class="n">path</span><span class="p">;</span><span class="w"> </span><span class="n">sheet</span><span class="p">,</span><span class="w"> </span><span class="n">range</span><span class="p">,</span><span class="w"> </span><span class="n">col_names</span><span class="p">,</span><span class="w"> </span><span class="n">col_types</span><span class="p">,</span><span class="w"> </span><span class="n">missing_value</span><span class="p">,</span><span class="w"> </span><span class="n">trim_ws</span><span class="p">,</span><span class="w"> </span><span class="n">skip</span><span class="p">,</span><span class="w"> </span><span class="n">n_max</span><span class="p">,</span><span class="w"> </span><span class="n">guess_max</span><span class="p">)</span>
+</code></pre></div>
+<p>Read data from an Excel file into a DataFrame.</p>
+<p><strong>Arguments</strong></p>
+<ul>
+<li><code>path</code>: The path to the Excel file to be read.</li>
+<li><code>sheet</code>: Specifies the sheet to be read. Can be either the name of the sheet as a string or its index as an integer. If nothing, the first sheet is read.</li>
+<li><code>range</code>: Specifies a specific range of cells to be read from the sheet. If nothing, the entire sheet is read.</li>
+<li><code>col_names</code>: Indicates whether the first row of the specified range should be treated as column names. If false, columns will be named automatically.</li>
+<li><code>col_types</code>: Allows specifying column types explicitly. Can be a single type applied to all columns, a list or a dictionary mapping column names or indices to types. If nothing, types will be inferred.</li>
+<li><code>missing_value</code>: The value or vector that represents missing values in the Excel file. Unlike CSV.jl based functions, everything does not need to be written as a string</li>
+<li><code>trim_ws</code>: Whether to trim leading and trailing whitespace from cells in the Excel file.</li>
+<li><code>skip</code>: Number of rows to skip at the beginning of the sheet or range before reading data.</li>
+<li><code>n_max</code>: The maximum number of rows to read from the sheet or range, after skipping. Inf means read all available rows.</li>
+<li><code>guess_max</code>: The maximum number of rows to scan for type guessing and column names detection. Only relevant if col<em>types is nothing or col</em>names is true. If nothing, a default heuristic is used.</li>
+</ul>
+<p><strong>Examples</strong></p>
+<div class="highlight"><pre><span></span><code><span class="gp">julia&gt;</span><span class="w"> </span><span class="n">df</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DataFrame</span><span class="p">(</span><span class="n">integers</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">],</span>
+<span class="w">       </span><span class="n">strings</span><span class="o">=</span><span class="p">[</span><span class="s">"This"</span><span class="p">,</span><span class="w"> </span><span class="s">"Package makes"</span><span class="p">,</span><span class="w"> </span><span class="s">"File reading/writing"</span><span class="p">,</span><span class="w"> </span><span class="s">"even smoother"</span><span class="p">],</span>
+<span class="w">       </span><span class="n">floats</span><span class="o">=</span><span class="p">[</span><span class="mf">10.2</span><span class="p">,</span><span class="w"> </span><span class="mf">20.3</span><span class="p">,</span><span class="w"> </span><span class="mf">30.4</span><span class="p">,</span><span class="w"> </span><span class="mf">40.5</span><span class="p">]);</span>
+
+<span class="gp">julia&gt;</span><span class="w"> </span><span class="n">df2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DataFrame</span><span class="p">(</span><span class="n">AA</span><span class="o">=</span><span class="p">[</span><span class="s">"aa"</span><span class="p">,</span><span class="w"> </span><span class="s">"bb"</span><span class="p">],</span><span class="w"> </span><span class="n">AB</span><span class="o">=</span><span class="p">[</span><span class="mf">10.1</span><span class="p">,</span><span class="w"> </span><span class="mf">10.2</span><span class="p">]);</span>
+
+<span class="gp">julia&gt;</span><span class="w"> </span><span class="n">write_xlsx</span><span class="p">((</span><span class="s">"REPORT_A"</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">df</span><span class="p">,</span><span class="w"> </span><span class="s">"REPORT_B"</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">df2</span><span class="p">);</span><span class="w"> </span><span class="n">path</span><span class="o">=</span><span class="s">"xlsxtest.xlsx"</span><span class="p">,</span><span class="w"> </span><span class="n">overwrite</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">);</span>
+
+<span class="gp">julia&gt;</span><span class="w"> </span><span class="n">read_xlsx</span><span class="p">(</span><span class="s">"xlsxtest.xlsx"</span><span class="p">,</span><span class="w"> </span><span class="n">sheet</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"REPORT_A"</span><span class="p">,</span><span class="w"> </span><span class="n">skip</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">n_max</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="n">missing_value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+<span class="go">3×3 DataFrame</span>
+<span class="go"> Row │ integers  strings               floats   </span>
+<span class="go">     │ Int64?    String?               Float64? </span>
+<span class="go">─────┼──────────────────────────────────────────</span>
+<span class="go">   1 │  missing  Package makes             20.3</span>
+<span class="go">   2 │        3  File reading/writing      30.4</span>
+<span class="go">   3 │        4  even smoother             40.5</span>
+</code></pre></div>
+<p><a target="_blank" href="https://github.com/TidierOrg/TidierFiles.jl/blob/a2a14e14915611bb3331bb170cae5ee71b8c1cdc/src/xlfiles.jl#L41-L76" class="documenter-source">source</a><br></p>
+<p><a id="TidierFiles.write_arrow-Tuple{Any, String}" href="#TidierFiles.write_arrow-Tuple{Any,%20String}">#</a>
+<strong><code>TidierFiles.write_arrow</code></strong> — <em>Method</em>.</p>
+<div class="highlight"><pre><span></span><code><span class="n">write_arrow</span><span class="p">(</span><span class="n">df</span><span class="p">,</span><span class="w"> </span><span class="n">path</span><span class="p">)</span>
+</code></pre></div>
+<p>Write a DataFrame to an Arrow (.arrow) file.</p>
+<p><strong>Arguments</strong></p>
+<ul>
+<li><code>df</code>: The DataFrame to be written to a file.</li>
+<li><code>path</code>: String as path where the .dta file will be created. If a file at this path already exists, it will be overwritten.</li>
+</ul>
+<p><strong>Examples</strong></p>
+<div class="highlight"><pre><span></span><code><span class="gp">julia&gt;</span><span class="w"> </span><span class="n">df</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DataFrame</span><span class="p">(</span><span class="n">AA</span><span class="o">=</span><span class="p">[</span><span class="s">"Arr"</span><span class="p">,</span><span class="w"> </span><span class="s">"ow"</span><span class="p">],</span><span class="w"> </span><span class="n">AB</span><span class="o">=</span><span class="p">[</span><span class="mf">10.1</span><span class="p">,</span><span class="w"> </span><span class="mf">10.2</span><span class="p">]);</span>
+
+<span class="gp">julia&gt;</span><span class="w"> </span><span class="n">write_arrow</span><span class="p">(</span><span class="n">df</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="s">"test.arrow"</span><span class="p">);</span>
+</code></pre></div>
+<p><a target="_blank" href="https://github.com/TidierOrg/TidierFiles.jl/blob/a2a14e14915611bb3331bb170cae5ee71b8c1cdc/src/arrow_files.jl#L43-L55" class="documenter-source">source</a><br></p>
+<p><a id="TidierFiles.write_csv-Tuple{DataFrame, String}" href="#TidierFiles.write_csv-Tuple{DataFrame,%20String}">#</a>
+<strong><code>TidierFiles.write_csv</code></strong> — <em>Method</em>.</p>
+<div class="highlight"><pre><span></span><code><span class="n">write_csv</span><span class="p">(</span><span class="n">DataFrame</span><span class="p">,</span><span class="w"> </span><span class="n">filepath</span><span class="p">;</span><span class="w"> </span><span class="n">na</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">""</span><span class="p">,</span><span class="w"> </span><span class="n">append</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">,</span><span class="w"> </span><span class="n">col_names</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">,</span><span class="w"> </span><span class="n">missing_value</span><span class="p">,</span><span class="w"> </span><span class="n">eol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"</span>
+</code></pre></div>
+<p>", num_threads = Threads.nthreads()) Write a DataFrame to a CSV (comma-separated values) file.</p>
+<p><strong>Arguments</strong></p>
+<ul>
+<li><code>x</code>: The DataFrame to write to the CSV file.</li>
+<li><code>file</code>: The path to the output CSV file.</li>
+<li><code>missing_value</code>: = "": The string to represent missing values in the output file. Default is an empty string.</li>
+<li><code>append</code>: Whether to append to the file if it already exists. Default is false.</li>
+<li><code>col_names</code>: = true: Whether to write column names as the first line of the file. Default is true.</li>
+<li><code>eol</code>: = "</li>
+</ul>
+<p>": The end-of-line character to use in the output file. Default is the newline character.</p>
+<ul>
+<li><code>num_threads</code> = Threads.nthreads(): The number of threads to use for writing the file. Default is the number of available threads.</li>
+</ul>
+<p><strong>Examples</strong></p>
+<div class="highlight"><pre><span></span><code><span class="gp">julia&gt;</span><span class="w"> </span><span class="n">df</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DataFrame</span><span class="p">(</span><span class="n">ID</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="o">:</span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="n">Name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s">"Alice"</span><span class="p">,</span><span class="w"> </span><span class="s">"Bob"</span><span class="p">,</span><span class="w"> </span><span class="s">"Charlie"</span><span class="p">,</span><span class="w"> </span><span class="s">"David"</span><span class="p">,</span><span class="w"> </span><span class="s">"Eva"</span><span class="p">],</span><span class="w"> </span><span class="n">Score</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mi">88</span><span class="p">,</span><span class="w"> </span><span class="mi">92</span><span class="p">,</span><span class="w"> </span><span class="mi">77</span><span class="p">,</span><span class="w"> </span><span class="mi">85</span><span class="p">,</span><span class="w"> </span><span class="mi">95</span><span class="p">]);</span>
+
+<span class="gp">julia&gt;</span><span class="w"> </span><span class="n">write_csv</span><span class="p">(</span><span class="n">df</span><span class="p">,</span><span class="w"> </span><span class="s">"csvtest.csv"</span><span class="p">);</span>
+</code></pre></div>
+<p><a target="_blank" href="https://github.com/TidierOrg/TidierFiles.jl/blob/a2a14e14915611bb3331bb170cae5ee71b8c1cdc/src/TidierFiles.jl#L406-L427" class="documenter-source">source</a><br></p>
+<p><a id="TidierFiles.write_dta-Tuple{DataFrame, String}" href="#TidierFiles.write_dta-Tuple{DataFrame,%20String}">#</a>
+<strong><code>TidierFiles.write_dta</code></strong> — <em>Method</em>.</p>
+<div class="highlight"><pre><span></span><code><span class="n">write_dta</span><span class="p">(</span><span class="n">df</span><span class="p">,</span><span class="w"> </span><span class="n">path</span><span class="p">)</span>
+</code></pre></div>
+<p>Write a DataFrame to a Stata (.dta) file.</p>
+<p><strong>Arguments</strong></p>
+<ul>
+<li><code>df</code>: The DataFrame to be written to a file.</li>
+<li><code>path</code>: String as path where the .dta file will be created. If a file at this path already exists, it will be overwritten.</li>
+</ul>
+<p><strong>Examples</strong></p>
+<div class="highlight"><pre><span></span><code><span class="gp">julia&gt;</span><span class="w"> </span><span class="n">df</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DataFrame</span><span class="p">(</span><span class="n">AA</span><span class="o">=</span><span class="p">[</span><span class="s">"sav"</span><span class="p">,</span><span class="w"> </span><span class="s">"por"</span><span class="p">],</span><span class="w"> </span><span class="n">AB</span><span class="o">=</span><span class="p">[</span><span class="mf">10.1</span><span class="p">,</span><span class="w"> </span><span class="mf">10.2</span><span class="p">]);</span>
+
+<span class="gp">julia&gt;</span><span class="w"> </span><span class="n">write_dta</span><span class="p">(</span><span class="n">df</span><span class="p">,</span><span class="w"> </span><span class="s">"test.dta"</span><span class="p">)</span>
+<span class="go">2×2 ReadStatTable:</span>
+<span class="go"> Row │     AA        AB </span>
+<span class="go">     │ String  Float64? </span>
+<span class="go">─────┼──────────────────</span>
+<span class="go">   1 │    sav      10.1</span>
+<span class="go">   2 │    por      10.2</span>
+</code></pre></div>
+<p><a target="_blank" href="https://github.com/TidierOrg/TidierFiles.jl/blob/a2a14e14915611bb3331bb170cae5ee71b8c1cdc/src/statsfiles.jl#L150-L170" class="documenter-source">source</a><br></p>
+<p><a id="TidierFiles.write_file-Tuple{DataFrame, String, Vararg{Any}}" href="#TidierFiles.write_file-Tuple{DataFrame,%20String,%20Vararg{Any}}">#</a>
+<strong><code>TidierFiles.write_file</code></strong> — <em>Method</em>.</p>
+<div class="highlight"><pre><span></span><code><span class="n">write_files</span><span class="p">(</span><span class="n">df</span><span class="p">,</span><span class="w"> </span><span class="n">path</span><span class="p">;</span><span class="w"> </span><span class="n">args</span><span class="p">)</span>
+</code></pre></div>
+<p>Generic file writer that automatically detects type and dispatches the appropriate read function. </p>
+<p><strong>Arguments</strong></p>
+<ul>
+<li><code>df</code> : Data frame to be exported</li>
+<li><code>path</code> : a string with the file path to for the location of resulting file</li>
+<li><code>args</code> : additional arguments supported for that specific file type are given as they normally would be</li>
+</ul>
+<p><strong>Examples</strong></p>
+<div class="highlight"><pre><span></span><code><span class="gp">julia&gt;</span><span class="w"> </span><span class="n">df</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DataFrame</span><span class="p">(</span><span class="n">ID</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="o">:</span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="n">Name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s">"Alice"</span><span class="p">,</span><span class="w"> </span><span class="s">"Bob"</span><span class="p">,</span><span class="w"> </span><span class="s">"Charlie"</span><span class="p">,</span><span class="w"> </span><span class="s">"David"</span><span class="p">,</span><span class="w"> </span><span class="s">"Eva"</span><span class="p">],</span><span class="w"> </span><span class="n">Score</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mi">88</span><span class="p">,</span><span class="w"> </span><span class="mi">92</span><span class="p">,</span><span class="w"> </span><span class="mi">77</span><span class="p">,</span><span class="w"> </span><span class="mi">85</span><span class="p">,</span><span class="w"> </span><span class="mi">95</span><span class="p">]);</span>
+
+<span class="gp">julia&gt;</span><span class="w"> </span><span class="n">write_file</span><span class="p">(</span><span class="n">df</span><span class="p">,</span><span class="w"> </span><span class="s">"test.parquet"</span><span class="p">);</span>
+
+<span class="gp">julia&gt;</span><span class="w"> </span><span class="n">read_file</span><span class="p">(</span><span class="s">"test.parquet"</span><span class="p">)</span>
+<span class="go">5×3 DataFrame</span>
+<span class="go"> Row │ ID     Name     Score </span>
+<span class="go">     │ Int64  String   Int64 </span>
+<span class="go">─────┼───────────────────────</span>
+<span class="go">   1 │     1  Alice       88</span>
+<span class="go">   2 │     2  Bob         92</span>
+<span class="go">   3 │     3  Charlie     77</span>
+<span class="go">   4 │     4  David       85</span>
+<span class="go">   5 │     5  Eva         95</span>
+</code></pre></div>
+<p><a target="_blank" href="https://github.com/TidierOrg/TidierFiles.jl/blob/a2a14e14915611bb3331bb170cae5ee71b8c1cdc/src/gen_fxn.jl#L36-L62" class="documenter-source">source</a><br></p>
+<p><a id="TidierFiles.write_gsheet-Tuple{DataFrame, String}" href="#TidierFiles.write_gsheet-Tuple{DataFrame,%20String}">#</a>
+<strong><code>TidierFiles.write_gsheet</code></strong> — <em>Method</em>.</p>
+<div class="highlight"><pre><span></span><code><span class="n">write_gsheet</span><span class="p">(</span><span class="n">data</span><span class="o">::</span><span class="kt">DataFrame</span><span class="p">,</span><span class="w"> </span><span class="n">spreadsheet_id</span><span class="o">::</span><span class="kt">String</span><span class="p">;</span><span class="w"> </span><span class="n">sheet</span><span class="o">::</span><span class="kt">String</span><span class="o">=</span><span class="s">"Sheet1"</span><span class="p">,</span><span class="w"> </span><span class="n">range</span><span class="o">::</span><span class="kt">String</span><span class="o">=</span><span class="s">""</span><span class="p">,</span><span class="w"> </span><span class="n">missing_value</span><span class="o">::</span><span class="kt">String</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">""</span><span class="p">,</span><span class="w"> </span><span class="n">append</span><span class="o">::</span><span class="kt">Bool</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">)</span>
+</code></pre></div>
+<p>Writes the contents of a DataFrame to a specified Google Sheets spreadsheet.</p>
+<p><strong>Arguments</strong></p>
+<ul>
+<li><code>data::DataFrame</code>: The DataFrame containing the data to be written to Google Sheets.</li>
+<li><code>spreadsheet_id::String</code>: The ID of the Google Sheets spreadsheet or the full URL containing the ID.</li>
+<li><code>sheet::String</code>: The name of the sheet within the spreadsheet where the data will be written. Defaults to "Sheet1".</li>
+<li><code>range::String</code>: The range in the sheet where the data will be written. If empty, defaults to "A1".</li>
+<li><code>missing_value::String</code>: The value to replace missing entries in the DataFrame. Defaults to an empty string.</li>
+<li><code>append::Bool</code>: If true, appends the data to the existing data in the sheet. If false, overwrites the existing data. Defaults to true.</li>
+</ul>
+<p><strong>Examples</strong></p>
+<div class="highlight"><pre><span></span><code>julia&gt; df = DataFrame(A=1:5, B=["a", missing, "c", "d", "e"], C=[1.1, 2.2, 3.3, 4.4, 5.5]);
+
+julia&gt; write_gsheet(df, full, sheet = "sheet2", append = false)
+</code></pre></div>
+<p><a target="_blank" href="https://github.com/TidierOrg/TidierFiles.jl/blob/a2a14e14915611bb3331bb170cae5ee71b8c1cdc/src/gsheets.jl#L172-L191" class="documenter-source">source</a><br></p>
+<p><a id="TidierFiles.write_parquet-Tuple{Any, String}" href="#TidierFiles.write_parquet-Tuple{Any,%20String}">#</a>
+<strong><code>TidierFiles.write_parquet</code></strong> — <em>Method</em>.</p>
+<div class="highlight"><pre><span></span><code><span class="n">write_parquet</span><span class="p">(</span><span class="n">df</span><span class="p">,</span><span class="w"> </span><span class="p">)</span>
+</code></pre></div>
+<p>Write a DataFrame to an Parquet (.parquet) file.</p>
+<p><strong>Arguments</strong></p>
+<ul>
+<li><code>df</code>: The DataFrame to be written to a file.</li>
+<li><code>path</code>: String as path where the .dta file will be created. If a file at this path already exists, it will be overwritten.</li>
+</ul>
+<p><strong>Examples</strong></p>
+<div class="highlight"><pre><span></span><code><span class="gp">julia&gt;</span><span class="w"> </span><span class="n">df</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DataFrame</span><span class="p">(</span><span class="n">AA</span><span class="o">=</span><span class="p">[</span><span class="s">"Par"</span><span class="p">,</span><span class="w"> </span><span class="s">"quet"</span><span class="p">],</span><span class="w"> </span><span class="n">AB</span><span class="o">=</span><span class="p">[</span><span class="mf">10.1</span><span class="p">,</span><span class="w"> </span><span class="mf">10.2</span><span class="p">]);</span>
+
+<span class="gp">julia&gt;</span><span class="w"> </span><span class="n">write_parquet</span><span class="p">(</span><span class="n">df</span><span class="p">,</span><span class="w"> </span><span class="s">"test.parquet"</span><span class="p">);</span>
+</code></pre></div>
+<p><a target="_blank" href="https://github.com/TidierOrg/TidierFiles.jl/blob/a2a14e14915611bb3331bb170cae5ee71b8c1cdc/src/parquet_files.jl#L70-L83" class="documenter-source">source</a><br></p>
+<p><a id="TidierFiles.write_sas-Tuple{DataFrame, String}" href="#TidierFiles.write_sas-Tuple{DataFrame,%20String}">#</a>
+<strong><code>TidierFiles.write_sas</code></strong> — <em>Method</em>.</p>
+<div class="highlight"><pre><span></span><code><span class="n">write_sas</span><span class="p">(</span><span class="n">df</span><span class="p">,</span><span class="w"> </span><span class="n">path</span><span class="p">)</span>
+</code></pre></div>
+<p>Write a DataFrame to a SAS (.sas7bdat or .xpt) file.</p>
+<p><strong>Arguments</strong></p>
+<ul>
+<li><code>df</code>: The DataFrame to be written to a file.</li>
+<li><code>path</code>: String as path where the .dta file will be created. If a file at this path already exists, it will be overwritten.</li>
+</ul>
+<p><strong>Examples</strong></p>
+<div class="highlight"><pre><span></span><code><span class="gp">julia&gt;</span><span class="w"> </span><span class="n">df</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DataFrame</span><span class="p">(</span><span class="n">AA</span><span class="o">=</span><span class="p">[</span><span class="s">"sav"</span><span class="p">,</span><span class="w"> </span><span class="s">"por"</span><span class="p">],</span><span class="w"> </span><span class="n">AB</span><span class="o">=</span><span class="p">[</span><span class="mf">10.1</span><span class="p">,</span><span class="w"> </span><span class="mf">10.2</span><span class="p">]);</span>
+
+<span class="gp">julia&gt;</span><span class="w"> </span><span class="n">write_sas</span><span class="p">(</span><span class="n">df</span><span class="p">,</span><span class="w"> </span><span class="s">"test.sas7bdat"</span><span class="p">)</span>
+<span class="go">2×2 ReadStatTable:</span>
+<span class="go"> Row │     AA        AB </span>
+<span class="go">     │ String  Float64? </span>
+<span class="go">─────┼──────────────────</span>
+<span class="go">   1 │    sav      10.1</span>
+<span class="go">   2 │    por      10.2</span>
+
+<span class="gp">julia&gt;</span><span class="w"> </span><span class="n">write_sas</span><span class="p">(</span><span class="n">df</span><span class="p">,</span><span class="w"> </span><span class="s">"test.xpt"</span><span class="p">)</span>
+<span class="go">2×2 ReadStatTable:</span>
+<span class="go"> Row │     AA        AB </span>
+<span class="go">     │ String  Float64? </span>
+<span class="go">─────┼──────────────────</span>
+<span class="go">   1 │    sav      10.1</span>
+<span class="go">   2 │    por      10.2</span>
+</code></pre></div>
+<p><a target="_blank" href="https://github.com/TidierOrg/TidierFiles.jl/blob/a2a14e14915611bb3331bb170cae5ee71b8c1cdc/src/statsfiles.jl#L136-L164" class="documenter-source">source</a><br></p>
+<p><a id="TidierFiles.write_sav-Tuple{DataFrame, String}" href="#TidierFiles.write_sav-Tuple{DataFrame,%20String}">#</a>
+<strong><code>TidierFiles.write_sav</code></strong> — <em>Method</em>.</p>
+<div class="highlight"><pre><span></span><code><span class="n">write_sav</span><span class="p">(</span><span class="n">df</span><span class="p">,</span><span class="w"> </span><span class="n">path</span><span class="p">)</span>
+</code></pre></div>
+<p>Write a DataFrame to a SPSS (.sav or .por) file.</p>
+<p><strong>Arguments</strong></p>
+<ul>
+<li><code>df</code>: The DataFrame to be written to a file.</li>
+<li><code>path</code>: String as path where the .dta file will be created. If a file at this path already exists, it will be overwritten.</li>
+</ul>
+<p><strong>Examples</strong></p>
+<div class="highlight"><pre><span></span><code><span class="gp">julia&gt;</span><span class="w"> </span><span class="n">df</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DataFrame</span><span class="p">(</span><span class="n">AA</span><span class="o">=</span><span class="p">[</span><span class="s">"sav"</span><span class="p">,</span><span class="w"> </span><span class="s">"por"</span><span class="p">],</span><span class="w"> </span><span class="n">AB</span><span class="o">=</span><span class="p">[</span><span class="mf">10.1</span><span class="p">,</span><span class="w"> </span><span class="mf">10.2</span><span class="p">]);</span>
+
+<span class="gp">julia&gt;</span><span class="w"> </span><span class="n">write_sav</span><span class="p">(</span><span class="n">df</span><span class="p">,</span><span class="w"> </span><span class="s">"test.sav"</span><span class="p">)</span>
+<span class="go">2×2 ReadStatTable:</span>
+<span class="go"> Row │     AA        AB </span>
+<span class="go">     │ String  Float64? </span>
+<span class="go">─────┼──────────────────</span>
+<span class="go">   1 │    sav      10.1</span>
+<span class="go">   2 │    por      10.2</span>
+
+<span class="gp">julia&gt;</span><span class="w"> </span><span class="n">write_sav</span><span class="p">(</span><span class="n">df</span><span class="p">,</span><span class="w"> </span><span class="s">"test.por"</span><span class="p">)</span>
+<span class="go">2×2 ReadStatTable:</span>
+<span class="go"> Row │     AA        AB </span>
+<span class="go">     │ String  Float64? </span>
+<span class="go">─────┼──────────────────</span>
+<span class="go">   1 │    sav      10.1</span>
+<span class="go">   2 │    por      10.2</span>
+</code></pre></div>
+<p><a target="_blank" href="https://github.com/TidierOrg/TidierFiles.jl/blob/a2a14e14915611bb3331bb170cae5ee71b8c1cdc/src/statsfiles.jl#L143-L171" class="documenter-source">source</a><br></p>
+<p><a id="TidierFiles.write_table-Tuple{DataFrame, String}" href="#TidierFiles.write_table-Tuple{DataFrame,%20String}">#</a>
+<strong><code>TidierFiles.write_table</code></strong> — <em>Method</em>.</p>
+<div class="highlight"><pre><span></span><code><span class="n">write_table</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">file</span><span class="p">;</span><span class="w"> </span><span class="n">delim</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">'</span><span class="w">  </span><span class="err">'</span><span class="p">,</span><span class="w"> </span><span class="n">na</span><span class="p">,</span><span class="w"> </span><span class="n">append</span><span class="p">,</span><span class="w"> </span><span class="n">col_names</span><span class="p">,</span><span class="w"> </span><span class="n">eol</span><span class="p">,</span><span class="w"> </span><span class="n">num_threads</span><span class="p">)</span>
+</code></pre></div>
+<p>Write a DataFrame to a file, allowing for customization of the delimiter and other options.</p>
+<p><strong>Arguments</strong></p>
+<ul>
+<li><code>x</code>: The DataFrame to write to a file.</li>
+<li><code>file</code>: The path to the file where the DataFrame will be written.</li>
+</ul>
+<p>-delim: Character to use as the field delimiter. The default is tab ('  '), making it a TSV (tab-separated values) file by default, but can be changed to accommodate other formats.</p>
+<ul>
+<li><code>missing_value</code>: The string to represent missing data in the output file.</li>
+<li><code>append</code>: Whether to append to the file if it already exists. If false, the file will be overwritten.</li>
+<li><code>col_names</code>: Whether to write column names as the first line of the file. If appending to an existing file with append = true, column names will not be written regardless of this parameter's value.</li>
+<li><code>eol</code>: The end-of-line character to use in the file. Defaults to "</li>
+</ul>
+<p>".</p>
+<ul>
+<li><code>num_threads</code>: Number of threads to use for writing the file. Uses the number of available Julia threads by default.</li>
+</ul>
+<p><strong>Examples</strong></p>
+<div class="highlight"><pre><span></span><code><span class="gp">julia&gt;</span><span class="w"> </span><span class="n">df</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DataFrame</span><span class="p">(</span><span class="n">ID</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="o">:</span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="n">Name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s">"Alice"</span><span class="p">,</span><span class="w"> </span><span class="s">"Bob"</span><span class="p">,</span><span class="w"> </span><span class="s">"Charlie"</span><span class="p">,</span><span class="w"> </span><span class="s">"David"</span><span class="p">,</span><span class="w"> </span><span class="s">"Eva"</span><span class="p">],</span><span class="w"> </span><span class="n">Score</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mi">88</span><span class="p">,</span><span class="w"> </span><span class="mi">92</span><span class="p">,</span><span class="w"> </span><span class="mi">77</span><span class="p">,</span><span class="w"> </span><span class="mi">85</span><span class="p">,</span><span class="w"> </span><span class="mi">95</span><span class="p">]);</span>
+
+<span class="gp">julia&gt;</span><span class="w"> </span><span class="n">write_table</span><span class="p">(</span><span class="n">df</span><span class="p">,</span><span class="w"> </span><span class="s">"tabletest.txt"</span><span class="p">);</span>
+</code></pre></div>
+<p><a target="_blank" href="https://github.com/TidierOrg/TidierFiles.jl/blob/a2a14e14915611bb3331bb170cae5ee71b8c1cdc/src/TidierFiles.jl#L453-L474" class="documenter-source">source</a><br></p>
+<p><a id="TidierFiles.write_tsv-Tuple{DataFrame, String}" href="#TidierFiles.write_tsv-Tuple{DataFrame,%20String}">#</a>
+<strong><code>TidierFiles.write_tsv</code></strong> — <em>Method</em>.</p>
+<div class="highlight"><pre><span></span><code><span class="n">write_tsv</span><span class="p">(</span><span class="n">DataFrame</span><span class="p">,</span><span class="w"> </span><span class="n">filepath</span><span class="p">;</span><span class="w"> </span><span class="n">na</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">""</span><span class="p">,</span><span class="w"> </span><span class="n">append</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">,</span><span class="w"> </span><span class="n">col_names</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">,</span><span class="w"> </span><span class="n">missing_value</span><span class="p">,</span><span class="w"> </span><span class="n">eol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"</span>
+</code></pre></div>
+<p>", num_threads = Threads.nthreads()) Write a DataFrame to a TSV (tab-separated values) file.</p>
+<p><strong>Arguments</strong></p>
+<ul>
+<li><code>x</code>: The DataFrame to write to the TSV file.</li>
+<li><code>file</code>: The path to the output TSV file.</li>
+<li><code>missing_value</code>: = "": The string to represent missing values in the output file. Default is an empty string.</li>
+<li><code>append</code>: Whether to append to the file if it already exists. Default is false.</li>
+<li><code>col_names</code>: = true: Whether to write column names as the first line of the file. Default is true.</li>
+<li><code>eol</code>: = "</li>
+</ul>
+<p>": The end-of-line character to use in the output file. Default is the newline character.</p>
+<ul>
+<li><code>num_threads</code> = Threads.nthreads(): The number of threads to use for writing the file. Default is the number of available threads.</li>
+</ul>
+<p><strong>Examples</strong></p>
+<div class="highlight"><pre><span></span><code><span class="gp">julia&gt;</span><span class="w"> </span><span class="n">df</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DataFrame</span><span class="p">(</span><span class="n">ID</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="o">:</span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="n">Name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s">"Alice"</span><span class="p">,</span><span class="w"> </span><span class="s">"Bob"</span><span class="p">,</span><span class="w"> </span><span class="s">"Charlie"</span><span class="p">,</span><span class="w"> </span><span class="s">"David"</span><span class="p">,</span><span class="w"> </span><span class="s">"Eva"</span><span class="p">],</span><span class="w"> </span><span class="n">Score</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mi">88</span><span class="p">,</span><span class="w"> </span><span class="mi">92</span><span class="p">,</span><span class="w"> </span><span class="mi">77</span><span class="p">,</span><span class="w"> </span><span class="mi">85</span><span class="p">,</span><span class="w"> </span><span class="mi">95</span><span class="p">]);</span>
+
+<span class="gp">julia&gt;</span><span class="w"> </span><span class="n">write_tsv</span><span class="p">(</span><span class="n">df</span><span class="p">,</span><span class="w"> </span><span class="s">"tsvtest.tsv"</span><span class="p">);</span>
+</code></pre></div>
+<p><a target="_blank" href="https://github.com/TidierOrg/TidierFiles.jl/blob/a2a14e14915611bb3331bb170cae5ee71b8c1cdc/src/TidierFiles.jl#L429-L450" class="documenter-source">source</a><br></p>
+<p><a id="TidierFiles.write_xlsx-Tuple{Any}" href="#TidierFiles.write_xlsx-Tuple{Any}">#</a>
+<strong><code>TidierFiles.write_xlsx</code></strong> — <em>Method</em>.</p>
+<div class="highlight"><pre><span></span><code><span class="n">write_xlsx</span><span class="p">(</span><span class="n">x</span><span class="p">;</span><span class="w"> </span><span class="n">path</span><span class="p">,</span><span class="w"> </span><span class="n">overwrite</span><span class="p">)</span>
+</code></pre></div>
+<p>Write a DataFrame, or multiple DataFrames, to an Excel file. Specific sheets on can be specified for each dataframe.</p>
+<p><strong>Arguments</strong></p>
+<ul>
+<li><code>x</code>: The data to write. Can be a single Pair{String, DataFrame} for writing one sheet, or a Tuple of such pairs for writing multiple sheets. The String in each pair specifies the sheet name, and the DataFrame is the data to write to that sheet.</li>
+<li><code>path</code>: The path to the Excel file where the data will be written.</li>
+<li><code>overwrite</code>: Defaults to false. Whether to overwrite an existing file. If false, an error is thrown when attempting to write to an existing file.</li>
+</ul>
+<p><strong>Examples</strong></p>
+<div class="highlight"><pre><span></span><code><span class="gp">julia&gt;</span><span class="w"> </span><span class="n">df</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DataFrame</span><span class="p">(</span><span class="n">integers</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">],</span>
+<span class="w">       </span><span class="n">strings</span><span class="o">=</span><span class="p">[</span><span class="s">"This"</span><span class="p">,</span><span class="w"> </span><span class="s">"Package makes"</span><span class="p">,</span><span class="w"> </span><span class="s">"File reading/writing"</span><span class="p">,</span><span class="w"> </span><span class="s">"even smoother"</span><span class="p">],</span>
+<span class="w">       </span><span class="n">floats</span><span class="o">=</span><span class="p">[</span><span class="mf">10.2</span><span class="p">,</span><span class="w"> </span><span class="mf">20.3</span><span class="p">,</span><span class="w"> </span><span class="mf">30.4</span><span class="p">,</span><span class="w"> </span><span class="mf">40.5</span><span class="p">]);</span>
+
+<span class="gp">julia&gt;</span><span class="w"> </span><span class="n">df2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DataFrame</span><span class="p">(</span><span class="n">AA</span><span class="o">=</span><span class="p">[</span><span class="s">"aa"</span><span class="p">,</span><span class="w"> </span><span class="s">"bb"</span><span class="p">],</span><span class="w"> </span><span class="n">AB</span><span class="o">=</span><span class="p">[</span><span class="mf">10.1</span><span class="p">,</span><span class="w"> </span><span class="mf">10.2</span><span class="p">]);</span>
+
+<span class="gp">julia&gt;</span><span class="w"> </span><span class="n">write_xlsx</span><span class="p">((</span><span class="s">"REPORT_A"</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">df</span><span class="p">,</span><span class="w"> </span><span class="s">"REPORT_B"</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">df2</span><span class="p">);</span><span class="w"> </span><span class="n">path</span><span class="o">=</span><span class="s">"xlsxtest.xlsx"</span><span class="p">,</span><span class="w"> </span><span class="n">overwrite</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">);</span>
+</code></pre></div>
+<p><a target="_blank" href="https://github.com/TidierOrg/TidierFiles.jl/blob/a2a14e14915611bb3331bb170cae5ee71b8c1cdc/src/xlfiles.jl#L110-L129" class="documenter-source">source</a><br></p>
+<p><a id="Reference-Internal-functions"></a></p>
+<p><a id="Reference-Internal-functions-1"></a></p>
+<h2 id="reference-internal-functions">Reference - Internal functions<a class="headerlink" href="#reference-internal-functions" title="Permanent link">¤</a></h2></div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../examples/generated/UserGuide/gsheet/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Google Sheets">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Google Sheets
+              </div>
+            </div>
+          </a>
+        
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/kdpsingh" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://twitter.com/kdpsinghlab" target="_blank" rel="noopener" title="twitter.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["content.code.copy", "content.code.annotate", "navigation.top", "navigation.footer", "search.highlight", "search.share", "search.suggest", "toc.follow", "header.autohide"], "search": "../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.f1b6f286.min.js"></script>
+      
+        <script src="../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>
