@@ -201,7 +201,7 @@ Write a DataFrame to a CSV (comma-separated values) file.
 - `missing_value`: = "": The string to represent missing values in the output file. Default is an empty string.
 - `append`: Whether to append to the file if it already exists. Default is false.
 - `col_names`: = true: Whether to write column names as the first line of the file. Default is true.
-- `eol`: = "\n": The end-of-line character to use in the output file. Default is the newline character.
+- `eol`: The end-of-line character to use in the output file. Default is the newline character.
 - `num_threads` = Threads.nthreads(): The number of threads to use for writing the file. Default is the number of available threads.
 
 # Examples
@@ -223,7 +223,7 @@ Write a DataFrame to a TSV (tab-separated values) file.
 - `missing_value`: = "": The string to represent missing values in the output file. Default is an empty string.
 - `append`: Whether to append to the file if it already exists. Default is false.
 - `col_names`: = true: Whether to write column names as the first line of the file. Default is true.
-- `eol`: = "\n": The end-of-line character to use in the output file. Default is the newline character.
+- `eol`: The end-of-line character to use in the output file. Default is the newline character.
 - `num_threads` = Threads.nthreads(): The number of threads to use for writing the file. Default is the number of available threads.
 
 # Examples
@@ -416,6 +416,7 @@ julia> read_sas("test.xpt")
 ─────┼──────────────────
    1 │ sav         10.1
    2 │ por         10.2
+```
 """
 
 const docstring_read_sav =
