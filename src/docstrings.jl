@@ -201,7 +201,7 @@ Write a DataFrame to a CSV (comma-separated values) file.
 - `missing_value`: = "": The string to represent missing values in the output file. Default is an empty string.
 - `append`: Whether to append to the file if it already exists. Default is false.
 - `col_names`: = true: Whether to write column names as the first line of the file. Default is true.
-- `eol`: = "\n": The end-of-line character to use in the output file. Default is the newline character.
+- `eol`: The end-of-line character to use in the output file. Default is the newline character.
 - `num_threads` = Threads.nthreads(): The number of threads to use for writing the file. Default is the number of available threads.
 
 # Examples
@@ -223,7 +223,7 @@ Write a DataFrame to a TSV (tab-separated values) file.
 - `missing_value`: = "": The string to represent missing values in the output file. Default is an empty string.
 - `append`: Whether to append to the file if it already exists. Default is false.
 - `col_names`: = true: Whether to write column names as the first line of the file. Default is true.
-- `eol`: = "\n": The end-of-line character to use in the output file. Default is the newline character.
+- `eol`: The end-of-line character to use in the output file. Default is the newline character.
 - `num_threads` = Threads.nthreads(): The number of threads to use for writing the file. Default is the number of available threads.
 
 # Examples
@@ -416,6 +416,7 @@ julia> read_sas("test.xpt")
 ─────┼──────────────────
    1 │ sav         10.1
    2 │ por         10.2
+```
 """
 
 const docstring_read_sav =
@@ -765,5 +766,27 @@ julia> read_gsheet(public_sheet, sheet="Class Data", n_max=5)
    3 │ Anna          Female  1. Freshman   NC          English  Basketball
    4 │ Becky         Female  2. Sophomore  SD          Art      Baseball
    5 │ Benjamin      Male    4. Senior     WI          English  Basketball
+```
+"""
+
+const docstring_write_gsheet = 
+"""
+    write_gsheet(data::DataFrame, spreadsheet_id::String; sheet::String="Sheet1", range::String="", missing_value::String = "", append::Bool = true)
+
+Writes the contents of a DataFrame to a specified Google Sheets spreadsheet.
+
+# Arguments
+- `data::DataFrame`: The DataFrame containing the data to be written to Google Sheets.
+- `spreadsheet_id::String`: The ID of the Google Sheets spreadsheet or the full URL containing the ID.
+- `sheet::String`: The name of the sheet within the spreadsheet where the data will be written. Defaults to "Sheet1".
+- `range::String`: The range in the sheet where the data will be written. If empty, defaults to "A1".
+- `missing_value::String`: The value to replace missing entries in the DataFrame. Defaults to an empty string.
+- `append::Bool`: If true, appends the data to the existing data in the sheet. If false, overwrites the existing data. Defaults to true.
+
+# Examples
+```
+julia> df = DataFrame(A=1:5, B=["a", missing, "c", "d", "e"], C=[1.1, 2.2, 3.3, 4.4, 5.5]);
+
+julia> write_gsheet(df, full, sheet = "sheet2", append = false)
 ```
 """

@@ -169,3 +169,74 @@ function read_gsheet(spreadsheet_id::String;
     return df
   end
   
+"""
+$docstring_write_gsheet
+"""
+function write_gsheet(data::DataFrame, spreadsheet_id::String; sheet::String="Sheet1", range::String="", missing_value::String = "", append::Bool = false)
+    # URL-escape spreadsheet_id if necessary by extracting it from a full URL.
+    if occursin("spreadsheets/d/", spreadsheet_id)
+        m = match(r"spreadsheets/d/([^/]+)", spreadsheet_id)
+        if m !== nothing
+            spreadsheet_id = m.captures[1]
+        end
+    end
+
+    # Use a default range if none is provided.
+    if isempty(range)
+        range = "A1"
+    end
+
+    # If appending, use only the sheet name; if not, use "sheet!range".
+    loc = append ? sheet : sheet * "!" * range
+    loc = HTTP.escapeuri(loc)
+
+    headers = ["Authorization" => "Bearer  $(GSHEET_AUTH[].access_token)", "Content-Type" => "application/json"]
+
+    # Convert the DataFrame to a JSON object replacing missing values.
+    col_names = [string(c) for c in names(data)]
+    rows_data = [map(x -> ismissing(x) ? missing_value : x, collect(row)) for row in eachrow(data)]
+    # If appending, do not include the header; otherwise, prepend the header.
+    rows = append ? rows_data : vcat([col_names], rows_data)
+    body = Dict("values" => rows)
+
+    if append
+        # For appending data, use the append endpoint with POST.
+        url = "https://sheets.googleapis.com/v4/spreadsheets/$spreadsheet_id/values/$loc:append?valueInputOption=USER_ENTERED&insertDataOption=INSERT_ROWS"
+        response = HTTP.post(url, headers, JSON3.write(body))
+    else
+        # For updating (overwriting) data, use the update endpoint with PUT.
+        url = "https://sheets.googleapis.com/v4/spreadsheets/$spreadsheet_id/values/$loc?valueInputOption=USER_ENTERED"
+        response = HTTP.put(url, headers, JSON3.write(body))
+    end
+
+    if response.status != 200
+        error("Failed to write to Google Sheets: $(String(response.body))")
+    end
+
+    # If not appending, clear out any cells below the new data.
+    if !append
+        # Determine how many rows were written (including header).
+        new_N = length(rows)
+        # Helper function: convert a 1-indexed column number to its corresponding letter.
+        function col_letter(n::Int)
+            s = ""
+            while n > 0
+                rem = (n - 1) % 26
+                s = Char(rem + 'A') * s
+                n = (n - 1) ÷ 26
+            end
+            return s
+        end
+        last_col = col_letter(length(col_names))
+        # Build a clear range from the row after new data to a high row (here, row 1000).
+        clear_range = "$(sheet)!A$(new_N+1):$(last_col)1000"  # note the parentheses around sheet
+        clear_range = HTTP.escapeuri(clear_range)
+        clear_url = "https://sheets.googleapis.com/v4/spreadsheets/$spreadsheet_id/values/$clear_range:clear"
+        clear_response = HTTP.post(clear_url, headers, "{}")
+        if clear_response.status != 200
+            error("Failed to clear remaining cells: $(String(clear_response.body))")
+        end
+    end
+
+    return response
+end
