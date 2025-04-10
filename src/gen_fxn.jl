@@ -27,6 +27,8 @@ function read_file(filepath::String, args...; kwargs...)
         return read_parquet(filepath, args...; kwargs...)
     elseif ext == ".rds" || ext == ".RData" || ext == ".rdata"
         return RData.load(filepath)
+    elseif ext == ".json"
+        return read_json(filepath, args...; kwargs...)
     else
         error("Unsupported file format: $ext")
     end
@@ -57,6 +59,8 @@ function write_file(data::DataFrame,path::String, args...; kwargs...)
         return write_arrow(data, path, args...; kwargs...)
     elseif ext == ".parquet"
         return write_parquet(data, path, args...; kwargs...)
+    elseif ext == ".json"
+        return write_json(data, path, args...; kwargs...)
     else
         error("Unsupported file format: $ext")
     end

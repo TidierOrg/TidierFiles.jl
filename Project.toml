@@ -17,6 +17,7 @@ ReadStatTables = "52522f7a-9570-4e34-8ac6-c005c74d4b84"
 Reexport = "189a3867-3050-52da-a836-e630ba90ab69"
 Sockets = "6462fe0b-24de-5631-8697-dd941f90decc"
 XLSX = "fdbf4ff8-1666-58a4-91e7-1b58723a45e0"
+JSON = "682c06a0-de6a-54ab-a142-c8b1cf79cde6"
 
 [compat]
 Arrow = "2.7"
@@ -34,6 +35,7 @@ Sockets = "1.9 - 1.11"
 Random = "0.5 - 10"
 XLSX = "0.10"
 julia = "1.10"
+JSON = "0.21"
 
 [extras]
 Documenter = "e30172f5-a6a5-5a46-863b-614d45cd2de4"
