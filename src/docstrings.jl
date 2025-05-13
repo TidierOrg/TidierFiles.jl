@@ -199,6 +199,8 @@ Write a DataFrame to a CSV (comma-separated values) file.
 - `x`: The DataFrame to write to the CSV file.
 - `file`: The path to the output CSV file.
 - `missing_value`: = "": The string to represent missing values in the output file. Default is an empty string.
+- `delim`: delimiter for file. can be a character or string. default `,` 
+- `decimal`: decimal for file. supports characters only. default `.` 
 - `append`: Whether to append to the file if it already exists. Default is false.
 - `col_names`: = true: Whether to write column names as the first line of the file. Default is true.
 - `eol`: The end-of-line character to use in the output file. Default is the newline character.
