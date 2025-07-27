@@ -13,6 +13,7 @@ using RData
 using JSON3
 using Random
 using Sockets
+using JSON
 
 @reexport using DataFrames: DataFrame
 
