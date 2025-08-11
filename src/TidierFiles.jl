@@ -413,8 +413,8 @@ function write_csv(
     file::String;
     missing_value::String = "",
     append::Bool = false,
-    delim = ",",
-    decimal = ".",
+    delim = ',',
+    decimal = '.',
     col_names::Bool = true,
     eol::String = "\n",
     num_threads::Int = Threads.nthreads())

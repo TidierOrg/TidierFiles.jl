@@ -25,6 +25,7 @@ Currently supported file types:
 - `read_dta` and `write_dta` (.dta) 
 - `read_arrow` and `write_arrow`
 - `read_parquet` and `write_parquet`
+- `read_json` and `write_json`
 - `read_rdata` (.rdata and .rds)
 - `read_gsheet` and `write_gsheet` (Google Sheets)
 - `read_json` and `write_json`
