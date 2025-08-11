@@ -413,6 +413,8 @@ function write_csv(
     file::String;
     missing_value::String = "",
     append::Bool = false,
+    delim = ",",
+    decimal = ".",
     col_names::Bool = true,
     eol::String = "\n",
     num_threads::Int = Threads.nthreads())
@@ -423,6 +425,8 @@ function write_csv(
         x,
         append = append,
         header = col_names && !append,
+        delim = delim,
+        decimal = decimal,
         missingstring = missing_value,
         newline = eol,
         threaded = num_threads > 1    )
