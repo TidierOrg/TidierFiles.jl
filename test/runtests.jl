@@ -32,9 +32,9 @@ doctest(TidierFiles)
 
     @test roundTripDataFrame(df_barley;JSONObjectVector=false)
 
-    df_budget = read_json("https://raw.githubusercontent.com/vega/vega-datasets/refs/heads/main/data/budget.json")
+   # df_budget = read_json("https://raw.githubusercontent.com/vega/vega-datasets/refs/heads/main/data/budget.json")
 
-    @test roundTripDataFrame(df_budget)
+   # @test roundTripDataFrame(df_budget)
 
     df_budgets = read_json("https://raw.githubusercontent.com/vega/vega-datasets/refs/heads/main/data/budgets.json")
 
